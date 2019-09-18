@@ -1,15 +1,15 @@
 #section{
-  font-size : x-large;
+  font-size : medium;
   color : white;
 }
 
 #sub-sections{
-  font-size : x-large;
+  font-size : medium;
   color : #ff8731;
 }
 
 #footer{
   margin : auto;
-  font-size : large;
+  font-size : small;
   color : white;
 }
