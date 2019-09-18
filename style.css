@@ -15,6 +15,7 @@ p#sub-sections{
 }
 
 p#footer{
+  text-align : center;
   margin : auto;
   font-family: Liberation sans-serif;
   font-size : 10px;
