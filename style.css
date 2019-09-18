@@ -1,22 +1,22 @@
-#section{
+p#section{
   font-family : DejaVu serif;
   font-size : 14px;
   color : white;
 }
 
-#sub-sections{
+p#sub-sections{
   font-family : DejaVu serif;
   font-size : 14px;
   color : #ff8731;
 }
 
-#footer{
+p#footer{
   margin : auto;
   font-family: Liberation sans-serif;
   font-size : 10px;
   color : white;
 }
 
-a:link {
-   color:inherit;
+a{
+   color : #ff8731;
 }
