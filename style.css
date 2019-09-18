@@ -16,3 +16,7 @@
   font-size : 10px;
   color : white;
 }
+
+a:link {
+   color:inherit;
+}
