@@ -1,0 +1,15 @@
+#section{
+  font-size : 2;
+  color : white;
+}
+
+#sub-sections{
+  font-size : 2;
+  color : #ff8731;
+}
+
+#footer{
+  margin : auto;
+  font-size : 1;
+  color : white;
+}
