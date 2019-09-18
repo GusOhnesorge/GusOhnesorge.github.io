@@ -1,15 +1,18 @@
 #section{
-  font-size : small;
+  font-family : DejaVu serif;
+  font-size : 14px;
   color : white;
 }
 
 #sub-sections{
-  font-size : small;
+  font-family : DejaVu serif;
+  font-size : 14px;
   color : #ff8731;
 }
 
 #footer{
   margin : auto;
-  font-size : x-small;
+  font-family: Liberation sans-serif;
+  font-size : 10px;
   color : white;
 }
