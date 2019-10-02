@@ -1,0 +1,28 @@
+.section{
+  margin : 0;
+  padding : 0;
+  font-family : DejaVu serif;
+  font-size : 14px;
+  color : white;
+}
+
+.sub-section{
+  margin : 0;
+  padding : 0;
+  font-family : DejaVu serif;
+  font-size : 14px;
+  color : #ff8731;
+}
+
+.footer{
+  text-align : center;
+  margin : 0;
+  padding : 0;
+  font-family: Liberation sans-serif;
+  font-size : 10px;
+  color : white;
+}
+
+a{
+   color : #ff8731;
+}
