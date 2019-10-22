@@ -1,5 +1,5 @@
 var client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
-const access_tok;
+var access_tok;
 window.onload = gethash;
 
 async function gethash(){
@@ -12,7 +12,7 @@ async function gethash(){
     var access_splt = hash[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
     access_tok = access_splt[1]; //access_tok is used in calls to the Spotify API
     window.location.hash = "";
-    window.alert(access_tok);
+    //window.alert(access_tok);
   }
   //let infoopts{
     //method: 'GET',
