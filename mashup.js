@@ -1,5 +1,5 @@
 var client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
-window.onload(grabinfo)
+window.onload = grabinfo;
 
 async function grabinfo(){
   if(!window.location.hash){ //returns an empty string if there is no hash
