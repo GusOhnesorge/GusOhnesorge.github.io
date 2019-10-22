@@ -8,7 +8,8 @@ async function grabinfo(){
   else{
     //This happens when a user says yes to Spotify
     var hash = window.location.hash.substring(1).split('&');//This grabs the hash, gets ride of the #, and returns an array split by &
-    var access_tok = (hash[0].split("="))[1];
+    var access_splt = hash[0].split("=");
+    var access_tok = access_splt[1];
     window.location.hash = "";
     window.alert(access_tok);
   }
