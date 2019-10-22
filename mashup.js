@@ -14,7 +14,7 @@ async function gethash(){
     window.location.hash = "";
     window.alert(access_tok);
   }
-  infoopts{
+  let infoopts{
     method: 'GET',
     headers: {
       'Authorization': "Bearer "+access_tok
