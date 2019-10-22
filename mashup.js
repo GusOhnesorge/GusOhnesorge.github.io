@@ -12,6 +12,7 @@ async function gethash(){
     var access_splt = hash[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
     access_tok = access_splt[1]; //access_tok is used in calls to the Spotify API
     window.location.hash = "";
+    window.alert(access_tok);
   }
   infoopts{
     method: 'GET',
