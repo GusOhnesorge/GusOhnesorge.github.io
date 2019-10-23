@@ -36,9 +36,11 @@ async function gethash(){
     trow.appendChild(td);
     t.appendChild(trow);
   }
-  var img = document.createElement("img");
-  img.src =  info.images.0.url;
   window.alert("glork");
+  var img = document.createElement("img");
+  window.alert("glork2");
+  img.src =  info.images.0.url;
+  window.alert("glork3");
   document.getElementById('#profile_pic').appendChild(img);
 
 }
