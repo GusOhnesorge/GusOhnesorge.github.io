@@ -4,7 +4,7 @@ body{
 }
 
 .wrapper {
-  margin: 20 80px;
+  margin: 0 80px;
   display: grid;
   grid-template-columns: repeat(12, [wrapper-start] 1fr);
 }
@@ -20,7 +20,7 @@ body{
 }
 
 #profile_pic{
-  grid-column: spotify-start 6 / span 3;
+  grid-column: spotify-start 7 / span 3;
   grid-row: 1 / span 2;
 }
 
@@ -30,7 +30,7 @@ body{
 }
 
 #spotifyinfo{
-  grid-column: spotify-start 4 / span 3;
+  grid-column: spotify-start 4 / span -1;
   grid-row: 3;
   background-color: green;
 }
@@ -40,19 +40,19 @@ body{
 }
 
 #playlist{
-  grid-column: spotify-start  / span 3;
-  grid-row: 1 / span 3;
+  grid-column: spotify-start  / span 4;
+  grid-row: 1 / 4;
   background-color: red;
 }
 
 #songplayer{
-  grid-column: spotify-start 4 / span 3;
+  grid-column: spotify-start 4 / span -1;
   grid-row: 4;
   background-color: green;
 }
 
 .lyrics{
-  grid-column: wrapper-start 8 / span 8 ;
+  grid-column: wrapper-start 9 / span -1 ;
   grid-row: 1 / 4;
   background-color: blue;
 }
