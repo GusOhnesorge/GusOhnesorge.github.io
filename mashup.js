@@ -27,7 +27,7 @@ async function gethash(){
   var trow = document.createElement("tr");
   var td;
   var infolist = [info.display_name, info.email, info.uri];
-  var labellist = []"Display Name: ", "Email: ", "User Profile: "];
+  var labellist = ["Display Name: ", "Email: ", "User Profile: "];
   for(let i = 0; i<3; i++){
     td = document.createElement("td");
     trow = document.createElement("tr");
