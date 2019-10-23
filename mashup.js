@@ -14,12 +14,12 @@ async function gethash(){
     window.location.hash = "";
     window.alert(access_tok);
   }
-  //let infoopts{
-    //method: 'GET',
-    //headers: {
-    //  'Authorization': "Bearer "+access_tok
-    //}
-//  }
+  let infoopts{
+    method: 'GET',
+    headers: {
+      'Authorization': "Bearer "+access_tok
+    }
+  };
   //let jsoninfo = await fetch("https://api.spotify.com/v1/me",infoopts);
   //let info = await jsoninfo.json();
   //for(var element of info){
