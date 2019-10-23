@@ -36,7 +36,7 @@ async function gethash(){
     trow.appendChild(td);
     t.appendChild(trow);
   }
-  var img = document.getElementById("#profile_pic_img");
+  var img = document.querySelector("#profile_pic_img");
   img.src =  'https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234558/Chinook-On-White-03.jpg';
 
 }
