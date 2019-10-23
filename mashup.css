@@ -43,6 +43,6 @@ body{
 }
 
 #lyrics{
-  grid-column-start: 3;
+  grid-column-start: 4;
   grid-column-end: 4;
 }
