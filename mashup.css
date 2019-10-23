@@ -7,6 +7,10 @@ body{
   width : 100px;
   height : 100px;
 }
+
+#info_table{
+  font-size: 14px;
+}
 .wrapper {
   margin: 20 80px;
   display: grid;
