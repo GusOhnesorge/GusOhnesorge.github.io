@@ -20,7 +20,7 @@ async function gethash(){
       'Authorization': "Bearer "+access_tok
     }
   };
-  let jsoninfo = await fetch("https://api.spotify.com/v1/me",infoopts);
+  //let jsoninfo = await fetch("https://api.spotify.com/v1/me",infoopts);
   //let info = await jsoninfo.json();
   //for(var element of info){
     //window.alert(element);
