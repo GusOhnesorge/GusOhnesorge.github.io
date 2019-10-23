@@ -3,16 +3,16 @@ body{
   min-width: 1000px;
 }
 
-.spotify{
-  grid-column: col-start / span 7;
-  display: grid;
-  grid-template-columns: repeat(12, [col-start] 1fr);
-}
-
 .wrapper {
   margin: 20 80px;
   display: grid;
-  grid-template-columns: repeat(12, [col-start] 1fr);
+  grid-template-columns: repeat(12, [wrapper-start] 1fr);
+}
+
+.spotify{
+  grid-column: wrapper-start / span 7;
+  display: grid;
+  grid-template-columns: repeat(12, [spotify-start] 1fr);
 }
 
 .player_pic{
@@ -20,7 +20,7 @@ body{
 }
 
 #profile_pic{
-  grid-column: col-start 6 / span 3;
+  grid-column: spotify-start 6 / span 3;
   grid-row: 1 / span 2;
 }
 
@@ -30,7 +30,7 @@ body{
 }
 
 #spotifyinfo{
-  grid-column: col-start 4 / span 3;
+  grid-column: spotify-start 4 / span 3;
   grid-row: 3;
   background-color: green;
 }
@@ -40,19 +40,19 @@ body{
 }
 
 #playlist{
-  grid-column: col-start  / span 3;
+  grid-column: spotify-start  / span 3;
   grid-row: 1 / span 3;
   background-color: red;
 }
 
 #songplayer{
-  grid-column: col-start 4 / span 3;
+  grid-column: spotify-start 4 / span 3;
   grid-row: 4;
   background-color: green;
 }
 
 .lyrics{
-  grid-column: col-start 8 / span 8 ;
+  grid-column: wrapper-start 8 / span 8 ;
   grid-row: 1 / 4;
   background-color: blue;
 }
