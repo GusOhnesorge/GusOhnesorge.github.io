@@ -17,13 +17,13 @@ async function gethash(){
   let infoopts = {
     method: 'GET',
     headers: {
-      Accept: "application/json",
-      Content-Type : "application/json",
-      Authorization : `Bearer ${access_tok}`
+      'Accept': "application/json",
+      'Content-Type': "application/json",
+      'Authorization': `Bearer ${access_tok}`
     }
   };
   let jsoninfo = await fetch("https://api.spotify.com/v1/me",infoopts);
   let info = await jsoninfo.json();
-  window.alert(jsoninfo);
+  window.alert(info);
 
 }
