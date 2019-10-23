@@ -38,6 +38,7 @@ async function gethash(){
   }
   var img = document.createElement("img");
   img.src =  "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12234558/Chinook-On-White-03.jpg";
-  document.getElementById('#profile_pic').appendChild(img);
+  var pic = document.getElementById("#profile_pic");
+  pic.appendChild(img);
 
 }
