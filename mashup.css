@@ -37,6 +37,7 @@ body{
 }
 
 #info_table{
+  text-align: center;
   font-size: 14px;
 }
 
@@ -45,6 +46,7 @@ body{
   grid-column: spotify-start  / span 3;
   grid-row: 1 / -1;
   background-color: red;
+  overflow: scroll;
 }
 
 #songplayer{
@@ -60,4 +62,5 @@ body{
   grid-column: wrapper-start 9 / -1 ;
   grid-row: 1 / 8;
   background-color: blue;
+  overflow: scroll;
 }
