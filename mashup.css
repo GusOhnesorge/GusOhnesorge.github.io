@@ -4,7 +4,6 @@ body{
 }
 
 .wrapper {
-  margin: 0 80px;
   display: grid;
   grid-template-columns: repeat(12, [wrapper-start] 1fr);
 }
@@ -40,7 +39,7 @@ body{
 }
 
 #playlist{
-  grid-column: spotify-start  / span 4;
+  grid-column: spotify-start  / span 3;
   grid-row: 1 / 4;
   background-color: red;
 }
@@ -48,7 +47,7 @@ body{
 #songplayer{
   grid-column: spotify-start 4 / -1;
   grid-row: 4;
-  background-color: green;
+  background-color: lightgreen;
 }
 
 .lyrics{
