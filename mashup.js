@@ -36,8 +36,8 @@ async function gethash(){
     trow.appendChild(td);
     t.appendChild(trow);
   }
-  //var img = document.querySelector("#profile_pic_img");
-  //window.alert("v2");
-  //window.alert(info.images[0].url);
+  var img = document.querySelector("#profile_pic_img");
+  window.alert("v3");
+  img.src = info.images[0].url);
 
 }
