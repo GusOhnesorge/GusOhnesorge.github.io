@@ -26,9 +26,9 @@ async function gethash(){
   var t = document.querySelector("#info_table");
   var trow = document.createElement("tr");
   var td, contents;
-  var infolist = [info.display_name, info.email, info.external_urls.spotify];
-  var labellist = ["Display Name: ", "Email: ", "User Profile: "];
-  for(let i = 0; i<3; i++){
+  var infolist = [info.display_name, info.email];
+  var labellist = ["Display Name: ", "Email: "];
+  for(let i = 0; i<2; i++){
     td = document.createElement("td");
     trow = document.createElement("tr");
     contents = document.createTextNode(labellist[i]+infolist[i]);
