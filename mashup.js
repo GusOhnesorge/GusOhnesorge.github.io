@@ -12,7 +12,6 @@ async function gethash(){
     var access_splt = hash[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
     access_tok = access_splt[1]; //access_tok is used in calls to the Spotify API
     window.location.hash = "";
-    window.alert(access_tok);
   }
   let infoopts = {
     method: 'GET',
@@ -24,6 +23,18 @@ async function gethash(){
   };
   let jsoninfo = await fetch("https://api.spotify.com/v1/me",infoopts);
   let info = await jsoninfo.json();
-  window.alert(info.display_name);
+  var t = document.querySelector("#info_tble");
+  var trow = document.createElement("tr");
+  var td;
+  var infolist = {info.display_name, info.email, info.uri};
+  var labellist = {"Display Name: ", "Email: ", "User Profile: "};
+  for(let i = 0; i<3; i++){
+    td = document.createElement("td");
+    trow = document.createElement("tr");
+    contents = document.createTextNode(labellist[i]+infolist[i]);
+    td.appendChild(contents);
+    trow.appendChild(td);
+    t.appendChild(trow)
+  }
 
 }
