@@ -3,31 +3,42 @@ body{
   min-width: 800px;
 }
 
-#profile_pic_img{
-  width : 100px;
-  height : 100px;
-}
-
-#info_table{
-  font-size: 14px;
-}
 .wrapper {
   margin: 20 80px;
   display: grid;
   grid-template-columns: 33% 33% 34%;
 }
 
-.spotifyinfo{
+#profile_pic{
   grid-column-start: 1;
   grid-column-end: 3;
 }
 
-.profile_pic{
+#profile_pic_img{
+  width : 100px;
+  height : 100px;
+}
+
+#spotifyinfo{
   grid-column-start: 1;
   grid-column-end: 3;
 }
 
-.lyrics{
+#info_table{
+  font-size: 14px;
+}
+
+#playlist{
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#songplayer{
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+#lyrics{
   grid-column-start: 3;
   grid-column-end: 4;
 }
