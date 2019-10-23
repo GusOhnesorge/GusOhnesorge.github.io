@@ -6,7 +6,7 @@ body{
 .wrapper {
   margin: 20 80px;
   display: grid;
-  grid-template-columns: 50% 10% 40%;
+  grid-template-columns: 25% 50% 25%;
 }
 
 .player_pic{
@@ -26,6 +26,7 @@ body{
 #spotifyinfo{
   grid-column-start: 1;
   grid-column-end: 3;
+  background-color: green;
 }
 
 #info_table{
@@ -45,4 +46,5 @@ body{
 .lyrics{
   grid-column-start: 3;
   grid-column-end: 4;
+  background-color: blue;
 }
