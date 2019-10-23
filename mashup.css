@@ -46,7 +46,7 @@ body{
 }
 
 .lyrics{
-  grid-column: col-start 8 / span 3 ;
+  grid-column: col-start 8 / span 8 ;
   grid-row: 1 / 4;
   background-color: blue;
 }
