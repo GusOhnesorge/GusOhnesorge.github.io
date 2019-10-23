@@ -6,7 +6,7 @@ body{
 .wrapper {
   margin: 20 80px;
   display: grid;
-  grid-template-columns: 10% 80% 10%;
+  grid-template-columns: 50% 40% 10%;
 }
 
 .player_pic{
