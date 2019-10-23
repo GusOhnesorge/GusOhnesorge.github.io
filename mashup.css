@@ -25,7 +25,7 @@ body{
 
 #spotifyinfo{
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-co
   background-color: green;
 }
 
@@ -36,6 +36,7 @@ body{
 #playlist{
   grid-column-start: 1;
   grid-column-end: 2;
+  background-color: red;
 }
 
 #songplayer{
