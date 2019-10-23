@@ -3,6 +3,12 @@ body{
   min-width: 1000px;
 }
 
+.spotify{
+  grid-column: col-start / span 7;
+  display: grid;
+  grid-template-columns: repeat(12, [col-start] 1fr);
+}
+
 .wrapper {
   margin: 20 80px;
   display: grid;
