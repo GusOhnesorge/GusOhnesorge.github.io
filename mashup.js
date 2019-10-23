@@ -37,6 +37,6 @@ async function gethash(){
     t.appendChild(trow);
   }
   var img = document.querySelector("#profile_pic_img");
-  window.alert(info.images.url);
+  window.alert(info.images[0].url);
 
 }
