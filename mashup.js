@@ -23,7 +23,7 @@ async function gethash(){
   };
   let jsoninfo = await fetch("https://api.spotify.com/v1/me",infoopts);
   let info = await jsoninfo.json();
-  var t = document.querySelector("#info_tble");
+  var t = document.querySelector("#info_table");
   var trow = document.createElement("tr");
   var td;
   var infolist = [info.display_name, info.email, info.uri];
@@ -34,7 +34,7 @@ async function gethash(){
     contents = document.createTextNode(labellist[i]+infolist[i]);
     td.appendChild(contents);
     trow.appendChild(td);
-    t.appendChild(trow)
+    t.appendChild(trow);
   }
 
 }
