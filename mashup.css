@@ -5,7 +5,6 @@ body{
 
 .wrapper {
   display: grid;
-  justify-content: center;
   grid-template-columns: repeat(12, [wrapper-start] 1fr);
 }
 
@@ -20,6 +19,7 @@ body{
 }
 
 #profile_pic{
+  text-align: center;
   grid-column: spotify-start 7 / span 3;
   grid-row: 1 / span 2;
 }
@@ -30,6 +30,7 @@ body{
 }
 
 #spotifyinfo{
+  text-align: center;
   grid-column: spotify-start 4 / -1;
   grid-row: 3;
   background-color: green;
@@ -40,19 +41,23 @@ body{
 }
 
 #playlist{
+  text-align: left;
   grid-column: spotify-start  / span 3;
   grid-row: 1 / -1;
   background-color: red;
 }
 
 #songplayer{
+  text-align: center;
   grid-column: spotify-start 4 / -1;
   grid-row: 4;
+
   background-color: lightgreen;
 }
 
 .lyrics{
+  text-align: center;
   grid-column: wrapper-start 9 / -1 ;
-  grid-row: 1 / -1;
+  grid-row: 1 / 8;
   background-color: blue;
 }
