@@ -30,7 +30,7 @@ body{
 }
 
 #spotifyinfo{
-  grid-column: spotify-start 4 / span -1;
+  grid-column: spotify-start 4 / -1;
   grid-row: 3;
   background-color: green;
 }
@@ -46,13 +46,13 @@ body{
 }
 
 #songplayer{
-  grid-column: spotify-start 4 / span -1;
+  grid-column: spotify-start 4 / -1;
   grid-row: 4;
   background-color: green;
 }
 
 .lyrics{
-  grid-column: wrapper-start 9 / span -1 ;
+  grid-column: wrapper-start 9 / -1 ;
   grid-row: 1 / 4;
   background-color: blue;
 }
