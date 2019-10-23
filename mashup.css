@@ -9,6 +9,10 @@ body{
   grid-template-columns: 25% 50% 25%;
 }
 
+.player_pic{
+  float: left;
+}
+
 #profile_pic{
   grid-column-start: 1;
   grid-column-end: 3;
