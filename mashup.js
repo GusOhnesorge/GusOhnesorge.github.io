@@ -24,6 +24,6 @@ async function gethash(){
   };
   let jsoninfo = await fetch("https://api.spotify.com/v1/me",infoopts);
   let info = await json.stringify(jsoninfo);
-  window.alert(info);
+  window.alert(jsoninfo);
 
 }
