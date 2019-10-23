@@ -13,7 +13,7 @@ body{
   grid-column-end: 3;
 }
 
-.profile_pic{
+#profile_pic{
   grid-column-start: 1;
   grid-column-end: 3;
 }
