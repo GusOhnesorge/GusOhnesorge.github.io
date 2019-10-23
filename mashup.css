@@ -14,7 +14,7 @@ body{
 }
 
 #profile_pic{
-  grid-column: col-start 4 / span 3;
+  grid-column: col-start 6 / span 3;
   grid-row: 1 / span 2;
 }
 
