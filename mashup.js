@@ -38,6 +38,6 @@ async function gethash(){
   }
   var img = document.querySelector("#profile_pic_img");
   window.alert("v3");
-  img.src = info.images[0].url);
+  img.src = info.images[0].url;
 
 }
