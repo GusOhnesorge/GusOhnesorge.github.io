@@ -28,13 +28,13 @@ async function gethash(){
   var td;
   var infolist = [info.display_name, info.email, info.uri];
   var labellist = ["Display Name: ", "Email: ", "User Profile: "];
-  //for(let i = 0; i<3; i++){
+  for(let i = 0; i<3; i++){
     //td = document.createElement("td");
     //trow = document.createElement("tr");
     //contents = document.createTextNode(labellist[i]+infolist[i]);
     //td.appendChild(contents);
     //trow.appendChild(td);
     //t.appendChild(trow);
-  //}
+  }
 
 }
