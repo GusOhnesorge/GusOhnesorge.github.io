@@ -14,7 +14,7 @@ async function pagesetup(){
     window.location.hash = "";
   }
   loadinfo();
-
+  loadplaylists();
 }
 
 async function loadinfo(){
