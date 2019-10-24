@@ -70,11 +70,12 @@ async function loadplaylists(){
     });
     td.appendChild(contents);
     td.id = info.items[i].name;
+    td..addEventListener("click", chooseplaylist);
     trow.appendChild(td);
     t.appendChild(trow);
   }
 }
 
   async function chooseplaylist(){
-    window.alret("test");
+    window.alret(this.id);
   }
