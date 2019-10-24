@@ -58,7 +58,7 @@ h3{
   border-collapse: collapse;
 }
 
-#playlist_table tr:hover{
+#playlist_table tr:nth-child(odd):hover{
   background-color: white;
   color: #1DB954;
 }
