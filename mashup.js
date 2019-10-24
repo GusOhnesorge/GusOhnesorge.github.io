@@ -64,7 +64,10 @@ async function loadplaylists(){
     td = document.createElement("td");
     trow = document.createElement("tr");
     contents = document.createTextNode(info.items[i].name);
-    current_playlist_ids.push(info.items[i].name: info.items[i].id);
+    current_playlist_ids.push({
+      key: info.items[i].name,
+      value: info.items[i].id
+    });
     td.appendChild(contents);
     td.id = info.items[i].name;
     trow.appendChild(td);
