@@ -9,7 +9,7 @@ body{
 }
 
 .spotify{
-  grid-column: wrapper-start / span 7;
+  grid-column: wrapper-start / span 8;
   display: grid;
   grid-template-columns: repeat(12, [spotify-start] 1fr);
 }
@@ -31,7 +31,7 @@ body{
 
 #spotifyinfo{
   text-align: center;
-  grid-column: spotify-start 6 / span 6;
+  grid-column: spotify-start 9 / -1;
   grid-row: 3;
   background-color: green;
 }
@@ -52,7 +52,7 @@ body{
 
 #songplayer{
   text-align: center;
-  grid-column: spotify-start 6 / span 6;
+  grid-column: spotify-start 9 / span -1;
   grid-row: 4;
 
   background-color: lightgreen;
