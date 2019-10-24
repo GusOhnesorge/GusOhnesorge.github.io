@@ -1,6 +1,5 @@
 var client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
 var access_tok;
-var player_loaded = false;
 window.onload = pagesetup;
 
 async function pagesetup(){
