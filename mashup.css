@@ -3,6 +3,10 @@ body{
   min-width: 1000px;
 }
 
+h1{
+  color: #179141;
+}
+
 h3{
   style: underline;
 }
@@ -34,6 +38,7 @@ h3{
 }
 
 #spotifyinfo{
+  color: #179141;
   text-align: center;
   grid-column: spotify-start 7 / -1;
   grid-row: 3;
@@ -79,6 +84,7 @@ h3{
 
 #songdetails{
   grid-column: songbox-start 2;
+  color: #86B796;
 }
 
 #songplayer{
