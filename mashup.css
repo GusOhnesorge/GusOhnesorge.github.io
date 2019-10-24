@@ -49,6 +49,10 @@ body{
   overflow-wrap: break-word;
 }
 
+#playlist_table{
+  border-collapse: collapse;
+}
+
 #playlist_table tr:nth-child(odd) {background-color: #1DB954;}
 #playlist_table tr:nth-child(even) {background-color: #179141;}
 
