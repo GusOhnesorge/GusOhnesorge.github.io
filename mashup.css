@@ -72,11 +72,6 @@ h3{
   color: #1DB954;
 }
 
-#playlist_table tr:nth-child(even):hover{
-  background-color: white;
-  color: #1DB954;
-}
-
 #playlist_table tr:nth-child(odd) {background-color: #1DB954;}
 #playlist_table tr:nth-child(even) {background-color: #179141;}
 
