@@ -71,8 +71,8 @@ async function loadplaylists(){
   }
 }
 
-async function loadplayer(){
-  var x = document.createElement('script');
-  x.src = 'mashup_player.js';
-  document.getElementsByTagName("head")[0].appendChild(x);
-}
+//async function loadplayer(){
+  //var x = document.createElement('script');
+  //x.src = 'mashup_player.js';
+  //document.getElementsByTagName("head")[0].appendChild(x);
+//}
