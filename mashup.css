@@ -20,7 +20,7 @@ body{
 
 #profile_pic{
   text-align: center;
-  grid-column: spotify-start 7 / span 3;
+  grid-column: spotify-start 8 / span 3;
   grid-row: 1 / span 2;
 }
 
@@ -52,8 +52,8 @@ body{
 
 #songplayer{
   text-align: center;
-  grid-column: spotify-start 6 / -1;
-  grid-row: 4;
+  grid-column: spotify-start 7 / -1;
+  grid-row: 6;
 
   background-color: lightgreen;
 }
