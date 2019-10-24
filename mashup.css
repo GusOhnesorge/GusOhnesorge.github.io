@@ -55,7 +55,8 @@ body{
 }
 
 #playlist_table tr:hover{
-  background-color: #0F632B;
+  background-color: #FFFFFF;
+  color: #1DB954;
 }
 
 #playlist_table tr:nth-child(odd) {background-color: #1DB954;}
