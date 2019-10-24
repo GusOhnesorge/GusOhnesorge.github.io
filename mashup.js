@@ -1,5 +1,6 @@
 var client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
 var access_tok;
+var player_loaded = false;
 window.onload = pagesetup;
 
 async function pagesetup(){
@@ -64,7 +65,14 @@ async function loadplaylists(){
     trow = document.createElement("tr");
     contents = document.createTextNode(info.items[i].name);
     td.appendChild(contents);
+    td..addEventListener("click", playsongs);
     trow.appendChild(td);
     t.appendChild(trow);
   }
+}
+
+async function loadplayer(){
+  var x = document.createElement('script');
+  x.src = 'mashup_player.js';
+  document.getElementsByTagName("head")[0].appendChild(x);
 }
