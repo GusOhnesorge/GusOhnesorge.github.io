@@ -55,11 +55,11 @@ async function loadplaylists(){
       'Authorization': `Bearer ${access_tok}`
     }
   };
-  let jsoninfo = await fetch("https://api.spotify.com/v1/users/{user_id}/playlists?limit=${n_playlists}",infoopts);
-  let info = await jsoninfo.json();
+  //let jsoninfo = await fetch("https://api.spotify.com/v1/users/{user_id}/playlists?limit=${n_playlists}",infoopts);
+  //let info = await jsoninfo.json();
   var t = document.querySelector("#playlist_table");
   var tr, td, contents;
-  window.alert("for loop problem");
+  window.alert("queryselector problem");
   //for(let i = 0; i<info.length; i++){
     //td = document.createElement("td");
     //trow = document.createElement("tr");
