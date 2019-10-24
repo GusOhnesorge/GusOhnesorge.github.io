@@ -44,9 +44,10 @@ body{
 #playlist{
   text-align: left;
   grid-column: spotify-start  / span 3;
-  grid-row: 1 / -1;
+  grid-row: 1 / span 6;
   background-color: red;
-  overflow: scroll;
+  overflow: auto;
+  overflow-wrap: break-word;
 }
 
 #songplayer{
@@ -62,5 +63,6 @@ body{
   grid-column: wrapper-start 9 / -1 ;
   grid-row: 1 / 8;
   background-color: blue;
-  overflow: scroll;
+  overflow: auto;
+  overflow-wrap: break-word;
 }
