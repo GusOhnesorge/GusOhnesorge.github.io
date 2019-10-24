@@ -45,10 +45,12 @@ body{
   text-align: left;
   grid-column: spotify-start  / span 5;
   grid-row: 1 / span 6;
-  background-color: red;
   overflow: auto;
   overflow-wrap: break-word;
 }
+
+#playlist_table tr:nth-child(odd) {background-color: #1DB954;}
+#playlist_table tr:nth-child(even) {background-color: #179141;}
 
 #songbox{
   grid-column: spotify-start 7 / -1;
