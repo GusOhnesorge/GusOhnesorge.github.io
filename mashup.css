@@ -3,6 +3,10 @@ body{
   min-width: 1000px;
 }
 
+h3{
+  style: underline;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(12, [wrapper-start] 1fr);
