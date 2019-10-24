@@ -1,4 +1,5 @@
 var client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
+var current_playlist_ids = [];
 var access_tok;
 window.onload = pagesetup;
 
@@ -63,8 +64,14 @@ async function loadplaylists(){
     td = document.createElement("td");
     trow = document.createElement("tr");
     contents = document.createTextNode(info.items[i].name);
+    current_playlist_ids.push(info.items[i].name: info.items[i].id);
     td.appendChild(contents);
+    td.id = info.items[i].name;
     trow.appendChild(td);
     t.appendChild(trow);
   }
 }
+
+  async function chooseplaylist(){
+    window.alret("test");
+  }
