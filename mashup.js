@@ -59,7 +59,7 @@ async function loadplaylists(){
   let info = await jsoninfo.json();
   //var t = document.querySelector("#playlist_table");
   var trow, td, contents;
-  window.alert("variable problem");
+  window.alert("querey prob");
   //for(let i = 0; i<info.length; i++){
     //td = document.createElement("td");
     //trow = document.createElement("tr");
