@@ -1,8 +1,8 @@
 var client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
 var access_tok;
-window.onload = gethash;
+window.onload = pagesetup;
 
-async function gethash(){
+async function pagesetup(){
   if(!window.location.hash){ //returns an empty string if there is no hash
     //This happens when a user says no to Spotify
   }
@@ -13,6 +13,11 @@ async function gethash(){
     access_tok = access_splt[1]; //access_tok is used in calls to the Spotify API
     window.location.hash = "";
   }
+  loadinfo();
+
+}
+
+async function loadinfo(){
   let infoopts = {
     method: 'GET',
     headers: {
@@ -38,5 +43,4 @@ async function gethash(){
   }
   var img = document.querySelector("#profile_pic_img");
   img.src = info.images[0].url;
-
 }
