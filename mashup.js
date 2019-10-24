@@ -64,7 +64,6 @@ async function loadplaylists(){
     trow = document.createElement("tr");
     contents = document.createTextNode(info.items[i].name);
     td.appendChild(contents);
-    td..addEventListener("click", playsongs);
     trow.appendChild(td);
     t.appendChild(trow);
   }
