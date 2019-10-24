@@ -68,7 +68,7 @@ body{
 
 #songplayer{
   text-align: center;
-  grid-column: spotify-start 7 / -1;
+  grid-column: spotify-start 8 / -1;
   grid-row: 6;
 
   background-color: lightgreen;
