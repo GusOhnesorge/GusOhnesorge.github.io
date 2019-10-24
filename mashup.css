@@ -50,6 +50,22 @@ body{
   overflow-wrap: break-word;
 }
 
+#songbox{
+  grid-column: spotify-start 7 / -1;
+  grid-row: 4 / span 2;
+  display: grid;
+  grid-template-columns: repeat(3, [songbox-start] 1fr);
+
+}
+
+#songimg{
+  grid-column: songbox-start 1;
+}
+
+#songdetails{
+  grid-column: songbox-start 2;
+}
+
 #songplayer{
   text-align: center;
   grid-column: spotify-start 7 / -1;
