@@ -57,9 +57,9 @@ async function loadplaylists(){
   };
   //let jsoninfo = await fetch("https://api.spotify.com/v1/users/{user_id}/playlists?limit=${n_playlists}",infoopts);
   //let info = await jsoninfo.json();
-  var t = document.querySelector("#playlist_table");
-  var tr, td, contents;
-  window.alert("queryselector problem");
+  //var t = document.querySelector("#playlist_table");
+  //var tr, td, contents;
+  window.alert("variable problem");
   //for(let i = 0; i<info.length; i++){
     //td = document.createElement("td");
     //trow = document.createElement("tr");
