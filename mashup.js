@@ -70,7 +70,7 @@ async function loadplaylists(){
     });
     td.appendChild(contents);
     td.id = info.items[i].name;
-    //td.addEventListener("click", chooseplaylist);
+    td.addEventListener("click", chooseplaylist, false);
     trow.appendChild(td);
     t.appendChild(trow);
   }
