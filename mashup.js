@@ -29,7 +29,7 @@ async function loadinfo(){
   let jsoninfo = await fetch("https://api.spotify.com/v1/me",infoopts);
   let info = await jsoninfo.json();
   var t = document.querySelector("#info_table");
-  var trow = document.createElement("tr");
+  var trow;
   var td, contents;
   var infolist = [info.display_name, info.email];
   var labellist = ["Display Name: ", "Email: "];
@@ -43,4 +43,28 @@ async function loadinfo(){
   }
   var img = document.querySelector("#profile_pic_img");
   img.src = info.images[0].url;
+}
+
+async function loadplaylists(){
+  var n_playlists = 10;
+  let infoopts = {
+    method: 'GET',
+    headers: {
+      'Accept': "application/json",
+      'Content-Type': "application/json",
+      'Authorization': `Bearer ${access_tok}`
+    }
+  };
+  let jsoninfo = await fetch("https://api.spotify.com/v1/users/{user_id}/playlists?limit=${n_playlists}",infoopts);
+  let info = await jsoninfo.json();
+  var t = document.querySelector("#playlist_table");
+  var tr, td, contents;
+  for(let i = 0; i<info.length; i++){
+    td = document.createElement("td");
+    trow = document.createElement("tr");
+    contents = document.createTextNode(info[i].name);
+    td.appendChild(contents);
+    trow.appendChild(td);
+    t.appendChild(trow);
+  }
 }
