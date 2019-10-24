@@ -37,7 +37,6 @@ h3{
   text-align: center;
   grid-column: spotify-start 7 / -1;
   grid-row: 3;
-  background-color: green;
 }
 
 #info_table{
@@ -87,7 +86,6 @@ h3{
   grid-column: spotify-start 8 / -1;
   grid-row: 6;
 
-  background-color: lightgreen;
 }
 
 .lyrics{
