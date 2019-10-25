@@ -3,7 +3,7 @@ var current_playlist_ids = new Map();
 var song_playing = false;
 var shuffle = false;
 var replay = false;
-var device_id;
+var kdevice_id;
 var access_tok;
 window.onload = pagesetup;
 
@@ -18,6 +18,7 @@ function pagesetup(){
     access_tok = access_splt[1]; //access_tok is used in calls to the Spotify API
     window.location.hash = "";
   }
+  window.alert("device_id: " + kdevice_id);
   loadinfo();
   loadplaylists();
   getdeviceid();
@@ -88,12 +89,11 @@ async function loadplaylists(){
       }
     };
     let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/devices",infoopts);
-    window.alert("huh");
     let info = await jsoninfo.json();
     for(let i = 0; i<info.devices.length;i++){
       window.alert(info.devices[i].name);
       if(info.devices[i].name == "MusicInfoPlayer"){
-        device_id = info.devices[i].id;
+        kdevice_id = info.devices[i].id;
       }
     }
   }
@@ -105,7 +105,7 @@ async function loadplaylists(){
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}&context_uri=${context}`,infoopts);
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${kdevice_id}&context_uri=${context}`,infoopts);
   }
 
   async function chooseplaylist(){
