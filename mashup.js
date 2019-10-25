@@ -5,6 +5,7 @@ var shuffle = false;
 var replay = false;
 var device_id;
 var access_tok;
+var updateinterval;
 window.onload = pagesetup;
 
 function pagesetup(){
@@ -19,8 +20,29 @@ function pagesetup(){
     window.location.hash = "";
   }
   loadinfo();
-  loadplaylists();
+  updateinterval = window.setInterval(updateloop, 1000);
+
 }
+
+/* *************************************************************
+  ********************  GENERAL FUNCTIONS  *********************
+  ************************************************************** */
+async function updateloop(){
+  loadplaylists();
+  loadsong();
+}
+
+/* *************************************************************
+  ****************  GENIUS LYRICS FUNCTIONS  *******************
+  ************************************************************** */
+
+  async function loadlyrics(){
+
+  }
+
+/* *************************************************************
+  ********************  SPOTIFY FUNCTIONS  *********************
+  ************************************************************** */
 
 async function loadinfo(){
   let infoopts = {
