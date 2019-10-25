@@ -79,6 +79,7 @@ async function loadplaylists(){
 }
 
   async function getdeviceid(){
+    window.alert("uhhh");
     let infoopts = {
       method: 'GET',
       headers: {
@@ -87,6 +88,7 @@ async function loadplaylists(){
         'Authorization': `Bearer ${access_tok}`
       }
     };
+    window.alert("uhhh");
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists?limit=${n_playlists}`,infoopts);
     let info = await jsoninfo.json();
     for(device in info.devices){
@@ -94,7 +96,7 @@ async function loadplaylists(){
         device_id = device.id;
       }
     }
-    window.alert(device_id);
+    window.alert("uhhh");
   }
 
   async function setdevice(context){
