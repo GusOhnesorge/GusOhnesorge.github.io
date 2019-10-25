@@ -20,6 +20,7 @@ function pagesetup(){
   }
   loadinfo();
   loadplaylists();
+  setdevice();
 }
 
 async function loadinfo(){
