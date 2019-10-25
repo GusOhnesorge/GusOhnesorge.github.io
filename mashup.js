@@ -79,7 +79,6 @@ async function loadplaylists(){
 }
 
   async function getdeviceid(){
-    window.alert("not getdeviceid");
     let infoopts = {
       method: 'GET',
       headers: {
