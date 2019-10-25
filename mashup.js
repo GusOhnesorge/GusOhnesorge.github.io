@@ -100,7 +100,7 @@ async function loadplaylists(){
     getdeviceid();
     let infoopts = {
       method: 'PUT',
-      body: JSON.stringify({"device_ids" : [device_id], "play": true}),
+      body: JSON.stringify({"device_ids" : [device_id], "play": false}),
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
