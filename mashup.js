@@ -3,7 +3,7 @@ var current_playlist_ids = new Map();
 var song_playing = false;
 var shuffle = false;
 var replay = false;
-var kdevice_id;
+var device_id;
 var access_tok;
 window.onload = pagesetup;
 
@@ -21,7 +21,6 @@ function pagesetup(){
   window.alert("device_id: " + kdevice_id);
   loadinfo();
   loadplaylists();
-  getdeviceid();
 }
 
 async function loadinfo(){
@@ -93,19 +92,20 @@ async function loadplaylists(){
     for(let i = 0; i<info.devices.length;i++){
       window.alert(info.devices[i].name);
       if(info.devices[i].name == "MusicInfoPlayer"){
-        kdevice_id = info.devices[i].id;
+        device_id = info.devices[i].id;
       }
     }
   }
 
   async function setdevice(context){
+    getdeviceid();
     let infoopts = {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${kdevice_id}&context_uri=${context}`,infoopts);
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}&context_uri=${context}`,infoopts);
   }
 
   async function chooseplaylist(){
