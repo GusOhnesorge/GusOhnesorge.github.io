@@ -13,15 +13,9 @@ function signIn(){
   var thediv = document.querySelector("#test");
   thediv.appendChild(contents);
   var url = `https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scopes}&response_type=${response_type}`;
-  window.addEventListener("message", function(event) {
-            hash = JSON.parse(event.data);
-            if (hash.type == 'access_token') {
-                callback(hash.access_token);
-            }
-        }, false);
   var w = window.open(url, 'Spotify', 'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
 
   window.alert(hash);
-
   w.close();
+
 }
