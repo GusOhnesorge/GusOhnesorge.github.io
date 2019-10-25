@@ -89,11 +89,9 @@ async function loadplaylists(){
     let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/devices",infoopts);
     let info = await jsoninfo.json();
     for(let i = 0; i<info.devices.length;i++){
-      window.alert("uh oh");
       if(info.devices[i].name == "MusicInfoPlayer"){
         device_id = info.devices[i].id;
         i = i+info.devices.length;
-        window.alert(device_id);
       }
     }
   }
@@ -101,9 +99,10 @@ async function loadplaylists(){
   async function setdevice(){
     window.alert("setdevice");
     getdeviceid();
+    window.alert(device_id);
     let infoopts = {
       method: 'PUT',
-      body:{"device_ids" : [device_id], "play": true},
+      body: JSON.stringify({"device_ids" : [device_id], "play": true}),
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
@@ -111,6 +110,7 @@ async function loadplaylists(){
       }
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
+    window.alert("made it");
   }
 
   async function pausedevice(){
