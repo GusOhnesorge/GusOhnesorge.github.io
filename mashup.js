@@ -90,14 +90,12 @@ async function loadplaylists(){
     let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/devices",infoopts);
     window.alert("huh");
     let info = await jsoninfo.json();
-    window.alert(info.devices.length);
-    window.alert(info.error.message);
-    //for(let i = 0; i<info.devices.length;i++){
-      //window.alert(info.devices[i].name);
-      //if(info.devices[i].name == "MusicInfoPlayer"){
-        //device_id = info.devices[i].id;
-      //}
-    //}
+    for(let i = 0; i<info.devices.length;i++){
+      window.alert(info.devices[i].name);
+      if(info.devices[i].name == "MusicInfoPlayer"){
+        device_id = info.devices[i].id;
+      }
+    }
   }
 
   async function setdevice(context){
