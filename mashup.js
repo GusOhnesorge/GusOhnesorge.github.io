@@ -96,12 +96,11 @@ async function loadplaylists(){
     }
   }
 
-  async function playdevice(context){
-    window.alert("playdevice");
+  async function setdevice(){
+    window.alert("setdevice");
     getdeviceid();
     let infoopts = {
       method: 'PUT',
-      body: json.stringify(context),
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
@@ -138,7 +137,10 @@ async function loadplaylists(){
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
     let info = await jsoninfo.json();
-    playdevice(info.uri);
+    setdevice();
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
+    let info = await jsoninfo.json();
+    window.alert(info.device.name);
 
   }
 
