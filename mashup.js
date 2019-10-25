@@ -79,7 +79,6 @@ async function loadplaylists(){
 }
 
 async function loadsong(){
-  window.alert("error1");
   let songops = {
     method: 'GET',
     headers: {
@@ -88,11 +87,9 @@ async function loadsong(){
       'Authorization': `Bearer ${access_tok}`
     }
   };
-  window.alert("error2");
   let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/currently-playing?market=us",songops);
-  window.alert("error3");
   let info = await jsoninfo.json();
-  window.alert("error4");
+  window.alert(info.item.name);
 }
 
 
