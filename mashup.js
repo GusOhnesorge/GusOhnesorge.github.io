@@ -126,7 +126,7 @@ async function loadplaylists(){
 
   }
 
-  async function getcurrentsongid(){
+  async function getcurrentsong(){
     let infoopts = {
       method: 'GET',
       headers: {
