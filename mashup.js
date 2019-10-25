@@ -20,7 +20,6 @@ function pagesetup(){
   }
   loadinfo();
   loadplaylists();
-  setdevice();
 }
 
 async function loadinfo(){
@@ -97,17 +96,11 @@ async function loadplaylists(){
     }
   }
 
-<<<<<<< HEAD
-  async function setdevice(){ //This actually gets the device
-=======
   async function setdevice(){
-    window.alert("setdevice");
->>>>>>> parent of 4325b5d... cleared out tracker functions
     getdeviceid();
-    window.alert(device_id);
     let infoopts = {
       method: 'PUT',
-      body: JSON.stringify({"device_ids" : [device_id], "play": false}),
+      body: JSON.stringify({"device_ids" : [device_id], "play": true}),
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
@@ -115,17 +108,21 @@ async function loadplaylists(){
       }
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
-    window.alert("made it");
+  }
+
+  async function playdevice(){
+    let infoopts = {
+      method: 'PUT',
+      headers: {
+        'Accept': "application/json",
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${access_tok}`
+      }
+    };
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
   }
 
   async function pausedevice(){
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-    getdeviceid();
->>>>>>> parent of 6e8cccc... implementing play and pause
     let infoopts = {
       method: 'PUT',
       headers: {
@@ -134,30 +131,10 @@ async function loadplaylists(){
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
-  }
-
-  async function changemusic(context){
-=======
-=======
-    window.alert("pausedevice");
->>>>>>> parent of 4325b5d... cleared out tracker functions
-    getdeviceid();
->>>>>>> parent of 6e8cccc... implementing play and pause
-    let infoopts = {
-      method: 'PUT',
-      body: JSON.stringify({"context_uri" : context}),
-      headers: {
-        'Accept': "application/json",
-        'Content-Type': "application/json",
-        'Authorization': `Bearer ${access_tok}`
-      }
-    };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
+    let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/pause",infoopts);
   }
 
   async function chooseplaylist(){
-    window.alert("chooseplaylist");
     var playlist_id = current_playlist_ids.get(this.id);
     let playlistops = {
       method: 'GET',
@@ -169,41 +146,10 @@ async function loadplaylists(){
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
-<<<<<<< HEAD
-<<<<<<< HEAD
-    changemusic(info.uri);
-=======
-=======
-    window.alert("wtf");
->>>>>>> parent of 4325b5d... cleared out tracker functions
-    setdevice();
-    window.alert("wtf2");
-    let playeropts = {
-      method: 'GET',
-      headers: {
-        'Accept': "application/json",
-        'Content-Type': "application/json",
-        'Authorization': `Bearer ${access_tok}`
-      }
-    };
-    window.alert("wtf3");
-    let jsoninfo2 = await fetch(`https://api.spotify.com/v1/me/player`,playeropts);
-    window.alert("jsoninfo2");
-    let info2 = await jsoninfo2.json();
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 6e8cccc... implementing play and pause
-=======
->>>>>>> parent of 6e8cccc... implementing play and pause
-=======
-    window.alert("wtf5");
-    window.alert(info2.device.name);
-    window.alert(info2.error);
-
->>>>>>> parent of 4325b5d... cleared out tracker functions
+    setdevice(info.);
   }
 
-  /*async function getcurrentsongid(){
+  async function getcurrentsongid(){
     let infoopts = {
       method: 'GET',
       headers: {
@@ -215,9 +161,9 @@ async function loadplaylists(){
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
     let info = await jsoninfo.json();
     return info.context.id;
-  }*/
+  }
 
-/*  async function getcurrentsonguri(){
+  async function getcurrentsonguri(){
     window.alert("getsonguri");
     let infoopts = {
       method: 'GET',
@@ -231,19 +177,19 @@ async function loadplaylists(){
     let info = await jsoninfo.json();
     return info.context.uri;
   }
-*/
-  async function playsong(){
+
+  async function play_pause(){
     if(song_playing){
       song_playing = false;
       var play_button = document.querySelector("#play");
       play_button.src = "images/pause.jpg";
-      //playdevice(getcurrentsonguri);
+      pausedevice();
     }
     else{
       song_playing = true;
       var play_button = document.querySelector("#play");
       play_button.src = "images/play.png";
-      //pausedevice();
+      playdevice();
     }
   }
 
