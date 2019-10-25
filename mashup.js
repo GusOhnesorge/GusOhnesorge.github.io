@@ -1,9 +1,12 @@
 var client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
 var current_playlist_ids = [];
+var song_playing = false;
+var shuffle = false;
+var replay = false;
 var access_tok;
 window.onload = pagesetup;
 
-async function pagesetup(){
+function pagesetup(){
   if(!window.location.hash){ //returns an empty string if there is no hash
     //This happens when a user says no to Spotify
   }
@@ -64,18 +67,13 @@ async function loadplaylists(){
     td = document.createElement("td");
     trow = document.createElement("tr");
     contents = document.createTextNode(info.items[i].name);
-    //ts_button = document.createElement("input"); //I wanted to make the td clickable but I couldn't figure it out so I went with a button
-    //ts_button.type = "button";
-    //ts_button.onclick = chooseplaylist();
-    //ts_button.value = "Choose";
-    current_playlist_ids.push({
+    current_playlist_ids.push({ //store names of playlist with their ids
       key: info.items[i].name,
       value: info.items[i].id
     });
     td.appendChild(contents);
     td.id = info.items[i].name;
-    td.addEventListener("click", chooseplaylist, false);
-    //td.appendChild(ts_button);
+    td.addEventListener("click", chooseplaylist, false); //make playlists clickable
     trow.appendChild(td);
     t.appendChild(trow);
   }
@@ -83,4 +81,43 @@ async function loadplaylists(){
 
   async function chooseplaylist(){
     window.alert("wait a sec");
+  }
+
+  async function playsong(){
+    if(song_playing){
+      song_playing = false;
+      var play_button = document.querySelector("#play");
+      play_button.src = "images/pause.png";
+    }
+    else{
+      song_playing = true;
+      var play_button = document.querySelector("#play");
+      play_button.src = "images/play.png";
+    }
+  }
+
+  async function pressshuffle(){
+    if(shuffle){
+      shuffle = false;
+      var shuffle_button = document.querySelector("#shuffle");
+      shuffle_button.src = "images/shuffle_off.png";
+    }
+    else{
+      shuffle = true;
+      var shuffle_button = document.querySelector("#shuffle");
+      shuffle_button.src = "images/shuffle_on.png";
+    }
+  }
+
+  async function pressreplay(){
+    if(replay){
+      replay = false;
+      var replay_button = document.querySelector("#replay");
+      replay_button.src = "images/replay_off.png";
+    }
+    else{
+      replay = true;
+      var replay_button = document.querySelector("#replay");
+      replay_button.src = "images/replay_on.png";
+    }
   }
