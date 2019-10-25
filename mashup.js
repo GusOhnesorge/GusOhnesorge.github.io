@@ -88,6 +88,7 @@ async function loadplaylists(){
       }
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/devices`,infoopts);
+    window.alert("huh");
     let info = await jsoninfo.json();
     window.alert(info.devices.length);
     for(let i = 0; i<info.devices.length;i++){
