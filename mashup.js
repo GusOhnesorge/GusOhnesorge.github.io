@@ -77,5 +77,5 @@ async function loadplaylists(){
 }
 
   async function chooseplaylist(){
-    window.alret(this.id);
+    window.alret("wait a sec");
   }
