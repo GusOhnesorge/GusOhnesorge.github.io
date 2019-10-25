@@ -97,9 +97,7 @@ async function loadplaylists(){
   }
 
   async function setdevice(){
-    window.alert("setdevice");
     getdeviceid();
-    window.alert(device_id);
     let infoopts = {
       method: 'PUT',
       body: JSON.stringify({"device_ids" : [device_id], "play": true}),
@@ -110,11 +108,9 @@ async function loadplaylists(){
       }
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
-    window.alert("made it");
   }
 
   async function pausedevice(){
-    window.alert("pausedevice");
     getdeviceid();
     let infoopts = {
       method: 'PUT',
@@ -128,7 +124,6 @@ async function loadplaylists(){
   }
 
   async function chooseplaylist(){
-    window.alert("chooseplaylist");
     var playlist_id = current_playlist_ids.get(this.id);
     let playlistops = {
       method: 'GET',
@@ -140,9 +135,7 @@ async function loadplaylists(){
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
-    window.alert("wtf");
     setdevice();
-    window.alert("wtf2");
     let playeropts = {
       method: 'GET',
       headers: {
@@ -151,14 +144,8 @@ async function loadplaylists(){
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    window.alert("wtf3");
     let jsoninfo2 = await fetch(`https://api.spotify.com/v1/me/player`,playeropts);
-    window.alert("jsoninfo2");
     let info2 = await jsoninfo2.json();
-    window.alert("wtf5");
-    window.alert(info2.device.name);
-    window.alert(info2.error);
-
   }
 
   /*async function getcurrentsongid(){
