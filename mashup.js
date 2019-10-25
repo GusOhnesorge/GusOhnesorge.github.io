@@ -89,7 +89,7 @@ async function loadsong(){
     }
   };
   window.alert("error2");
-  let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/currently-playing",songops);
+  let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/currently-playing?market=us",songops);
   window.alert("error3");
   let info = await jsoninfo.json();
   window.alert("error4");
