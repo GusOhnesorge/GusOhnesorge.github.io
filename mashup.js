@@ -148,7 +148,9 @@ async function loadplaylists(){
     };
     let jsoninfo2 = await fetch(`https://api.spotify.com/v1/me/player`,playeropts);
     let info2 = await jsoninfo2.json();
+    window.alert("wtf");
     window.alert(info2.device.name);
+    window.alert(info2.error);
 
   }
 
