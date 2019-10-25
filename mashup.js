@@ -113,6 +113,7 @@ async function loadplaylists(){
 
   async function pausedevice(){
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
     getdeviceid();
@@ -129,6 +130,9 @@ async function loadplaylists(){
   }
 
   async function changemusic(context){
+=======
+    getdeviceid();
+>>>>>>> parent of 6e8cccc... implementing play and pause
     let infoopts = {
       method: 'PUT',
       body: JSON.stringify({"context_uri" : context}),
@@ -167,6 +171,9 @@ async function loadplaylists(){
     };
     let jsoninfo2 = await fetch(`https://api.spotify.com/v1/me/player`,playeropts);
     let info2 = await jsoninfo2.json();
+<<<<<<< HEAD
+>>>>>>> parent of 6e8cccc... implementing play and pause
+=======
 >>>>>>> parent of 6e8cccc... implementing play and pause
   }
 
