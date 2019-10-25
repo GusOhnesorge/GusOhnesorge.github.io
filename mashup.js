@@ -90,10 +90,10 @@ async function loadsong(){
   let info = await jsoninfo.json(); //ONLY GETS STUFF WHEN SONG PLAYING RIGHT NOW
   var song_name = document.querySelector("#song_name");
   var artist_name = document.querySelector("#artist_name");
-  var song_img = document.querySelector("#songimg");
+  var song_img = document.querySelector("#song_img");
   song_name.innerHTML = info.item.name;
   artist_name.innerHTML = info.item.artists[0].name;
-  song_img.src = "images/play.png";//info.item.album.images[0].url;
+  song_img.src = info.item.album.images[0].url;
 }
 
 
