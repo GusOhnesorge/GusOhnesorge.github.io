@@ -92,6 +92,7 @@ async function loadplaylists(){
       if(info.devices[i].name == "MusicInfoPlayer"){
         device_id = info.devices[i].id;
         i = i+info.devices.length;
+        window.alert(device_id);
       }
     }
   }
@@ -151,7 +152,7 @@ async function loadplaylists(){
     };
     window.alert("wtf3");
     let jsoninfo2 = await fetch(`https://api.spotify.com/v1/me/player`,playeropts);
-    window.alert("wtf4");
+    window.alert("jsoninfo2");
     let info2 = await jsoninfo2.json();
     window.alert("wtf5");
     window.alert(info2.device.name);
