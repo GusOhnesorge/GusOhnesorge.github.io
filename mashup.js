@@ -71,7 +71,6 @@ async function loadplaylists(){
       key: info.items[i].name,
       value: info.items[i].id
     });
-    window.alert(i);
     window.alert(info.items[i].id);
     td.appendChild(contents);
     td.id = info.items[i].name;
