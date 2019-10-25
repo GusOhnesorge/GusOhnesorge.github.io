@@ -79,6 +79,7 @@ async function loadplaylists(){
 }
 
   async function getdeviceid(){
+    window.alert("not getdeviceid");
     let infoopts = {
       method: 'GET',
       headers: {
@@ -97,6 +98,7 @@ async function loadplaylists(){
   }
 
   async function setdevice(context){
+    window.alert("not setdevice");
     let infoopts = {
       method: 'PUT',
       headers: {
@@ -109,6 +111,7 @@ async function loadplaylists(){
   }
 
   async function chooseplaylist(){
+    window.alert("not chooseplaylist");
     var playlist_id = current_playlist_ids.get(this.id);
     let infoopts = {
       method: 'GET',
