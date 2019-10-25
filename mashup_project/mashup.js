@@ -46,7 +46,7 @@ async function geniussignin(){
   var scopes = "me";
   var redirect_uri = "https:%2f%2fgusohnesorge.github.io%2fmashup_project%2fmashup.html";
   var state = "test"; //normally this would be randomized and controlled to prevent fake authorization attempts
-  var response_type = "token";
+  var response_type = "code";
   var width = 450;
   var height = 730;
   var left = (screen.width / 2) - (width / 2);
@@ -58,19 +58,36 @@ async function geniussignin(){
 
 async function geniuspopup(){
   if(g_popup != null){
-    if(g_popup.location.href != g_url && !g_popup.location.hash){ //returns an empty string if there is no hash
-      //This happens when a user says no to Spotify
+    if(g_popup.location.href != g_url && !g_popup.location.href.includes("code")){
+      //This happens when a user says no to Genius
       clearInterval(g_updateinterval);
     }
-    else if(g_popup.location.hash){
-      //This happens when a user says yes to Spotify
-      var hash = g_popup.location.hash.substring(1).split('&');//This grabs the hash, gets rid of the #, and returns an array split by &
+    else if(g_popup.location.href.includes("code")){
+      //This happens when a user says yes to Genius
+
+      //code block getting the code from the window
+      var base = g_popup.location.href.split('&');//This array splits everything and the state. Should check state for consumer products
       g_popup.close();
-      var access_split = hash[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
-      genius_access_tok = access_split[1]; //spotify_access_tok is used in calls to the Spotify API
+      var code_split = base[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
+      var genius_code = code_split[1]; //genius_code is used to get genius_access_tok
+      //getting authorization_code from genius
+      let infoopts = {
+        method: 'POST',
+        body: JSON.stringify({"code": genius_code,
+        "client_id": genius_client_id,
+        "client_secret": "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
+        "redirect_uri": "https:%2f%2fgusohnesorge.github.io%2fmashup_project%2fmashup.html",
+        "response_type": "code",
+        "grant_type": "authorization_code"
+        })
+      };
+      let jsoninfo = await fetch("https://api.genius.com/oauth/token",infoopts);
+      let info = await jsoninfo.json();
+      genius_access_tok = info.access_token;
       var contents = document.createTextNode(genius_access_tok);
       var thediv = document.querySelector("#lyrics");
       thediv.appendChild(contents);
+
     }
   }
   else{
