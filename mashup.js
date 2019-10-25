@@ -59,11 +59,13 @@ async function loadplaylists(){
   let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists?limit=${n_playlists}`,infoopts);
   let info = await jsoninfo.json();
   var t = document.querySelector("#playlist_table");
-  var trow, td, contents;
+  var trow, td, contents, td_button;
   for(let i = 0; i<10; i++){
     td = document.createElement("td");
     trow = document.createElement("tr");
     contents = document.createTextNode(info.items[i].name);
+    ts_button = document.createElement("BUTTON");
+    ts_button.onclick = chooseplaylist();
     current_playlist_ids.push({
       key: info.items[i].name,
       value: info.items[i].id
