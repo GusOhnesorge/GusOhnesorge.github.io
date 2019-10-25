@@ -95,6 +95,10 @@ h3{
   grid-column: songbox-start 2;
 }
 
+#song_name{
+  style: bold;
+}
+
 #songplayer{
   text-align: center;
   grid-column: spotify-start 8 / -1;
