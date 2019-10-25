@@ -64,7 +64,7 @@ async function loadplaylists(){
     td = document.createElement("td");
     trow = document.createElement("tr");
     contents = document.createTextNode(info.items[i].name);
-    ts_button = document.createElement("input");
+    ts_button = document.createElement("input"); //I wanted to make the td clickable but I couldn't figure it out so I went with a button
     ts_button.type = "button";
     ts_button.onclick = chooseplaylist();
     ts_button.value = "Choose";
