@@ -89,7 +89,7 @@ async function loadsong(){
   };
   let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/currently-playing",songops);
   let info = await jsoninfo.json();
-  window.alert(info.item.album.album_type);
+  window.alert("error");
 }
 
 
