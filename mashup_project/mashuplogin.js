@@ -28,8 +28,8 @@ function closepopup(){
     popup.close();
     var access_splt = hash[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
     spotify_access_tok = access_splt[1]; //spotify_access_tok is used in calls to the Spotify API
-    var contents = document.createTextNode("test");
+    var contents = document.createTextNode(hash);
     var thediv = document.querySelector("#test");
-    thediv.appendChild(hash);
+    thediv.appendChild(contents);
   }
 }
