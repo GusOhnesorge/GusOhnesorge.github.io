@@ -137,7 +137,9 @@ async function loadplaylists(){
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
+    window.alert("wtf");
     setdevice();
+    window.alert("wtf2");
     let playeropts = {
       method: 'GET',
       headers: {
@@ -148,7 +150,7 @@ async function loadplaylists(){
     };
     let jsoninfo2 = await fetch(`https://api.spotify.com/v1/me/player`,playeropts);
     let info2 = await jsoninfo2.json();
-    window.alert("wtf");
+    window.alert("wtf3");
     window.alert(info2.device.name);
     window.alert(info2.error);
 
