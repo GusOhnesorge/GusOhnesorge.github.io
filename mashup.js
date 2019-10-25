@@ -20,6 +20,7 @@ function pagesetup(){
   }
   loadinfo();
   loadplaylists();
+  updatesong();
 }
 
 async function loadinfo(){
@@ -149,8 +150,8 @@ async function loadplaylists(){
     setdevice();
   }
 
-  async function getcurrentsongid(){
-    let infoopts = {
+  async function updatesong(){
+    let songops = {
       method: 'GET',
       headers: {
         'Accept': "application/json",
@@ -158,24 +159,9 @@ async function loadplaylists(){
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
+    let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/currently-playing",songops);
     let info = await jsoninfo.json();
-    return info.context.id;
-  }
-
-  async function getcurrentsonguri(){
-    window.alert("getsonguri");
-    let infoopts = {
-      method: 'GET',
-      headers: {
-        'Accept': "application/json",
-        'Content-Type': "application/json",
-        'Authorization': `Bearer ${access_tok}`
-      }
-    };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
-    let info = await jsoninfo.json();
-    return info.context.uri;
+    window.alert(info.item.name);
   }
 
   async function play_pause(){
