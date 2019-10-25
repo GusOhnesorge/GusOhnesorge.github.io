@@ -87,7 +87,7 @@ async function loadplaylists(){
     if(song_playing){
       song_playing = false;
       var play_button = document.querySelector("#play");
-      play_button.src = "images/pause.png";
+      play_button.src = "images/next.png";
     }
     else{
       song_playing = true;
