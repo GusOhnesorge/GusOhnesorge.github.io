@@ -67,8 +67,7 @@ async function loadplaylists(){
     ts_button = document.createElement("input");
     ts_button.type = "button";
     ts_button.onclick = chooseplaylist();
-    ts_button.width = 40px;
-    ts_button.height = 10px;
+    ts_button.value = "Choose";
     current_playlist_ids.push({
       key: info.items[i].name,
       value: info.items[i].id
@@ -82,5 +81,5 @@ async function loadplaylists(){
 }
 
   async function chooseplaylist(){
-    window.alret("wait a sec");
+    window.alert("wait a sec");
   }
