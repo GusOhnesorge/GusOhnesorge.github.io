@@ -53,12 +53,9 @@ async function geniussignin(){
   var left = (screen.width / 2) - (width / 2);
   var top = (screen.height / 2) - (height / 2);
   window.alert('2');
-  g_url = `https://api.genius.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scopes}&state=${state}response_type=${response_type}`;
-  window.alert('3');
+  g_url = `https://api.genius.com/oauth/authorize?client_id=${genius_client_id}&redirect_uri=${redirect_uri}&scope=${scopes}&state=${state}response_type=${response_type}`;
   g_popup = window.open(g_url, 'Genius', 'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
-  window.alert('4');
   g_updateinterval = window.setInterval(geniuspopup, 200);
-  window.alert('5');
 }
 
 async function geniuspopup(){
