@@ -68,7 +68,7 @@ async function loadplaylists(){
     td = document.createElement("td");
     trow = document.createElement("tr");
     contents = document.createTextNode(info.items[i].name);
-    current_playlist_ids.set(info.items[i].name, info.items[i].id);
+    current_playlist_ids.set(info.items[i].name, info.items[i].id);//each "item" is a playlist object and i'm getting their info
     td.appendChild(contents);
     td.id = info.items[i].name;
     td.addEventListener("click", chooseplaylist, false); //make playlists clickable
@@ -96,11 +96,11 @@ async function loadplaylists(){
     }
   }
 
-  async function setdevice(){
+  async function setdevice(){ //This actually gets the device
     getdeviceid();
     let infoopts = {
       method: 'PUT',
-      body: JSON.stringify({"device_ids" : [device_id], "play": true}),
+      body: JSON.stringify({"device_ids" : [device_id], "play": false}),
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
@@ -111,6 +111,7 @@ async function loadplaylists(){
   }
 
   async function playdevice(){
+    setdevice()
     let infoopts = {
       method: 'PUT',
       headers: {
@@ -123,6 +124,7 @@ async function loadplaylists(){
   }
 
   async function pausedevice(){
+    setdevice()
     let infoopts = {
       method: 'PUT',
       headers: {
@@ -132,6 +134,20 @@ async function loadplaylists(){
       }
     };
     let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/pause",infoopts);
+  }
+
+  async function changemusic(context){
+    setdevice()
+    let infoopts = {
+      method: 'PUT',
+      body: JSON.stringify({"context_uri" : context}),
+      headers: {
+        'Accept': "application/json",
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${access_tok}`
+      }
+    };
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
   }
 
   async function chooseplaylist(){
@@ -146,7 +162,7 @@ async function loadplaylists(){
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
-    setdevice();
+    changemusic(info.uri);
   }
 
   async function getcurrentsongid(){
