@@ -80,7 +80,7 @@ async function loadplaylists(){
 }
 
   async function chooseplaylist(){
-    window.alert("wait a sec");
+    window.alert(this.id);
   }
 
   async function playsong(){
