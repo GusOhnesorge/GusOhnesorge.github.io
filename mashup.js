@@ -93,7 +93,7 @@ async function loadsong(){
   var song_img = document.querySelector("#songimg");
   song_name.innerHTML = info.item.name;
   artist_name.innerHTML = info.item.artists[0].name;
-  song_img.src = info.item.album.images[0].url;
+  song_img.src = "images/play.png";//info.item.album.images[0].url;
 }
 
 
