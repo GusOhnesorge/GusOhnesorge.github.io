@@ -142,7 +142,7 @@ async function loadplaylists(){
 
   }
 
-  async function getcurrentsongid(){
+  /*async function getcurrentsongid(){
     let infoopts = {
       method: 'GET',
       headers: {
@@ -154,9 +154,9 @@ async function loadplaylists(){
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
     let info = await jsoninfo.json();
     return info.context.id;
-  }
+  }*/
 
-  async function getcurrentsonguri(){
+/*  async function getcurrentsonguri(){
     window.alert("getsonguri");
     let infoopts = {
       method: 'GET',
@@ -170,19 +170,19 @@ async function loadplaylists(){
     let info = await jsoninfo.json();
     return info.context.uri;
   }
-
+*/
   async function playsong(){
     if(song_playing){
       song_playing = false;
       var play_button = document.querySelector("#play");
       play_button.src = "images/pause.jpg";
-      playdevice(getcurrentsonguri);
+      //playdevice(getcurrentsonguri);
     }
     else{
       song_playing = true;
       var play_button = document.querySelector("#play");
       play_button.src = "images/play.png";
-      pausedevice();
+      //pausedevice();
     }
   }
 
