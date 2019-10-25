@@ -101,6 +101,8 @@ async function loadplaylists(){
     let infoopts = {
       method: 'PUT',
       headers: {
+        'Accept': "application/json",
+        'Content-Type': "application/json",
         'Authorization': `Bearer ${access_tok}`
       }
     };
@@ -121,6 +123,20 @@ async function loadplaylists(){
     let info = await jsoninfo.json();
     setdevice(info.uri);
 
+  }
+
+  async function getcurrentsong(){
+    let infoopts = {
+      method: 'GET',
+      headers: {
+        'Accept': "application/json",
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${access_tok}`
+      }
+    };
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
+    let info = await jsoninfo.json();
+    return
   }
 
   async function playsong(){
