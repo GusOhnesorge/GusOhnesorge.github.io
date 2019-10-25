@@ -182,13 +182,13 @@ async function loadplaylists(){
     if(song_playing){
       song_playing = false;
       var play_button = document.querySelector("#play");
-      play_button.src = "images/pause.jpg";
+      play_button.src = "images/play.jpg";
       pausedevice();
     }
     else{
       song_playing = true;
       var play_button = document.querySelector("#play");
-      play_button.src = "images/play.png";
+      play_button.src = "images/pause.png";
       playdevice();
     }
   }
