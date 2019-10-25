@@ -110,8 +110,7 @@ async function loadplaylists(){
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
   }
 
-  async function pausedevice(){
-    getdeviceid();
+  async function playdevice(){
     let infoopts = {
       method: 'PUT',
       headers: {
@@ -121,6 +120,18 @@ async function loadplaylists(){
       }
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
+  }
+
+  async function pausedevice(){
+    let infoopts = {
+      method: 'PUT',
+      headers: {
+        'Accept': "application/json",
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${access_tok}`
+      }
+    };
+    let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/pause",infoopts);
   }
 
   async function chooseplaylist(){
@@ -136,19 +147,9 @@ async function loadplaylists(){
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
     setdevice();
-    let playeropts = {
-      method: 'GET',
-      headers: {
-        'Accept': "application/json",
-        'Content-Type': "application/json",
-        'Authorization': `Bearer ${access_tok}`
-      }
-    };
-    let jsoninfo2 = await fetch(`https://api.spotify.com/v1/me/player`,playeropts);
-    let info2 = await jsoninfo2.json();
   }
 
-  /*async function getcurrentsongid(){
+  async function getcurrentsongid(){
     let infoopts = {
       method: 'GET',
       headers: {
@@ -160,9 +161,9 @@ async function loadplaylists(){
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
     let info = await jsoninfo.json();
     return info.context.id;
-  }*/
+  }
 
-/*  async function getcurrentsonguri(){
+  async function getcurrentsonguri(){
     window.alert("getsonguri");
     let infoopts = {
       method: 'GET',
@@ -176,19 +177,19 @@ async function loadplaylists(){
     let info = await jsoninfo.json();
     return info.context.uri;
   }
-*/
-  async function playsong(){
+
+  async function play_pause(){
     if(song_playing){
       song_playing = false;
       var play_button = document.querySelector("#play");
       play_button.src = "images/pause.jpg";
-      //playdevice(getcurrentsonguri);
+      pausedevice();
     }
     else{
       song_playing = true;
       var play_button = document.querySelector("#play");
       play_button.src = "images/play.png";
-      //pausedevice();
+      playdevice();
     }
   }
 
