@@ -1,10 +1,11 @@
-var client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
+var spotify_client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
+var musixmatch_client_id = "900b3ebed8019591e62be53c6770e077";
 var current_playlist_ids = new Map();
 var song_playing = false;
 var shuffle = false;
 var replay = false;
 var device_id;
-var access_tok;
+var spotify_access_tok;
 var updateinterval;
 window.onload = pagesetup;
 
@@ -16,7 +17,7 @@ function pagesetup(){
     //This happens when a user says yes to Spotify
     var hash = window.location.hash.substring(1).split('&');//This grabs the hash, gets rid of the #, and returns an array split by &
     var access_splt = hash[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
-    access_tok = access_splt[1]; //access_tok is used in calls to the Spotify API
+    spotify_access_tok = access_splt[1]; //spotify_access_tok is used in calls to the Spotify API
     window.location.hash = "";
   }
   loadinfo();
@@ -50,7 +51,7 @@ async function loadinfo(){
     headers: {
       'Accept': "application/json",
       'Content-Type': "application/json",
-      'Authorization': `Bearer ${access_tok}`
+      'Authorization': `Bearer ${spotify_access_tok}`
     }
   };
   let jsoninfo = await fetch("https://api.spotify.com/v1/me",infoopts);
@@ -79,7 +80,7 @@ async function loadplaylists(){
     headers: {
       'Accept': "application/json",
       'Content-Type': "application/json",
-      'Authorization': `Bearer ${access_tok}`
+      'Authorization': `Bearer ${spotify_access_tok}`
     }
   };
   let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists?limit=${n_playlists}`,infoopts);
@@ -105,7 +106,7 @@ async function loadsong(){
     headers: {
       'Accept': "application/json",
       'Content-Type': "application/json",
-      'Authorization': `Bearer ${access_tok}`
+      'Authorization': `Bearer ${spotify_access_tok}`
     }
   };
   let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/currently-playing?market=us",songops);
@@ -125,7 +126,7 @@ async function loadsong(){
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
-        'Authorization': `Bearer ${access_tok}`
+        'Authorization': `Bearer ${spotify_access_tok}`
       }
     };
     let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/devices",infoopts);
@@ -146,7 +147,7 @@ async function loadsong(){
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
-        'Authorization': `Bearer ${access_tok}`
+        'Authorization': `Bearer ${spotify_access_tok}`
       }
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
@@ -158,7 +159,7 @@ async function loadsong(){
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
-        'Authorization': `Bearer ${access_tok}`
+        'Authorization': `Bearer ${spotify_access_tok}`
       }
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
@@ -170,7 +171,7 @@ async function loadsong(){
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
-        'Authorization': `Bearer ${access_tok}`
+        'Authorization': `Bearer ${spotify_access_tok}`
       }
     };
     let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/pause",infoopts);
@@ -183,7 +184,7 @@ async function loadsong(){
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
-        'Authorization': `Bearer ${access_tok}`
+        'Authorization': `Bearer ${spotify_access_tok}`
       }
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playlistops);
