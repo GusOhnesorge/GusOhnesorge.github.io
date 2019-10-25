@@ -18,7 +18,6 @@ function pagesetup(){
     access_tok = access_splt[1]; //access_tok is used in calls to the Spotify API
     window.location.hash = "";
   }
-  window.alert("device_id: " + kdevice_id);
   loadinfo();
   loadplaylists();
 }
