@@ -20,7 +20,6 @@ function pagesetup(){
   }
   loadinfo();
   loadplaylists();
-  loadsong();
 }
 
 async function loadinfo(){
@@ -88,8 +87,13 @@ async function loadsong(){
     }
   };
   let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/currently-playing?market=us",songops);
-  let info = await jsoninfo.json();
-  window.alert(info.item.name); //ONLY GETS STUFF WHEN SONG PLAYING RIGHT NOW
+  let info = await jsoninfo.json(); //ONLY GETS STUFF WHEN SONG PLAYING RIGHT NOW
+  var song_name = document.querySelector("#song_name");
+  var artist_name = document.querySelector("#artist_name");
+  var song_img = document.querySelector("#songimg");
+  song_name.innerHTML = info.item.name;
+  artist_name.innerHTML = info.item.artist.name;
+  song_img.url = info.item.album.images[0].url;
 }
 
 
@@ -177,6 +181,7 @@ async function loadsong(){
       var play_button = document.querySelector("#play");
       play_button.src = "images/pause.jpg";
       playdevice();
+      loadsong();
     }
   }
 
