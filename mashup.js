@@ -138,7 +138,8 @@ async function loadplaylists(){
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
     let info = await jsoninfo.json();
     setdevice();
-    
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
+    let info = await jsoninfo.json();
 
   }
 
