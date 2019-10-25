@@ -94,6 +94,7 @@ async function loadplaylists(){
         device_id = device.id;
       }
     }
+    window.alert(device_id);
   }
 
   async function setdevice(context){
