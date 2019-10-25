@@ -44,7 +44,7 @@ async function updateloop(){
 
 async function geniussignin(){
   var scopes = "me";
-  var redirect_uri = "https:%2f%2fgusohnesorge.github.io%2fmashup_project%2fmashup.html";
+  var redirect_uri = "https://gusohnesorge.github.io/mashup_project/mashup.html";
   var state = "test"; //normally this would be randomized and controlled to prevent fake authorization attempts
   var response_type = "code";
   var width = 450;
@@ -76,7 +76,7 @@ async function geniuspopup(){
         body: JSON.stringify({"code": genius_code,
         "client_id": genius_client_id,
         "client_secret": "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
-        "redirect_uri": "https:%2f%2fgusohnesorge.github.io%2fmashup_project%2fmashup.html",
+        "redirect_uri": "https://gusohnesorge.github.io/mashup_project/mashup.html",
         "response_type": "code",
         "grant_type": "authorization_code"
         })
