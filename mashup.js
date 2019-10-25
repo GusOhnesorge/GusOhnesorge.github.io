@@ -20,8 +20,7 @@ function pagesetup(){
   }
   loadinfo();
   loadplaylists();
-  updatesong();
-  window.alert("ugh");
+  loadsong();
 }
 
 async function loadinfo(){
@@ -78,6 +77,21 @@ async function loadplaylists(){
     t.appendChild(trow);
   }
 }
+
+async function loadsong(){
+  let songops = {
+    method: 'GET',
+    headers: {
+      'Accept': "application/json",
+      'Content-Type': "application/json",
+      'Authorization': `Bearer ${access_tok}`
+    }
+  };
+  let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/currently-playing",songops);
+  let info = await jsoninfo.json();
+  window.alert(info.item.album.album_type);
+}
+
 
   async function getdeviceid(){
     let infoopts = {
@@ -149,20 +163,6 @@ async function loadplaylists(){
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
     setdevice();
-  }
-
-  async function updatesong(){
-    let songops = {
-      method: 'GET',
-      headers: {
-        'Accept': "application/json",
-        'Content-Type': "application/json",
-        'Authorization': `Bearer ${access_tok}`
-      }
-    };
-    let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/currently-playing",songops);
-    let info = await jsoninfo.json();
-    window.alert(info.item.name);
   }
 
   async function play_pause(){
