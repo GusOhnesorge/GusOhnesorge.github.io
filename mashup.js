@@ -67,6 +67,8 @@ async function loadplaylists(){
     ts_button = document.createElement("input");
     ts_button.type = "button";
     ts_button.onclick = chooseplaylist();
+    ts_button.width = 40px;
+    ts_button.height = 10px;
     current_playlist_ids.push({
       key: info.items[i].name,
       value: info.items[i].id
