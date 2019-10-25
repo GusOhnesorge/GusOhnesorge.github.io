@@ -82,6 +82,8 @@ async function loadplaylists(){
     let infoopts = {
       method: 'GET',
       headers: {
+        'Accept': "application/json",
+        'Content-Type': "application/json",
         'Authorization': `Bearer ${access_tok}`
       }
     };
