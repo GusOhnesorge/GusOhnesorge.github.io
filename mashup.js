@@ -100,13 +100,14 @@ async function loadplaylists(){
     getdeviceid();
     let infoopts = {
       method: 'PUT',
+      body: json.stringify(context);
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}&context_uri=${context}`,infoopts);
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
   }
 
   async function chooseplaylist(){
@@ -125,7 +126,7 @@ async function loadplaylists(){
 
   }
 
-  async function getcurrentsong(){
+  async function getcurrentsongid(){
     let infoopts = {
       method: 'GET',
       headers: {
@@ -136,7 +137,21 @@ async function loadplaylists(){
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
     let info = await jsoninfo.json();
-    return
+    return info.context.id;
+  }
+
+  async function getcurrentsonguri(){
+    let infoopts = {
+      method: 'GET',
+      headers: {
+        'Accept': "application/json",
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${access_tok}`
+      }
+    };
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
+    let info = await jsoninfo.json();
+    return info.context.uri;
   }
 
   async function playsong(){
