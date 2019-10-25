@@ -20,6 +20,7 @@ function pagesetup(){
     window.location.hash = "";
   }
   loadinfo();
+  loadplaylists();
   updateinterval = window.setInterval(updateloop, 1000);
 
 }
@@ -28,7 +29,6 @@ function pagesetup(){
   ********************  GENERAL FUNCTIONS  *********************
   ************************************************************** */
 async function updateloop(){
-  loadplaylists();
   loadsong();
 }
 
