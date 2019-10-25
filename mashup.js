@@ -97,8 +97,14 @@ async function loadplaylists(){
     }
   }
 
+<<<<<<< HEAD
   async function setdevice(){ //This actually gets the device
+=======
+  async function setdevice(){
+    window.alert("setdevice");
+>>>>>>> parent of 4325b5d... cleared out tracker functions
     getdeviceid();
+    window.alert(device_id);
     let infoopts = {
       method: 'PUT',
       body: JSON.stringify({"device_ids" : [device_id], "play": false}),
@@ -109,9 +115,11 @@ async function loadplaylists(){
       }
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
+    window.alert("made it");
   }
 
   async function pausedevice(){
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -131,6 +139,9 @@ async function loadplaylists(){
 
   async function changemusic(context){
 =======
+=======
+    window.alert("pausedevice");
+>>>>>>> parent of 4325b5d... cleared out tracker functions
     getdeviceid();
 >>>>>>> parent of 6e8cccc... implementing play and pause
     let infoopts = {
@@ -146,6 +157,7 @@ async function loadplaylists(){
   }
 
   async function chooseplaylist(){
+    window.alert("chooseplaylist");
     var playlist_id = current_playlist_ids.get(this.id);
     let playlistops = {
       method: 'GET',
@@ -158,9 +170,14 @@ async function loadplaylists(){
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
 <<<<<<< HEAD
+<<<<<<< HEAD
     changemusic(info.uri);
 =======
+=======
+    window.alert("wtf");
+>>>>>>> parent of 4325b5d... cleared out tracker functions
     setdevice();
+    window.alert("wtf2");
     let playeropts = {
       method: 'GET',
       headers: {
@@ -169,12 +186,21 @@ async function loadplaylists(){
         'Authorization': `Bearer ${access_tok}`
       }
     };
+    window.alert("wtf3");
     let jsoninfo2 = await fetch(`https://api.spotify.com/v1/me/player`,playeropts);
+    window.alert("jsoninfo2");
     let info2 = await jsoninfo2.json();
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> parent of 6e8cccc... implementing play and pause
 =======
 >>>>>>> parent of 6e8cccc... implementing play and pause
+=======
+    window.alert("wtf5");
+    window.alert(info2.device.name);
+    window.alert(info2.error);
+
+>>>>>>> parent of 4325b5d... cleared out tracker functions
   }
 
   /*async function getcurrentsongid(){
