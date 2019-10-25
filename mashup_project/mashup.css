@@ -106,7 +106,7 @@ h3{
 
 }
 
-.lyrics{
+#lyrics{
   text-align: center;
   grid-column: wrapper-start 9 / -1 ;
   grid-row: 1 / 8;

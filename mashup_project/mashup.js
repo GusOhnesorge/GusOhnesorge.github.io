@@ -1,5 +1,5 @@
 var spotify_client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
-var musixmatch_client_id = "900b3ebed8019591e62be53c6770e077";
+var genius_client_id = "GtAcwB5MChoR-I0AVk71blFtVm-7G-MnNv3WOur_4T4sKZ-4FVlEDWzr7ShTzTny";
 var current_playlist_ids = new Map();
 var song_playing = false;
 var shuffle = false;
@@ -7,6 +7,11 @@ var replay = false;
 var device_id;
 var spotify_access_tok;
 var updateinterval;
+var genius_access_tok;
+var g_updateinterval;
+var g_popup;
+var g_url;
+
 window.onload = pagesetup;
 
 function pagesetup(){
@@ -36,6 +41,42 @@ async function updateloop(){
 /* *************************************************************
   ****************  GENIUS LYRICS FUNCTIONS  *******************
   ************************************************************** */
+
+async function geniussignin(){
+  var scopes = "me";
+  var redirect_uri = "https:%2f%2fgusohnesorge.github.io%2fmashup_project%2fmashup.html";
+  var state = "test"; //normally this would be randomized and controlled to prevent fake authorization attempts
+  var response_type = "token";
+  var width = 450;
+  var height = 730;
+  var left = (screen.width / 2) - (width / 2);
+  var top = (screen.height / 2) - (height / 2);
+  g_url = `https://api.genius.com/oauth/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scopes}&state=${state}response_type=${response_type}`;
+  g_popup = window.open(url, 'Spotify', 'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
+  g_updateinterval = window.setInterval(geniuspopup, 200);
+}
+
+async function geniuspopup(){
+  if(g_popup != null){
+    if(g_popup.location.href != g_url && !g_popup.location.hash){ //returns an empty string if there is no hash
+      //This happens when a user says no to Spotify
+      clearInterval(g_updateinterval);
+    }
+    else if(g_popup.location.hash){
+      //This happens when a user says yes to Spotify
+      var hash = g_popup.location.hash.substring(1).split('&');//This grabs the hash, gets rid of the #, and returns an array split by &
+      g_popup.close();
+      var access_split = hash[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
+      genius_access_tok = access_split[1]; //spotify_access_tok is used in calls to the Spotify API
+      var contents = document.createTextNode(genius_access_tok);
+      var thediv = document.querySelector("#lyrics");
+      thediv.appendChild(contents);
+    }
+  }
+  else{
+    clearInterval(g_updateinterval);
+  }
+}
 
   async function loadlyrics(){
 
