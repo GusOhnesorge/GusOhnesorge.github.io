@@ -146,7 +146,7 @@ async function loadplaylists(){
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    let jsoninfo2 = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playeropts);
+    let jsoninfo2 = await fetch(`https://api.spotify.com/v1/me/player`,playeropts);
     let info2 = await jsoninfo2.json();
     window.alert(info.device.name);
 
