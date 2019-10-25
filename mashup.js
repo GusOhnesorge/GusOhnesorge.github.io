@@ -137,7 +137,8 @@ async function loadplaylists(){
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
     let info = await jsoninfo.json();
-    return info.context.id;
+    var song_uri = info.context.uri;
+    return song_uri;
   }
 
   async function playsong(){
