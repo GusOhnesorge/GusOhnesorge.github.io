@@ -43,7 +43,6 @@ async function updateloop(){
   ************************************************************** */
 
 async function geniussignin(){
-  window.alert('1');
   var scopes = "me";
   var redirect_uri = "https:%2f%2fgusohnesorge.github.io%2fmashup_project%2fmashup.html";
   var state = "test"; //normally this would be randomized and controlled to prevent fake authorization attempts
@@ -52,7 +51,6 @@ async function geniussignin(){
   var height = 730;
   var left = (screen.width / 2) - (width / 2);
   var top = (screen.height / 2) - (height / 2);
-  window.alert('2');
   g_url = `https://api.genius.com/oauth/authorize?client_id=${genius_client_id}&redirect_uri=${redirect_uri}&scope=${scopes}&state=${state}response_type=${response_type}`;
   g_popup = window.open(g_url, 'Genius', 'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
   g_updateinterval = window.setInterval(geniuspopup, 200);
