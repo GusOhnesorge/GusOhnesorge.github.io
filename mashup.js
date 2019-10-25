@@ -127,7 +127,7 @@ async function loadplaylists(){
   async function chooseplaylist(){
     window.alert("chooseplaylist");
     var playlist_id = current_playlist_ids.get(this.id);
-    let infoopts = {
+    let playlistops = {
       method: 'GET',
       headers: {
         'Accept': "application/json",
@@ -135,10 +135,18 @@ async function loadplaylists(){
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
     setdevice();
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
+    let playeropts = {
+      method: 'GET',
+      headers: {
+        'Accept': "application/json",
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${access_tok}`
+      }
+    };
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playeropts);
     let info = await jsoninfo.json();
 
   }
