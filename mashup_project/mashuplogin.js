@@ -1,3 +1,5 @@
+var hash;
+
 function signIn(){
   var client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
   var scopes = "user-modify-playback-state%20user-read-private%20user-read-email%20playlist-read-private";
@@ -12,10 +14,12 @@ function signIn(){
   thediv.appendChild(contents);
   var url = `https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scopes}&response_type=${response_type}`;
   window.addEventListener("message", function(event) {
-            var hash = JSON.parse(event.data);
+            hash = JSON.parse(event.data);
             if (hash.type == 'access_token') {
                 callback(hash.access_token);
             }
         }, false);
   var w = window.open(url, 'Spotify', 'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
+
+  window.alert(hash);
 }
