@@ -87,18 +87,14 @@ async function loadplaylists(){
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    window.alert("1");
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/devices`,infoopts);
-    window.alert("2");
     let info = await jsoninfo.json();
-    window.alert("3");
-    for(device in info.devices){
-      window.alert(device.name);
-      if(device.name == "MusicInfoPlayer"){
-        device_id = device.id;
+    for(let i = 0; i<info.devices.length;i++){
+      window.alert(info.devices[i].name);
+      if(info.devices[i].name == "MusicInfoPlayer"){
+        device_id = info.devices[i].id;
       }
     }
-    window.alert("4");
   }
 
   async function setdevice(context){
