@@ -21,6 +21,7 @@ function pagesetup(){
   loadinfo();
   loadplaylists();
   updatesong();
+  window.alert("ugh");
 }
 
 async function loadinfo(){
