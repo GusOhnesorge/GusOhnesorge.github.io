@@ -80,7 +80,7 @@ async function loadplaylists(){
 }
 
   async function chooseplaylist(){
-    window.alert(current_playlist_ids[this.id].value);
+    window.alert(current_playlist_ids.this.id);
     var playlist_id = current_playlist_ids[this.id];
   }
 
