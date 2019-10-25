@@ -71,6 +71,7 @@ async function loadplaylists(){
       key: info.items[i].name,
       value: info.items[i].id
     });
+    window.alert(current_playlist_ids[i]);
     td.appendChild(contents);
     td.id = info.items[i].name;
     td.addEventListener("click", chooseplaylist, false); //make playlists clickable
@@ -81,7 +82,6 @@ async function loadplaylists(){
 
   async function chooseplaylist(){
     window.alert(this.id);
-    window.alert(current_playlist_ids["Ben Slappers"]);
     var playlist_id = current_playlist_ids[this.id];
   }
 
