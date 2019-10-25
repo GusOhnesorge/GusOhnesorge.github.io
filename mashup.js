@@ -1,5 +1,5 @@
 var client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
-var current_playlist_ids = {};
+var current_playlist_ids = new Map();
 var song_playing = false;
 var shuffle = false;
 var replay = false;
@@ -67,7 +67,7 @@ async function loadplaylists(){
     td = document.createElement("td");
     trow = document.createElement("tr");
     contents = document.createTextNode(info.items[i].name);
-    current_playlist_ids.push({info.items[i].name : info.items[i].id});
+    current_playlist_ids.set(info.items[i].name, info.items[i].id);
     td.appendChild(contents);
     td.id = info.items[i].name;
     td.addEventListener("click", chooseplaylist, false); //make playlists clickable
@@ -77,8 +77,8 @@ async function loadplaylists(){
 }
 
   async function chooseplaylist(){
-    window.alert(current_playlist_ids.id);
-    var playlist_id = current_playlist_ids.id;
+    var playlist_id = current_playlist_ids.get(this.id);
+    window.alert(playlist_id);
   }
 
   async function playsong(){
