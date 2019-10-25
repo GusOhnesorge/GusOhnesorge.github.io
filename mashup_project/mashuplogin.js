@@ -26,9 +26,9 @@ function closepopup(){
     //This happens when a user says yes to Spotify
     hash = popup.location.hash.substring(1).split('&');//This grabs the hash, gets rid of the #, and returns an array split by &
     popup.close();
-    var access_splt = hash[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
-    spotify_access_tok = access_splt[1]; //spotify_access_tok is used in calls to the Spotify API
-    var contents = document.createTextNode(hash);
+    var access_split = hash[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
+    spotify_access_tok = access_split[1]; //spotify_access_tok is used in calls to the Spotify API
+    var contents = document.createTextNode(spotify_access_tok);
     var thediv = document.querySelector("#test");
     thediv.appendChild(contents);
   }
