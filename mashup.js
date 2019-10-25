@@ -140,20 +140,6 @@ async function loadplaylists(){
     return info.context.id;
   }
 
-  async function getcurrentsonguri(){
-    let infoopts = {
-      method: 'GET',
-      headers: {
-        'Accept': "application/json",
-        'Content-Type': "application/json",
-        'Authorization': `Bearer ${access_tok}`
-      }
-    };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,infoopts);
-    let info = await jsoninfo.json();
-    return info.context.uri;
-  }
-
   async function playsong(){
     if(song_playing){
       song_playing = false;
