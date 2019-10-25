@@ -101,13 +101,14 @@ async function loadplaylists(){
     getdeviceid();
     let infoopts = {
       method: 'PUT',
+      body:{"device_ids" : [device_id], "play": true},
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
   }
 
   async function pausedevice(){
