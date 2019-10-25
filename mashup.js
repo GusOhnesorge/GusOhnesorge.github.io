@@ -111,7 +111,6 @@ async function loadplaylists(){
   }
 
   async function playdevice(){
-    setdevice()
     let infoopts = {
       method: 'PUT',
       headers: {
@@ -124,7 +123,7 @@ async function loadplaylists(){
   }
 
   async function pausedevice(){
-    setdevice()
+
     let infoopts = {
       method: 'PUT',
       headers: {
@@ -137,7 +136,6 @@ async function loadplaylists(){
   }
 
   async function changemusic(context){
-    setdevice()
     let infoopts = {
       method: 'PUT',
       body: JSON.stringify({"context_uri" : context}),
