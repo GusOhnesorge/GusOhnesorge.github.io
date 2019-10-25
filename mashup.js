@@ -90,7 +90,7 @@ async function loadplaylists(){
     let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/devices",infoopts);
     window.alert("huh");
     let info = await jsoninfo.json();
-    window.alert("ew");
+    window.alert(info.devices.length);
     window.alert(info.error.message);
     //for(let i = 0; i<info.devices.length;i++){
       //window.alert(info.devices[i].name);
