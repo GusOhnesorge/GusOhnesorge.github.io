@@ -89,6 +89,7 @@ async function loadplaylists(){
     let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/devices",infoopts);
     let info = await jsoninfo.json();
     for(let i = 0; i<info.devices.length;i++){
+      window.alert("uh oh");
       if(info.devices[i].name == "MusicInfoPlayer"){
         device_id = info.devices[i].id;
         i = i+info.devices.length;
