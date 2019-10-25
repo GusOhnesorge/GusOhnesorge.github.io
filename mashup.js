@@ -146,7 +146,7 @@ async function loadplaylists(){
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
-    setdevice(info.);
+    setdevice();
   }
 
   async function getcurrentsongid(){
