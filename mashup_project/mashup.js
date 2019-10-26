@@ -1,5 +1,4 @@
 var spotify_client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
-var genius_client_id = "GtAcwB5MChoR-I0AVk71blFtVm-7G-MnNv3WOur_4T4sKZ-4FVlEDWzr7ShTzTny";
 var current_playlist_ids = new Map();
 var song_playing = false;
 var shuffle = false;
@@ -7,10 +6,12 @@ var replay = false;
 var device_id;
 var spotify_access_tok;
 var updateinterval;
+/*
+var genius_client_id = "GtAcwB5MChoR-I0AVk71blFtVm-7G-MnNv3WOur_4T4sKZ-4FVlEDWzr7ShTzTny";
 var genius_access_tok;
 var g_updateinterval;
 var g_popup;
-var g_url;
+var g_url;*/
 
 window.onload = pagesetup;
 
@@ -66,7 +67,7 @@ async function loadwiki(){
 /* *************************************************************
   ****************  GENIUS LYRICS FUNCTIONS  *******************
   ************************************************************** */
-
+/*
 async function geniussignin(){
   var scopes = "me";
   var redirect_uri = "https://gusohnesorge.github.io/mashup_project/mashuplogin.html";
@@ -92,7 +93,7 @@ async function geniuspopup(){
       var base = g_popup.location.href.split('&');//This array splits everything and the state. Should check state for consumer products
       g_popup.close();
       var code_split = base[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
-      genius_access_tok = code_split[1]; //genius_code is used to get genius_access_tok
+      genius_access_tok = code_split[1];*/ //genius_code is used to get genius_access_tok
       //getting authorization_code from genius
       /*let infoopts = {
         method: 'POST',
@@ -112,7 +113,7 @@ async function geniuspopup(){
       window.alert("6");
       genius_access_tok = info.access_token;
       window.alert(JSON.stringify(info));*/
-      var contents = document.createTextNode(genius_access_tok);
+    /*  var contents = document.createTextNode(genius_access_tok);
       var thediv = document.querySelector("#lyrics");
       thediv.appendChild(contents);
       loadlyrics();
@@ -134,12 +135,12 @@ async function geniuspopup(){
       'Authorization': `Bearer ${genius_access_tok}`
       }
     });
-    window.alert(jsoninfo.response.hits[0].result.full_title);
+    window.alert();
     var contents = document.createTextNode(JSON.stringify(response));
     var thediv = document.querySelector("#lyrics");
     thediv.appendChild(contents);
   }
-
+*/
 /* *************************************************************
   ********************  SPOTIFY FUNCTIONS  *********************
   ************************************************************** */
