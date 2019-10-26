@@ -81,15 +81,10 @@ async function geniuspopup(){
         "grant_type": "authorization_code"
         }
       };
-      window.alert("1");
       let jsoninfo = await fetch("https://api.genius.com/oauth/token",infoopts);
-      window.alert("2");
       let info = await jsoninfo.json();
-      window.alert("3");
-      window.alert("v2");
+      window.alert("v3");
       genius_access_tok = info.access_token;
-      window.alert(jsoninfo.body);
-      window.alert(info);
       window.alert(info.access_token);
       var contents = document.createTextNode(genius_access_tok);
       var thediv = document.querySelector("#lyrics");
