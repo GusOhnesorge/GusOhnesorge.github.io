@@ -1,6 +1,5 @@
 
 var spotify_client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
-var musixmatch_client_id = "900b3ebed8019591e62be53c6770e077";
 var current_playlist_ids = new Map();
 var song_playing = false;
 var shuffle = false;
