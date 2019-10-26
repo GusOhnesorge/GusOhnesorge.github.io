@@ -73,7 +73,7 @@ async function geniuspopup(){
       genius_access_tok = code_split[1]; //genius_code is used to get genius_access_tok
       //getting authorization_code from genius
       window.alert("blerg");
-      var the_body = {
+      let the_body = {
         client_id : genius_client_id,
         code : genius_code,
         client_secret : "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
