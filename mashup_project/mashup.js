@@ -58,7 +58,7 @@ async function geniussignin(){
 
 async function geniuspopup(){
   if(g_popup != null){
-    if(g_popup.location.href != g_url && !g_popup.location.href.includes("code")){
+    if(g_popup.location.href != g_url && g_popup.location.href.includes("code") == false){
       //This happens when a user says no to Genius
       //g_popup.close();
       clearInterval(g_updateinterval);
