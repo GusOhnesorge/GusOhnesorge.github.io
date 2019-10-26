@@ -51,7 +51,7 @@ async function loadwiki(){
   for(page in results.query.pages){
     var title = document.querySelector("#wiki_title");
     var body = document.querySelector("#wiki_body");
-    title.innerHTML = page.title;
+    title.innerHTML = "test";
     body.innerHTML = page.extract;
   }
 }
