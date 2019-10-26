@@ -37,19 +37,11 @@ async function updateloop(){
   ******************  WIKIPEDIA FUNCTIONS  *********************
   ************************************************************** */
 async function wikirequest(title){
-  let infoopts = {
-    method: 'GET',
-  };
-  window.alert("not opts");
   var url = `https://www.wikipedia.org/w/api.php?&origin=*&action=query&prop=extracts&format=jsonfm&exintro=&titles=${title}`;
-  window.alert("not url");
-  let info = await fetch(url, infoopts);
-  window.alert("not fetch");
-  window.alert(info);
-  let jsoninfo = await info.json();
-  window.alert("not .json");
-  window.alert(jsoninfo);
-  return jsoninfo;
+  fetch(url, infoopts)
+  .then(function(request){return response.json()})
+    .then(function(data){window.alert(data)})
+    .catch(function(error){{window.alert(error.message)}})
 }
 
 async function loadwiki(){
