@@ -81,6 +81,7 @@ async function geniuspopup(){
         response_type : "code",
         grant_type : "authorization_code"
       }
+      window.alert("killmyself");
       let infoopts = {
         method: 'POST',
         body: JSON.stringify(the_body)
