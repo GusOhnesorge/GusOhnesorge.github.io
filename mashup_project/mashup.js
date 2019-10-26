@@ -127,10 +127,10 @@ async function geniuspopup(){
     window.alert("1");
     window.alert("190.5");
     let jsoninfo = await fetch(`api.genius.com/songs/378195?access_token=${genius_access_tok}`);
-    window.alert(JSON.stringify(jsoninfo));
-    let info = await jsoninfo.json();
-    window.alert("4.5");
-    window.alert();
+    .then(response => response.json())
+    .then(json => {
+      document.write(JSON.stringify(json));
+    });
     var contents = document.createTextNode(JSON.stringify(info));
     var thediv = document.querySelector("#lyrics");
     thediv.appendChild(contents);
