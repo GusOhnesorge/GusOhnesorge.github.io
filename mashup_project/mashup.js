@@ -60,7 +60,6 @@ async function geniussignin(){
 async function geniuspopup(){
   if(g_popup != null){
     var includes_code = g_popup.location.href.includes("code"); //deleting this breaks the if statements for some reason
-    window.alert(includes_code);
     if(g_popup.location.href != g_url && !includes_code){
       //This happens when a user says no to Genius
       //g_popup.close();
@@ -89,6 +88,7 @@ async function geniuspopup(){
       let jsoninfo = await fetch("https://api.genius.com/oauth/token",infoopts);
       let info = await jsoninfo.json();
       genius_access_tok = info.response.access_token;
+      window.alert(genius_access_tok);
       var contents = document.createTextNode(genius_access_tok);
       var thediv = document.querySelector("#lyrics");
       thediv.appendChild(contents);
