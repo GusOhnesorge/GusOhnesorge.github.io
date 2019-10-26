@@ -37,9 +37,9 @@ async function updateloop(){
   ******************  WIKIPEDIA FUNCTIONS  *********************
   ************************************************************** */
 async function wikirequest(title){
-  fetch(`http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=${title}`)
-      .then(function(response){return response.json();})
-      .catch(function(error){console.log(error);});
+  let info = fetch(`http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=${title}`, { method: 'Get'});
+  let jsoninfo = await info.json();
+  return jsoninfo;
 }
 
 async function loadwiki(){
