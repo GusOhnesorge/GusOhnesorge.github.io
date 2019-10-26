@@ -46,8 +46,14 @@ async function wikirequest(title){
   };
 //var url = `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`;
   var url = `https://www.wikipedia.org/w/api.php?&origin=*&action=query&prop=extracts&format=json&exintro&explaintest&redirects=1&titles=${title}`;
-  fetch(url, wikiopts)
-  .then(async function(response){return await response.json()})
+  let response = await fetch(url, wikiopts);
+  let data = await response.json();
+  window.alert(data);
+  for(page in data.query.pages){
+    window.alert(page.title);
+    window.alert(page.extract);
+  }
+  /*.then(async function(response){return await response.json()})
     .then(function(data)){
       window.alert(data);
       for(page in data.query.pages){
@@ -55,7 +61,7 @@ async function wikirequest(title){
         window.alert(page.extract);
       }
     })
-    .catch(function(error){{window.alert(error.message)}})
+    .catch(function(error){{window.alert(error.message)}})*/
 }
 
 async function loadwiki(){
