@@ -33,12 +33,27 @@ async function updateloop(){
 }
 
 /* *************************************************************
-  ****************  GENIUS LYRICS FUNCTIONS  *******************
+  ******************  WIKIPEDIA FUNCTIONS  *********************
   ************************************************************** */
+async function getpage(title){
+  fetch('https://en.wikipedia.org/w/api.php?origin=*&action=parse&page=${title}&format=json')
+      .then(function(response){return response.json();})
+      .then(function(response) {
+          console.log(response.parse.text["*"]);
+      })
+      .catch(function(error){console.log(error);});
+}
 
-  async function loadlyrics(){
+async function loadwiki(){
+  var name = document.querySelector("#artist_name");
+  var page = getpage(name.innerHTML);
+  var wiki = document.querySelector("wikipedia");
+  var contents = createTextNode(page.title);
+  wiki.appendChild(contents);
+  contents = createTextNode(page.summary);
+  wiki.appendChild(contents);
+}
 
-  }
 
 /* *************************************************************
   ********************  SPOTIFY FUNCTIONS  *********************
@@ -232,28 +247,6 @@ async function loadsong(){
       replay_button.src = "images/replay_on.png";
     }
   }
-/* *************************************************************
-  ******************  WIKIPEDIA FUNCTIONS  *********************
-  ************************************************************** */
-  /*
-async function getpage(title){
-  fetch('https://en.wikipedia.org/w/api.php?origin=*&action=parse&page=${title}&format=json')
-      .then(function(response){return response.json();})
-      .then(function(response) {
-          console.log(response.parse.text["*"]);
-      })
-      .catch(function(error){console.log(error);});
-}
-
-async function loadwiki(){
-  var name = document.querySelector("#artist_name");
-  var page = getpage(name.innerHTML);
-  var wiki = document.querySelector("wikipedia");
-  var contents = createTextNode(page.title);
-  wiki.appendChild(contents);
-  contents = createTextNode(page.summary);
-  wiki.appendChild(contents);
-}
 
 
 /* *************************************************************
