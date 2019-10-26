@@ -74,12 +74,11 @@ async function geniuspopup(){
         method: 'POST',
         body: JSON.stringify({
         "code" : genius_code,
-        "client_id" : genius_client_id,
+        "client_id" : "GtAcwB5MChoR-I0AVk71blFtVm-7G-MnNv3WOur_4T4sKZ-4FVlEDWzr7ShTzTny",
         "client_secret" : "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
         "redirect_uri" : "https://gusohnesorge.github.io/mashup_project/mashup.html",
         "response_type" : "code",
-        "grant_type": "authorization_code"
-      })
+        "grant_type": "authorization_code"})
       };
       let jsoninfo = await fetch("https://api.genius.com/oauth/token",infoopts);
       let info = await jsoninfo.json();
