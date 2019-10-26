@@ -47,8 +47,8 @@ async function wikirequest(title){
 //var url = `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`;
   var url = `https://www.wikipedia.org/w/api.php?&origin=*&action=query&prop=extracts&format=json&exintro&explaintest&redirects=1&titles=${title}`;
   fetch(url, wikiopts)
-  .then(function(response){window.alert(JSON.parse(response)); return JSON.parse(response);})
-    .then(function(data){
+  .then(async function(response){return await response.json()})
+    .then(function(data)){
       window.alert(data);
       for(page in data.query.pages){
         window.alert(page.title);
