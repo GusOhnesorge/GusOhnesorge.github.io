@@ -125,10 +125,13 @@ async function geniuspopup(){
 
   async function loadlyrics(){
     window.alert("v3");
-    let jsoninfo = await fetch(`https://api.genius.com/search?q=LilWayne&page=1&per_page=20&access_token=${genius_access_tok}`, {method:'GET', mode: “no-cors”,
-      credentials: ‘include’,
+    let jsoninfo = await fetch(`https://api.genius.com/search?q=LilWayne&page=1&per_page=20&access_token=${genius_access_tok}`,
+      {
+      method:'GET' ,
+      mode: "no-cors",
+      credentials: "include",
       headers: {
-      ‘Authorization’: ‘Bearer ’ + access_token,
+      ‘Authorization’: "Bearer " + access_token,
       }
     });
     let response = await jsoninfo.json();
