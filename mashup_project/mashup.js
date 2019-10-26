@@ -131,7 +131,7 @@ async function geniuspopup(){
       mode: "no-cors",
       credentials: "include",
       headers: {
-      ‘Authorization’: "Bearer " + access_token,
+      'Authorization': `Bearer ${genius_access_tok}` 
       }
     });
     let response = await jsoninfo.json();
