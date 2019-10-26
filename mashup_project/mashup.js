@@ -38,7 +38,11 @@ async function updateloop(){
   ************************************************************** */
 async function wikirequest(title){
   wikiopts = {
-    mode: "no-cors"
+    mode: "no-cors",
+    headers: {
+      'Accept': "application/json",
+      'Content-Type': "application/json",
+    }
   };
   var url = `https://www.wikipedia.org/w/api.php?&origin=*&action=query&prop=extracts&format=jsonfm&exintro=&titles=${title}`;
   fetch(url, wikiopts)
