@@ -111,7 +111,7 @@ async function geniuspopup(){
       }
     };
     window.alert("1.5");
-    let jsoninfo = await fetch("api.genius.com/search?q=The%20Strokes",infoopts);
+    let jsoninfo = await fetch(`https://api.genius.com/songs/378195`);
     window.alert("3");
     let info = await jsoninfo.json();
     window.alert("4.5");
