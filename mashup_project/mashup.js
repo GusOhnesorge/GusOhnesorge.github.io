@@ -72,7 +72,7 @@ async function geniuspopup(){
       window.alert("2");
       genius_access_tok = code_split[1]; //genius_code is used to get genius_access_tok
       //getting authorization_code from genius
-      window.alert("1");
+      window.alert("blerg");
       var the_body = {
         client_id : genius_client_id,
         code : genius_code,
