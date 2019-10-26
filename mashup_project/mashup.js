@@ -100,18 +100,16 @@ async function geniuspopup(){
 
   async function loadlyrics(){
     window.alert("1");
-    let infoopts = {
+    window.alert("190.5");
+    fetch(`https://api.genius.com/songs/378195`, {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${genius_access_tok}`
       }
-    };
-    window.alert("190.5");
-    let jsoninfo = await fetch(`https://api.genius.com/songs/378195`, infoopts);
+    })
+    .then( response => response.json() )
+    .then( json => window.alert(json) )
     window.alert("3");
-    let info = await jsoninfo.json();
-    window.alert("4.5");
-    window.alert();
     var contents = document.createTextNode(JSON.stringify(info));
     var thediv = document.querySelector("#lyrics");
     thediv.appendChild(contents);
