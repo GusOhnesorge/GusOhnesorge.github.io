@@ -37,8 +37,11 @@ async function updateloop(){
   ******************  WIKIPEDIA FUNCTIONS  *********************
   ************************************************************** */
 async function wikirequest(title){
+  wikiopts = {
+    mode: "no-cors"
+  };
   var url = `https://www.wikipedia.org/w/api.php?&origin=*&action=query&prop=extracts&format=jsonfm&exintro=&titles=${title}`;
-  fetch(url)
+  fetch(url, wikiopts)
   .then(function(request){return response.json()})
     .then(function(data){window.alert(data)})
     .catch(function(error){{window.alert(error.message)}})
