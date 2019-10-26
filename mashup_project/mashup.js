@@ -113,9 +113,9 @@ async function geniuspopup(){
     window.alert("1.5");
     let jsoninfo = await fetch("/search?q=The%20Strokes%20Last%20Night",infoopts);
     window.alert("2");
-    let info = await jsoninfo.json();
+    //let info = await jsoninfo.json();
     window.alert("3");
-    window.alert(JSON.stringify(info));
+    window.alert(JSON.stringify(jsoninfo));
     var contents = document.createTextNode(JSON.stringify(info));
     var thediv = document.querySelector("#lyrics");
     thediv.appendChild(contents);
