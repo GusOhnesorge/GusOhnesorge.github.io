@@ -40,7 +40,7 @@ async function wikirequest(title){
   /*let wikiopts = {
     mode: "no-cors",
   }*/
-  var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
+  var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&titles=" + title + "&callback=?";
   $.getJSON(url, function(data) {
   for(var i = 0; i < 10; i++) {
     var result = data.query.search[i];
