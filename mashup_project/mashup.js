@@ -99,6 +99,7 @@ async function geniuspopup(){
 }
 
   async function loadlyrics(){
+    window.alert("1");
     let infoopts = {
       method: 'GET',
       headers: {
@@ -108,7 +109,9 @@ async function geniuspopup(){
       }
     };
     let jsoninfo = await fetch("https://api.genius.com/search?q=The Strokes Last Night",infoopts);
+    window.alert("2");
     let info = await jsoninfo.json();
+    window.alert("3");
     var contents = document.createTextNode(JSON.stringify(info));
     var thediv = document.querySelector("#lyrics");
     thediv.appendChild(contents);
