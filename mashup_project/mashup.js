@@ -46,7 +46,8 @@ async function wikirequest(title){
   };
   var url = `http://en.wikipedia.org/w/api.php?&origin=*action=query&prop=extracts&format=json&exintro=&titles=${title}`, infoopts;
   let info = fetch(url);
-  let jsoninfo = info.json();
+  let jsoninfo = await info.json();
+  window.alert(jsoninfo);
   return jsoninfo;
 }
 
