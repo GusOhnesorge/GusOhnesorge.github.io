@@ -64,12 +64,12 @@ async function wikirequest(title){
 async function loadwiki(){
   var name = document.querySelector("#artist_name");
   var results = wikirequest(name.innerHTML);
-  for(var page in results.query.pages){
+  //for(var page in results.query.pages){
     var title = document.querySelector("#wiki_title");
     var body = document.querySelector("#wiki_body");
     title.innerHTML = "test";
-    body.innerHTML = page.extract;
-  }
+    body.innerHTML = "me";
+//  }
 }
 
 
