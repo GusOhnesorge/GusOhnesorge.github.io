@@ -37,11 +37,18 @@ async function updateloop(){
   ******************  WIKIPEDIA FUNCTIONS  *********************
   ************************************************************** */
 async function wikirequest(title){
-  let wikiopts = {
+  /*let wikiopts = {
     mode: "no-cors",
-  }
+  }*/
+  const endpoint = `https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=meme`;
+  	fetch(endpoint)
+  		.then(response => response.json())
+  		.then(data => {
+  	  	console.log(data);
+		})
+    .catch(() => console.log('An error occured'));
 //var url = `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`;
-  var url = `https://en.wikipedia.org/w/api.php?&origin=*&action=query&prop=extracts&format=jsonfm&exintro&redirects=1&titles=meme`;
+  /*var url = `https://en.wikipedia.org/w/api.php?&origin=*&action=query&prop=extracts&format=jsonfm&exintro&redirects=1&titles=meme`;
   fetch(url, wikiopts)
   .then(response => response.json())
     .then(data =>{
@@ -52,7 +59,7 @@ async function wikirequest(title){
       }
     })
     .catch(function(error){{window.alert(error.message)}})
-}
+}*/
 
 async function loadwiki(){
   var name = document.querySelector("#artist_name");
