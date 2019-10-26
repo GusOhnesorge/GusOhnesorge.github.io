@@ -37,22 +37,21 @@ async function updateloop(){
   ******************  WIKIPEDIA FUNCTIONS  *********************
   ************************************************************** */
 async function wikirequest(title){
-  let infoopts = {
+  /*let infoopts = {
     method: 'GET',
     headers: {
       'Accept': "application/json",
       'Content-Type': "application/json",
     }
-  };
-  window.alert("uhhh");
-  let info = fetch(`http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=${title}`, infoopts);
+  };*/
+  let info = fetch(`http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=${title}`);
+  window.alert(info);
   let jsoninfo = await info.json();
   window.alert(jsoninfo);
   return jsoninfo;
 }
 
 async function loadwiki(){
-  window.alert("fak");
   var name = document.querySelector("#artist_name");
   var results = wikirequest(name.innerHTML);
   for(page in results.query.pages){
