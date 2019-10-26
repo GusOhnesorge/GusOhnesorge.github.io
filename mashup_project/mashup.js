@@ -39,17 +39,12 @@ async function updateloop(){
 async function wikirequest(title){
   fetch(`http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=${title}`)
       .then(function(response){return response.json();})
-      .then(function(response) {
-          console.log(response.parse.text["*"]);
-      })
       .catch(function(error){console.log(error);});
 }
 
 async function loadwiki(){
-  window.alert("bother");
   var name = document.querySelector("#artist_name");
   var results = wikirequest(name.innerHTML);
-  window.alert("clap");
   for(page in results.query.pages){
     var title = document.querySelector("#wiki_title");
     var body = document.querySelector("#wiki_body");
