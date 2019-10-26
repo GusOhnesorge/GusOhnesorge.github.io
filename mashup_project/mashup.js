@@ -53,7 +53,8 @@ async function geniussignin(){
   var top = (screen.height / 2) - (height / 2);
   g_url = `https://api.genius.com/oauth/authorize?client_id=${genius_client_id}&redirect_uri=${redirect_uri}&scope=${scopes}&state=${state}&response_type=${response_type}`;
   g_popup = window.open(g_url, 'Genius', 'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
-  g_updateinterval = window.setInterval(geniuspopup, 200);
+  g_updateinterval = window.setInterval(geniuspopup, 100);
+
 }
 
 async function geniuspopup(){
