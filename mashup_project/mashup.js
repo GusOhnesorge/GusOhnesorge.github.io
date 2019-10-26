@@ -72,7 +72,7 @@ async function geniuspopup(){
       window.alert(genius_code);
       let infoopts = {
         method: 'POST',
-        body: {
+        body:
           JSON.stringify({
             "code" : `${genius_code}`,
             "client_id" : "GtAcwB5MChoR-I0AVk71blFtVm-7G-MnNv3WOur_4T4sKZ-4FVlEDWzr7ShTzTny",
@@ -85,7 +85,6 @@ async function geniuspopup(){
             'Accept': "application/json",
             'Content-Type': "application/json"
           }
-        }
       };
       let jsoninfo = await fetch("https://api.genius.com/oauth/token",infoopts);
       let info = await jsoninfo.json();
