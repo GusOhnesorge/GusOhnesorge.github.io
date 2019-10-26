@@ -126,12 +126,9 @@ async function geniuspopup(){
   async function loadlyrics(){
     window.alert("1");
     window.alert("190.5");
-    let jsoninfo = await fetch(`api.genius.com/songs/378195?access_token=${genius_access_tok}`)
-    .then(response => window.alert(response.json()))
-    .then(json => {
-      document.write(JSON.stringify(json));
-    });
-    var contents = document.createTextNode(JSON.stringify(response));
+    let jsoninfo = await fetch(`https://api.genius.com/search?q=LilWayne&page=1&per_page=20&access_token=${genius_access_tok}`)
+    .then(response => response.json())
+    var contents = document.createTextNode(JSON.stringify(info));
     var thediv = document.querySelector("#lyrics");
     thediv.appendChild(contents);
   }
