@@ -124,11 +124,10 @@ async function geniuspopup(){
 }
 
   async function loadlyrics(){
-    window.alert("1");
-    window.alert("190.5");
+    window.alert("v2");
     let jsoninfo = await fetch(`https://api.genius.com/search?q=LilWayne&page=1&per_page=20&access_token=${genius_access_tok}`)
     .then(response => response.json())
-    var contents = document.createTextNode(JSON.stringify(info));
+    var contents = document.createTextNode(JSON.stringify(response));
     var thediv = document.querySelector("#lyrics");
     thediv.appendChild(contents);
   }
