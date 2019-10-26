@@ -108,7 +108,7 @@ async function geniuspopup(){
       }
     }).then( response => response.json() ).then( json => window.alert(json) )
     window.alert("3");
-    var contents = document.createTextNode(JSON.stringify(info));
+    var contents = document.createTextNode(JSON.stringify(json));
     var thediv = document.querySelector("#lyrics");
     thediv.appendChild(contents);
   }
