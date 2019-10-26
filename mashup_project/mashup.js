@@ -130,7 +130,7 @@ async function geniuspopup(){
       headers: {
       ‘Authorization’: ‘Bearer ’ + access_token,
       }
-    })
+    });
     let response = await jsoninfo.json();
     window.alert(response);
     var contents = document.createTextNode(JSON.stringify(response));
