@@ -67,24 +67,25 @@ async function geniuspopup(){
       var base = g_popup.location.href.split('&');//This array splits everything and the state. Should check state for consumer products
       window.alert("4");
       g_popup.close();
-      window.alert("4");
+      window.alert("3");
       var code_split = base[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
-      window.alert("4");
+      window.alert("2");
       genius_access_tok = code_split[1]; //genius_code is used to get genius_access_tok
       //getting authorization_code from genius
-      window.alert("4");
-      let infoopts = {
-        method: 'POST',
-        body: JSON.stringify({
+      window.alert("1");
+      var the_body = {
         client_id : genius_client_id,
         code : genius_code,
         client_secret : "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
         redirect_uri : "https://gusohnesorge.github.io/mashup_project/mashup.html",
         response_type : "code",
         grant_type : "authorization_code"
-        })
+      }
+      let infoopts = {
+        method: 'POST',
+        body: JSON.stringify(the_body)
       };
-      window.alert("4");
+      window.alert("0");
       let jsoninfo = await fetch("https://api.genius.com/oauth/token",infoopts);
       window.alert("5");
       let info = await jsoninfo.json();
