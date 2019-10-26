@@ -58,8 +58,8 @@ async function wikirequest(title){
         window.alert(page.extract);
       }
     })
-    .catch(function(error){{window.alert(error.message)}})
-}*/
+    .catch(function(error){{window.alert(error.message)}})*/
+}
 
 async function loadwiki(){
   var name = document.querySelector("#artist_name");
