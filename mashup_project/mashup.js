@@ -45,7 +45,6 @@ async function wikirequest(title){
     }
   };*/
   let info = fetch(`http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=${title}`);
-  window.alert(info);
   let jsoninfo = await info.json();
   window.alert(jsoninfo);
   return jsoninfo;
@@ -53,6 +52,7 @@ async function wikirequest(title){
 
 async function loadwiki(){
   var name = document.querySelector("#artist_name");
+  window.alert(name.innerHTML);
   var results = wikirequest(name.innerHTML);
   for(page in results.query.pages){
     var title = document.querySelector("#wiki_title");
