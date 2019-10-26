@@ -59,17 +59,16 @@ async function geniussignin(){
 
 async function geniuspopup(){
   if(g_popup != null){
-    var includes_code = g_popup.location.href.includes("token"); //deleting this breaks the if statements for some reason
-    if(includes_code){
+    var includes_token = g_popup.location.href.includes("token"); //deleting this breaks the if statements for some reason
+    if(includes_token){
       //This happens when a user says yes to Genius
 
       //code block getting the code from the window
       var base = g_popup.location.href.split('&');//This array splits everything and the state. Should check state for consumer products
       g_popup.close();
       var code_split = base[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
-      var genius_code = code_split[1]; //genius_code is used to get genius_access_tok
+      genius_access_tok = code_split[1]; //genius_code is used to get genius_access_tok
       //getting authorization_code from genius
-      window.alert(genius_code);
       /*let infoopts = {
         method: 'POST',
         body: JSON.stringify({
@@ -88,7 +87,7 @@ async function geniuspopup(){
       window.alert("6");
       genius_access_tok = info.access_token;
       window.alert(JSON.stringify(info));*/
-      var contents = document.createTextNode(genius_code);
+      var contents = document.createTextNode(genius_access_tok);
       var thediv = document.querySelector("#lyrics");
       thediv.appendChild(contents);
 
@@ -100,7 +99,19 @@ async function geniuspopup(){
 }
 
   async function loadlyrics(){
-
+    let infoopts = {
+      method: 'GET',
+      headers: {
+        'Accept': "application/json",
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${genius_access_tok}`
+      }
+    };
+    let jsoninfo = await fetch("https://api.genius.com/search?q=The Strokes Last Night",infoopts);
+    let info = await jsoninfo.json();
+    var contents = document.createTextNode(JSON.stringify(info));
+    var thediv = document.querySelector("#lyrics");
+    thediv.appendChild(contents);
   }
 
 /* *************************************************************
