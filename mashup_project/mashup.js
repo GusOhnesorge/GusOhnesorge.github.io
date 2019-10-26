@@ -36,12 +36,13 @@ function pagesetup(){
   ************************************************************** */
 async function updateloop(){
   loadsong();
-  loadwiki();
+  //loadwiki();
 }
 
 /* *************************************************************
   ******************  WIKIPEDIA FUNCTIONS  *********************
   ************************************************************** */
+  /*
 async function getpage(title){
   fetch('https://en.wikipedia.org/w/api.php?origin=*&action=parse&page=${title}&format=json')
       .then(function(response){return response.json();})
