@@ -48,7 +48,7 @@ async function getpage(title){
 async function loadwiki(){
   var name = document.querySelector("#artist_name");
   var page = getpage(name.innerHTML);
-  var wiki = document.querySelector("wikipedia");
+  var wiki = document.querySelector("#wikipedia");
   var contents = createTextNode(page.title);
   wiki.appendChild(contents);
   contents = createTextNode(page.summary);
