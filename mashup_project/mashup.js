@@ -72,14 +72,14 @@ async function geniuspopup(){
       window.alert("2");
       genius_access_tok = code_split[1]; //genius_code is used to get genius_access_tok
       //getting authorization_code from genius
-      window.alert("blerg");
+      window.alert("husdfuhjsduhj");
       let the_body = {
         client_id : "GtAcwB5MChoR-I0AVk71blFtVm-7G-MnNv3WOur_4T4sKZ-4FVlEDWzr7ShTzTny",
         code : 'JESUS CHRIST',
         client_secret : "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
-        "redirect_uri" : "https://gusohnesorge.github.io/mashup_project/mashup.html",
-        "response_type" : "code",
-        "grant_type" : "authorization_code"
+        redirect_uri : "https://gusohnesorge.github.io/mashup_project/mashup.html",
+        response_type : "code",
+        grant_type : "authorization_code"
       };
       window.alert("killmyself");
       let infoopts = {
