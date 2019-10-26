@@ -58,12 +58,13 @@ async function geniussignin(){
 
 async function geniuspopup(){
   if(g_popup != null){
-    if(g_popup.location.href != g_url && g_popup.location.href.includes("code") == false){
+    var includes_code = g_popup.location.href.includes("code");
+    if(g_popup.location.href != g_url && !includes_code){
       //This happens when a user says no to Genius
       //g_popup.close();
       clearInterval(g_updateinterval);
     }
-    else if(g_popup.location.href.includes("code") == true){
+    else if(includes_code){
       //This happens when a user says yes to Genius
 
       //code block getting the code from the window
