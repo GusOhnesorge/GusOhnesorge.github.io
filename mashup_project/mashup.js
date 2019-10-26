@@ -38,7 +38,7 @@ async function updateloop(){
   ************************************************************** */
 async function wikirequest(title){
 //var url = `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`;
-  var url = `https://www.wikipedia.org/w/api.php?&origin=*&action=query&prop=extracts&format=json&exintro&explaintest&redirects=1&titles=${title}`;
+  var url = `https://en.wikipedia.org/w/api.php?&origin=*&action=query&prop=extracts&format=json&exintro&redirects=1&titles=${title}`;
   fetch(url)
   .then(response => response.json())
     .then(data =>{
