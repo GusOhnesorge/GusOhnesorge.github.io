@@ -49,9 +49,8 @@ async function wikirequest(title){
   fetch(url, wikiopts)
   .then(function(response){return response.json})
     .then(function(data){
-      for(page in data.query.pages){
-        window.alert(page.title);
-        window.alert(page.extract);
+      $extract = current((array)data->query->pages)->extract;
+      window.alert(extract);
       }
     })
     .catch(function(error){{window.alert(error.message)}})
