@@ -52,8 +52,7 @@ async function geniussignin(){
   var left = (screen.width / 2) - (width / 2);
   var top = (screen.height / 2) - (height / 2);
   g_url = `https://api.genius.com/oauth/authorize?client_id=${genius_client_id}&redirect_uri=${redirect_uri}&scope=${scopes}&state=${state}&response_type=${response_type}`;
-  g_popup = window.open("https://gusohnesorge.github.io/mashup_project/mashuplogin.html", 'Genius', 'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
-  g_popup.location.href = g_url;
+  g_popup = window.open(g_url, 'Genius', 'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
   g_updateinterval = window.setInterval(geniuspopup, 200);
 }
 
@@ -61,6 +60,7 @@ async function geniuspopup(){
   if(g_popup != null){
     if(g_popup.location.href != g_url && !g_popup.location.href.includes("code")){
       //This happens when a user says no to Genius
+      g_popup.close();
       clearInterval(g_updateinterval);
     }
     else if(g_popup.location.href.includes("code")){
