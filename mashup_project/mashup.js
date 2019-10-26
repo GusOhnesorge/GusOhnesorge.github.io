@@ -73,11 +73,11 @@ async function geniuspopup(){
       let infoopts = {
         method: 'POST',
         body: JSON.stringify({
-        "code": genius_code,
-        "client_id": genius_client_id,
-        "client_secret": "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
-        "redirect_uri": "https://gusohnesorge.github.io/mashup_project/mashup.html",
-        "response_type": "code",
+        "code" : genius_code,
+        "client_id" : genius_client_id,
+        "client_secret" : "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
+        "redirect_uri" : "https://gusohnesorge.github.io/mashup_project/mashup.html",
+        "response_type" : "code",
         "grant_type": "authorization_code"
       })
       };
