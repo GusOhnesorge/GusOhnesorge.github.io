@@ -1,4 +1,5 @@
 var spotify_client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
+var genius_client_id = "GtAcwB5MChoR-I0AVk71blFtVm-7G-MnNv3WOur_4T4sKZ-4FVlEDWzr7ShTzTny";
 var current_playlist_ids = new Map();
 var song_playing = false;
 var shuffle = false;
@@ -6,7 +7,10 @@ var replay = false;
 var device_id;
 var spotify_access_tok;
 var updateinterval;
-
+var genius_access_tok;
+var g_updateinterval;
+var g_popup;
+var g_url;
 
 window.onload = pagesetup;
 
@@ -31,15 +35,105 @@ function pagesetup(){
   ********************  GENERAL FUNCTIONS  *********************
   ************************************************************** */
 async function updateloop(){
-
   loadsong();
-  //loadwiki();
+  loadwiki();
 }
 
 /* *************************************************************
   ******************  WIKIPEDIA FUNCTIONS  *********************
   ************************************************************** */
+async function getpage(title){
+  fetch('https://en.wikipedia.org/w/api.php?origin=*&action=parse&page=${title}&format=json')
+      .then(function(response){return response.json();})
+      .then(function(response) {
+          console.log(response.parse.text["*"]);
+      })
+      .catch(function(error){console.log(error);});
+}
 
+async function loadwiki(){
+  var name = document.querySelector("#artist_name");
+  var page = getpage(name.innerHTML);
+  var wiki = document.querySelector("wikipedia");
+  var contents = createTextNode(page.title);
+  wiki.appendChild(contents);
+  contents = createTextNode(page.summary);
+  wiki.appendChild(contents);
+}
+
+
+/* *************************************************************
+  ****************  GENIUS LYRICS FUNCTIONS  *******************
+  ************************************************************** */
+
+async function geniussignin(){
+  var scopes = "me";
+  var redirect_uri = "https://gusohnesorge.github.io/mashup_project/mashuplogin.html";
+  var state = "test"; //normally this would be randomized and controlled to prevent fake authorization attempts
+  var response_type = "token";
+  var width = 450;
+  var height = 730;
+  var left = (screen.width / 2) - (width / 2);
+  var top = (screen.height / 2) - (height / 2);
+  g_url = `https://api.genius.com/oauth/authorize?client_id=${genius_client_id}&redirect_uri=${redirect_uri}&scope=${scopes}&state=${state}&response_type=${response_type}`;
+  g_popup = window.open(g_url, 'Genius', 'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
+  g_updateinterval = window.setInterval(geniuspopup, 100);
+
+}
+
+async function geniuspopup(){
+  if(g_popup != null){
+    var includes_token = g_popup.location.href.includes("token"); //deleting this breaks the if statements for some reason
+    if(includes_token){
+      //This happens when a user says yes to Genius
+
+      //code block getting the code from the window
+      var base = g_popup.location.href.split('&');//This array splits everything and the state. Should check state for consumer products
+      g_popup.close();
+      var code_split = base[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
+      genius_access_tok = code_split[1]; //genius_code is used to get genius_access_tok
+      //getting authorization_code from genius
+      /*let infoopts = {
+        method: 'POST',
+        body: JSON.stringify({
+        "client_id" : genius_client_id,
+        "code" : genius_code,
+        "client_secret" : "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
+        "redirect_uri" : "https://gusohnesorge.github.io/mashup_project/mashup.html",
+        "response_type" : "code",
+        "grant_type" : "authorization_code"
+        })
+      };*/
+      /*window.alert("4");
+      let jsoninfo = await fetch("https://api.genius.com/oauth/token",infoopts);
+      window.alert("5");
+      let info = await jsoninfo.json();
+      window.alert("6");
+      genius_access_tok = info.access_token;
+      window.alert(JSON.stringify(info));*/
+      var contents = document.createTextNode(genius_access_tok);
+      var thediv = document.querySelector("#lyrics");
+      thediv.appendChild(contents);
+      loadlyrics();
+    }
+  }
+  else{
+    clearInterval(g_updateinterval);
+  }
+}
+
+  async function loadlyrics(){
+    window.alert("1");
+    window.alert("190.5");
+    let jsoninfo = await fetch(`api.genius.com/songs/378195?access_token=${genius_access_tok}`);
+    window.alert(JSON.stringify(jsoninfo));
+    let info = await jsoninfo.json();
+    window.alert("4.5");
+    window.alert();
+    var contents = document.createTextNode(JSON.stringify(info));
+    var thediv = document.querySelector("#lyrics");
+    thediv.appendChild(contents);
+  }
 
 /* *************************************************************
   ********************  SPOTIFY FUNCTIONS  *********************
