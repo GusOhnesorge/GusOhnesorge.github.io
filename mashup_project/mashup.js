@@ -39,6 +39,7 @@ async function updateloop(){
 async function wikirequest(title){
   let info = fetch(`http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=${title}`, { method: 'Get'});
   let jsoninfo = await info.json();
+  window.alert(jsoninfo);
   return jsoninfo;
 }
 
