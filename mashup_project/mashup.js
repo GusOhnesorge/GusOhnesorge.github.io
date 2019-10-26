@@ -46,7 +46,7 @@ async function geniussignin(){
   var scopes = "me";
   var redirect_uri = "https://gusohnesorge.github.io/mashup_project/mashuplogin.html";
   var state = "test"; //normally this would be randomized and controlled to prevent fake authorization attempts
-  var response_type = "code";
+  var response_type = "token";
   var width = 450;
   var height = 730;
   var left = (screen.width / 2) - (width / 2);
@@ -59,7 +59,7 @@ async function geniussignin(){
 
 async function geniuspopup(){
   if(g_popup != null){
-    var includes_code = g_popup.location.href.includes("code"); //deleting this breaks the if statements for some reason
+    var includes_code = g_popup.location.href.includes("token"); //deleting this breaks the if statements for some reason
     if(includes_code){
       //This happens when a user says yes to Genius
 
@@ -70,7 +70,7 @@ async function geniuspopup(){
       var genius_code = code_split[1]; //genius_code is used to get genius_access_tok
       //getting authorization_code from genius
       window.alert(genius_code);
-      let infoopts = {
+      /*let infoopts = {
         method: 'POST',
         body: JSON.stringify({
         "client_id" : genius_client_id,
@@ -80,15 +80,15 @@ async function geniuspopup(){
         "response_type" : "code",
         "grant_type" : "authorization_code"
         })
-      };
-      window.alert("4");
+      };*/
+      /*window.alert("4");
       let jsoninfo = await fetch("https://api.genius.com/oauth/token",infoopts);
       window.alert("5");
       let info = await jsoninfo.json();
       window.alert("6");
       genius_access_tok = info.access_token;
-      window.alert(JSON.stringify(info));
-      var contents = document.createTextNode(genius_access_tok);
+      window.alert(JSON.stringify(info));*/
+      var contents = document.createTextNode(genius_code);
       var thediv = document.querySelector("#lyrics");
       thediv.appendChild(contents);
 
