@@ -72,21 +72,21 @@ async function geniuspopup(){
       window.alert(genius_code);
       let infoopts = {
         method: 'POST',
-        body: JSON.stringify({
+        body: {
         "code": genius_code,
         "client_id": genius_client_id,
         "client_secret": "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
         "redirect_uri": "https://gusohnesorge.github.io/mashup_project/mashup.html",
         "response_type": "code",
         "grant_type": "authorization_code"
-        })
+        }
       };
       window.alert("1");
       let jsoninfo = await fetch("https://api.genius.com/oauth/token",infoopts);
       window.alert("2");
       let info = await jsoninfo.json();
       window.alert("3");
-      genius_access_tok = jsoninfo.access_token;
+      genius_access_tok = info.access_token;
       window.alert(genius_access_tok);
       var contents = document.createTextNode(genius_access_tok);
       var thediv = document.querySelector("#lyrics");
