@@ -74,12 +74,12 @@ async function geniuspopup(){
       //getting authorization_code from genius
       window.alert("blerg");
       let the_body = {
-        client_id : genius_client_id,
-        code : genius_access_tok,
-        client_secret : "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
-        redirect_uri : "https://gusohnesorge.github.io/mashup_project/mashup.html",
-        response_type : "code",
-        grant_type : "authorization_code"
+        "client_id" : genius_client_id,
+        "code" : genius_access_tok,
+        "client_secret" : "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
+        "redirect_uri" : "https://gusohnesorge.github.io/mashup_project/mashup.html",
+        "response_type" : "code",
+        "grant_type" : "authorization_code"
       };
       window.alert("killmyself");
       let infoopts = {
