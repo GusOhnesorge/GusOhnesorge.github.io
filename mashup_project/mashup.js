@@ -85,7 +85,7 @@ async function geniuspopup(){
       let info = await jsoninfo.json();
       window.alert("v3");
       genius_access_tok = info.access_token;
-      window.alert(info.access_token);
+      window.alert(JSON.stringify(info));
       var contents = document.createTextNode(genius_access_tok);
       var thediv = document.querySelector("#lyrics");
       thediv.appendChild(contents);
