@@ -103,10 +103,8 @@ async function geniuspopup(){
     let infoopts = {
       method: 'GET',
       headers: {
-        "User-Agent": "CompuServe Classic/1.22",
         "Accept": "application/json",
         'Content-Type': "application/json",
-        "Host": "api.genius.com",
         'Authorization': `Bearer ${genius_access_tok}`
       }
     };
