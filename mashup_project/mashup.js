@@ -126,7 +126,7 @@ async function geniuspopup(){
   async function loadlyrics(){
     window.alert("1");
     window.alert("190.5");
-    let jsoninfo = await fetch(`api.genius.com/songs/378195?access_token=${genius_access_tok}`);
+    let jsoninfo = await fetch(`api.genius.com/songs/378195?access_token=${genius_access_tok}`)
     .then(response => response.json())
     .then(json => {
       document.write(JSON.stringify(json));
