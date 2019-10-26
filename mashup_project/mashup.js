@@ -112,7 +112,7 @@ async function geniuspopup(){
     };
     window.alert("1.5");
     let jsoninfo = await fetch("/search?q=The%20Strokes",infoopts);
-    window.alert("2");
+    window.alert("3");
     let info = await jsoninfo.json();
     window.alert("4.5");
     window.alert();
