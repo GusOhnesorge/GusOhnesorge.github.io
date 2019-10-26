@@ -1,0 +1,67 @@
+var genius_access_tok;
+var g_updateinterval;
+var g_popup;
+var g_url;
+
+var genius_client_id = "GtAcwB5MChoR-I0AVk71blFtVm-7G-MnNv3WOur_4T4sKZ-4FVlEDWzr7ShTzTny";
+
+/* *************************************************************
+  ****************  GENIUS LYRICS FUNCTIONS  *******************
+  ************************************************************** */
+/*
+async function geniussignin(){
+  var scopes = "me";
+  var redirect_uri = "https://gusohnesorge.github.io/mashup_project/mashuplogin.html";
+  var state = "test"; //normally this would be randomized and controlled to prevent fake authorization attempts
+  var response_type = "token";
+  var width = 450;
+  var height = 730;
+  var left = (screen.width / 2) - (width / 2);
+  var top = (screen.height / 2) - (height / 2);
+  g_url = `https://api.genius.com/oauth/authorize?client_id=${genius_client_id}&redirect_uri=${redirect_uri}&scope=${scopes}&state=${state}&response_type=${response_type}`;
+  g_popup = window.open(g_url, 'Genius', 'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
+  g_updateinterval = window.setInterval(geniuspopup, 100);
+
+}
+/*
+async function geniuspopup(){
+  if(g_popup != null){
+    var includes_token = g_popup.location.href.includes("token"); //deleting this breaks the if statements for some reason
+    if(includes_token){
+      //This happens when a user says yes to Genius
+
+      //code block getting the code from the window
+      var base = g_popup.location.href.split('&');//This array splits everything and the state. Should check state for consumer products
+      g_popup.close();
+      var code_split = base[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
+      genius_access_tok = code_split[1]; //genius_code is used to get genius_access_tok
+      //getting authorization_code from genius
+      var contents = document.createTextNode(genius_access_tok);
+      var thediv = document.querySelector("#lyrics");
+      thediv.appendChild(contents);
+      loadlyrics();
+    }
+  }
+  else{
+    clearInterval(g_updateinterval);
+  }
+}
+
+  async function loadlyrics(){
+    window.alert("1");
+    let infoopts = {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${genius_access_tok}`
+      }
+    };
+    window.alert("190.5");
+    let jsoninfo = await fetch("api.genius.com/songs/378195", infoopts);
+    window.alert(JSON.stringify(jsoninfo));
+    let info = await jsoninfo.json();
+    window.alert("4.5");
+    window.alert();
+    var contents = document.createTextNode(JSON.stringify(info));
+    var thediv = document.querySelector("#lyrics");
+    thediv.appendChild(contents);
+  }
