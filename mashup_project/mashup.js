@@ -60,7 +60,7 @@ async function geniuspopup(){
   if(g_popup != null){
     if(g_popup.location.href != g_url && !g_popup.location.href.includes("code")){
       //This happens when a user says no to Genius
-      g_popup.close();
+      //g_popup.close();
       clearInterval(g_updateinterval);
     }
     else if(g_popup.location.href.includes("code")){
