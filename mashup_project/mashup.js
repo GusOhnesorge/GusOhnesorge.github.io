@@ -88,7 +88,7 @@ async function geniuspopup(){
       };
       let jsoninfo = await fetch("https://api.genius.com/oauth/token",infoopts);
       let info = await jsoninfo.json();
-      window.alert("v6");
+      window.alert("v7");
       genius_access_tok = info.access_token;
       window.alert(JSON.stringify(info));
       var contents = document.createTextNode(genius_access_tok);
