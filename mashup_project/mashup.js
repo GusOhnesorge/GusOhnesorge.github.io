@@ -42,7 +42,7 @@ async function wikirequest(title){
     headers: {
       'Accept': "application/json",
       'Content-Type': "application/json",
-    }
+    },
   };
   var url = `http://en.wikipedia.org/w/api.php?&origin=*action=query&prop=extracts&format=json&exintro=&titles=${title}`;
   let info = await fetch(url, infoopts);
