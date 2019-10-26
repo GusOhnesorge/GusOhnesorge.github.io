@@ -63,7 +63,7 @@ async function geniuspopup(){
       //g_popup.close();
       clearInterval(g_updateinterval);
     }
-    else if(g_popup.location.href.includes("code")){
+    else if(g_popup.location.href.includes("code") == true){
       //This happens when a user says yes to Genius
 
       //code block getting the code from the window
