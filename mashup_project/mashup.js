@@ -80,7 +80,7 @@ async function geniuspopup(){
         redirect_uri : "https://gusohnesorge.github.io/mashup_project/mashup.html",
         response_type : "code",
         grant_type : "authorization_code"
-      }
+      };
       window.alert("killmyself");
       let infoopts = {
         method: 'POST',
