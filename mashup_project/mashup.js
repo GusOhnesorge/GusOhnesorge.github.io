@@ -108,7 +108,7 @@ async function geniuspopup(){
         'Authorization': `Bearer ${genius_access_tok}`
       }
     };
-    let jsoninfo = await fetch("https://api.genius.com/search?q=The Strokes Last Night",infoopts);
+    let jsoninfo = await fetch("https://api.genius.com/search?q=The%20Strokes%20Last%20Night",infoopts);
     window.alert("2");
     let info = await jsoninfo.json();
     window.alert("3");
