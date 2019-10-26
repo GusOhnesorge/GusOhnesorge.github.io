@@ -49,7 +49,7 @@ async function wikirequest(title){
   let response = await fetch(url, wikiopts);
   let data = await response.json();
   window.alert(data);
-  for(page in data.query.pages){
+  for(var page in data.query.pages){
     window.alert(page.title);
     window.alert(page.extract);
   }
@@ -67,7 +67,7 @@ async function wikirequest(title){
 async function loadwiki(){
   var name = document.querySelector("#artist_name");
   var results = wikirequest(name.innerHTML);
-  for(page in results.query.pages){
+  for(var page in results.query.pages){
     var title = document.querySelector("#wiki_title");
     var body = document.querySelector("#wiki_body");
     title.innerHTML = "test";
