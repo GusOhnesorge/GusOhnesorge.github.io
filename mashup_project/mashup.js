@@ -304,7 +304,7 @@ async function loadsong(){
       var play_button = document.querySelector("#play");
       play_button.src = "images/pause.jpg";
       playdevice();
-      loadsong();
+      //loadsong();
     }
   }
 
