@@ -113,9 +113,9 @@ async function geniuspopup(){
     window.alert("1.5");
     let jsoninfo = await fetch("/search?q=The%20Strokes",infoopts);
     window.alert("2");
-    //let info = await jsoninfo.json();
+    let info = await jsoninfo.json();
     window.alert("4.5");
-    window.alert(jsoninfo.json());
+    window.alert();
     var contents = document.createTextNode(JSON.stringify(info));
     var thediv = document.querySelector("#lyrics");
     thediv.appendChild(contents);
