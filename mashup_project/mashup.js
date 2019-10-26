@@ -106,9 +106,7 @@ async function geniuspopup(){
       headers: {
         'Authorization': `Bearer ${genius_access_tok}`
       }
-    })
-    .then( response => response.json() )
-    .then( json => window.alert(json) )
+    }).then( response => response.json() ).then( json => window.alert(json) )
     window.alert("3");
     var contents = document.createTextNode(JSON.stringify(info));
     var thediv = document.querySelector("#lyrics");
