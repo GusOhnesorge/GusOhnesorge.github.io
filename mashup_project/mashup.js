@@ -60,12 +60,7 @@ async function geniussignin(){
 async function geniuspopup(){
   if(g_popup != null){
     var includes_code = g_popup.location.href.includes("code"); //deleting this breaks the if statements for some reason
-    if(g_popup.location.href != g_url && !includes_code){
-      //This happens when a user says no to Genius
-      //g_popup.close();
-      clearInterval(g_updateinterval);
-    }
-    else if(includes_code){
+    if(includes_code){
       //This happens when a user says yes to Genius
 
       //code block getting the code from the window
