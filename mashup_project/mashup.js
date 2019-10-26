@@ -103,8 +103,6 @@ async function geniuspopup(){
     let infoopts = {
       method: 'GET',
       headers: {
-        "Accept": "application/json",
-        'Content-Type': "application/json",
         'Authorization': `Bearer ${genius_access_tok}`
       }
     };
