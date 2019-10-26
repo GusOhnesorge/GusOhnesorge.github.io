@@ -36,8 +36,8 @@ async function updateloop(){
 /* *************************************************************
   ******************  WIKIPEDIA FUNCTIONS  *********************
   ************************************************************** */
-async function getpage(title){
-  fetch('https://en.wikipedia.org/w/api.php?origin=*&action=parse&page=${title}&format=json')
+async function wikirequest(title){
+  fetch(`http://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&titles=${title}`)
       .then(function(response){return response.json();})
       .then(function(response) {
           console.log(response.parse.text["*"]);
@@ -47,11 +47,13 @@ async function getpage(title){
 
 async function loadwiki(){
   var name = document.querySelector("#artist_name");
-  var page = getpage(name.innerHTML);
-  var title = document.querySelector("#wiki_title");
-  var body = document.querySelector("#wiki_body");
-  title.innerHTML = page.title;
-  body.innerHTML = page.summary;
+  var results = wikirequest(name.innerHTML);
+  for(page in results.query.pages){
+    var title = document.querySelector("#wiki_title");
+    var body = document.querySelector("#wiki_body");
+    title.innerHTML = page.title;
+    body.innerHTML = page.extract;
+  }
 }
 
 
