@@ -90,7 +90,7 @@ async function geniuspopup(){
       var contents = document.createTextNode(genius_access_tok);
       var thediv = document.querySelector("#lyrics");
       thediv.appendChild(contents);
-
+      loadlyrics();
     }
   }
   else{
