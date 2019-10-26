@@ -41,12 +41,16 @@ async function wikirequest(title){
     mode: "no-cors",
   }*/
   var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
-  	fetch(endpoint)
-  		.then(response => response.json())
-  		.then(data => {
-  	  	console.log(data);
-		})
-    .catch(() => console.log('An error occured'));
+  $.getJSON(url, function(data) {
+  for(var i = 0; i < 10; i++) {
+    var result = data.query.search[i];
+    console.log(result);
+    $("#wiki_body" + i).html("<h2 id = 'title'" + i + ">" + result.title + "</h2");
+    $("#wiki_body" + i).append("<p id = 'snippet'" + i + ">" + result.snippet + "</p");
+    $("#wiki_body" + i).attr("href", "https://en.wikipedia.org/wiki/" + result.title);
+    $("#wiki_body" + i).css("visibility", "visible");
+  }
+});
 //var url = `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`;
   /*var url = `https://en.wikipedia.org/w/api.php?&origin=*&action=query&prop=extracts&format=jsonfm&exintro&redirects=1&titles=meme`;
   fetch(url, wikiopts)
