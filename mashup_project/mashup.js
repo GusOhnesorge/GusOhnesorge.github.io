@@ -46,7 +46,7 @@ async function geniussignin(){
   var scopes = "me";
   var redirect_uri = "https://gusohnesorge.github.io/mashup_project/mashuplogin.html";
   var state = "test"; //normally this would be randomized and controlled to prevent fake authorization attempts
-  var response_type = "code";
+  var response_type = "token";
   var width = 450;
   var height = 730;
   var left = (screen.width / 2) - (width / 2);
@@ -59,40 +59,34 @@ async function geniussignin(){
 
 async function geniuspopup(){
   if(g_popup != null){
-    var includes_token = g_popup.location.href.includes("code"); //deleting this breaks the if statements for some reason
+    var includes_token = g_popup.location.href.includes("token"); //deleting this breaks the if statements for some reason
     if(includes_token){
       //This happens when a user says yes to Genius
 
       //code block getting the code from the window
       var base = g_popup.location.href.split('&');//This array splits everything and the state. Should check state for consumer products
-      window.alert("4");
       g_popup.close();
-      window.alert("3");
       var code_split = base[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
-      window.alert("2");
       genius_access_tok = code_split[1]; //genius_code is used to get genius_access_tok
       //getting authorization_code from genius
-      window.alert("husdfuhjsduhj");
-      let the_body = {
-        client_id : "GtAcwB5MChoR-I0AVk71blFtVm-7G-MnNv3WOur_4T4sKZ-4FVlEDWzr7ShTzTny",
-        code : 'JESUS CHRIST',
-        client_secret : "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
-        redirect_uri : "https://gusohnesorge.github.io/mashup_project/mashup.html",
-        response_type : "code",
-        grant_type : "authorization_code"
-      };
-      window.alert("killmyself");
-      let infoopts = {
+      /*let infoopts = {
         method: 'POST',
-        body: JSON.stringify(the_body)
-      };
-      window.alert("0");
+        body: JSON.stringify({
+        "client_id" : genius_client_id,
+        "code" : genius_code,
+        "client_secret" : "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
+        "redirect_uri" : "https://gusohnesorge.github.io/mashup_project/mashup.html",
+        "response_type" : "code",
+        "grant_type" : "authorization_code"
+        })
+      };*/
+      /*window.alert("4");
       let jsoninfo = await fetch("https://api.genius.com/oauth/token",infoopts);
       window.alert("5");
       let info = await jsoninfo.json();
       window.alert("6");
       genius_access_tok = info.access_token;
-      window.alert(JSON.stringify(info));
+      window.alert(JSON.stringify(info));*/
       var contents = document.createTextNode(genius_access_tok);
       var thediv = document.querySelector("#lyrics");
       thediv.appendChild(contents);
@@ -107,16 +101,12 @@ async function geniuspopup(){
   async function loadlyrics(){
     window.alert("1");
     window.alert("190.5");
-    fetch(`https://api.genius.com/songs/378195`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${genius_access_tok}`
-      }
-    }).then( response => {
-      window.alert(response.json());
-    });
+    let jsoninfo = await fetch(`https://api.genius.com/songs/378195`);
     window.alert("3");
-    var contents = document.createTextNode(JSON.stringify(json));
+    let info = await jsoninfo.json();
+    window.alert("4.5");
+    window.alert();
+    var contents = document.createTextNode(JSON.stringify(info));
     var thediv = document.querySelector("#lyrics");
     thediv.appendChild(contents);
   }
