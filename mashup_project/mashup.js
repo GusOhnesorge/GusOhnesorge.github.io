@@ -131,11 +131,10 @@ async function geniuspopup(){
       mode: "no-cors",
       credentials: "include",
       headers: {
-      'Authorization': `Bearer ${genius_access_tok}` 
+      'Authorization': `Bearer ${genius_access_tok}`
       }
     });
-    let response = await jsoninfo.json();
-    window.alert(response);
+    window.alert(jsoninfo);
     var contents = document.createTextNode(JSON.stringify(response));
     var thediv = document.querySelector("#lyrics");
     thediv.appendChild(contents);
