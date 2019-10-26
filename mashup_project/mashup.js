@@ -108,7 +108,7 @@ async function geniuspopup(){
     };
     window.alert("190.5");
     let jsoninfo = await fetch(`api.genius.com/songs/378195`, infoopts);
-    window.alert(jsoninfo);
+    window.alert(jsoninfo.meta.status);
     let info = await jsoninfo.json();
     window.alert("4.5");
     window.alert();
