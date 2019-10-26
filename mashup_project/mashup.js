@@ -66,7 +66,7 @@ async function loadwiki(){
 /* *************************************************************
   ****************  GENIUS LYRICS FUNCTIONS  *******************
   ************************************************************** */
-
+/*
 async function geniussignin(){
   var scopes = "me";
   var redirect_uri = "https://gusohnesorge.github.io/mashup_project/mashuplogin.html";
@@ -80,8 +80,8 @@ async function geniussignin(){
   g_popup = window.open(g_url, 'Genius', 'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
   g_updateinterval = window.setInterval(geniuspopup, 100);
 
-}
-
+}*/
+/*
 async function geniuspopup(){
   if(g_popup != null){
     var includes_token = g_popup.location.href.includes("token"); //deleting this breaks the if statements for some reason
@@ -112,7 +112,7 @@ async function geniuspopup(){
       window.alert("6");
       genius_access_tok = info.access_token;
       window.alert(JSON.stringify(info));*/
-      var contents = document.createTextNode(genius_access_tok);
+    /*  var contents = document.createTextNode(genius_access_tok);
       var thediv = document.querySelector("#lyrics");
       thediv.appendChild(contents);
       loadlyrics();
@@ -121,8 +121,8 @@ async function geniuspopup(){
   else{
     clearInterval(g_updateinterval);
   }
-}
-
+}*/
+/*
   async function loadlyrics(){
     window.alert("v3");
     let jsoninfo = await fetch(`https://api.genius.com/search?q=LilWayne&page=1&per_page=20&access_token=${genius_access_tok}`,
@@ -139,7 +139,7 @@ async function geniuspopup(){
     var thediv = document.querySelector("#lyrics");
     thediv.appendChild(contents);
   }
-
+  */
 /* *************************************************************
   ********************  SPOTIFY FUNCTIONS  *********************
   ************************************************************** */
