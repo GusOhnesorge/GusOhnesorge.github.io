@@ -65,7 +65,7 @@ async function loadwiki(){
 /* *************************************************************
   ****************  GENIUS LYRICS FUNCTIONS  *******************
   ************************************************************** */
-
+/*
 async function geniussignin(){
   var scopes = "me";
   var redirect_uri = "https://gusohnesorge.github.io/mashup_project/mashuplogin.html";
