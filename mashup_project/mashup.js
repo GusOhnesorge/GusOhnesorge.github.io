@@ -111,10 +111,10 @@ async function geniuspopup(){
       }
     };
     window.alert("1.5");
-    let jsoninfo = await fetch("/search?q=The%20Strokes%20Last%20Night",infoopts);
+    let jsoninfo = await fetch("/search?q=The%20Strokes",infoopts);
     window.alert("2");
     //let info = await jsoninfo.json();
-    window.alert("3");
+    window.alert("3.5");
     window.alert(jsoninfo.response);
     var contents = document.createTextNode(JSON.stringify(info));
     var thediv = document.querySelector("#lyrics");
