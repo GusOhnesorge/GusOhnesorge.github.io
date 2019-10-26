@@ -69,6 +69,7 @@ async function geniuspopup(){
       var code_split = base[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
       genius_access_tok = code_split[1]; //genius_code is used to get genius_access_tok
       //getting authorization_code from genius
+      window.alert("4");
       let infoopts = {
         method: 'POST',
         body: JSON.stringify({
