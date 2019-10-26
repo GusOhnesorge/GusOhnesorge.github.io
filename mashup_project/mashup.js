@@ -80,7 +80,7 @@ async function geniussignin(){
   g_updateinterval = window.setInterval(geniuspopup, 100);
 
 }
-
+/*
 async function geniuspopup(){
   if(g_popup != null){
     var includes_token = g_popup.location.href.includes("token"); //deleting this breaks the if statements for some reason
@@ -93,24 +93,6 @@ async function geniuspopup(){
       var code_split = base[0].split("=");//access_splt is now an array containg the "token" label and then the token itself
       genius_access_tok = code_split[1]; //genius_code is used to get genius_access_tok
       //getting authorization_code from genius
-      /*let infoopts = {
-        method: 'POST',
-        body: JSON.stringify({
-        "client_id" : genius_client_id,
-        "code" : genius_code,
-        "client_secret" : "C_3rJhRuvSV7Z4dUSmB4pJa1fJNKwMOD8sYWVyUf3jzwqGo19zLLaCtcroWxlXZTtvepIVGhugZUBVChSuendw", //should not technically hardcode in client secret
-        "redirect_uri" : "https://gusohnesorge.github.io/mashup_project/mashup.html",
-        "response_type" : "code",
-        "grant_type" : "authorization_code"
-        })
-      };*/
-      /*window.alert("4");
-      let jsoninfo = await fetch("https://api.genius.com/oauth/token",infoopts);
-      window.alert("5");
-      let info = await jsoninfo.json();
-      window.alert("6");
-      genius_access_tok = info.access_token;
-      window.alert(JSON.stringify(info));*/
       var contents = document.createTextNode(genius_access_tok);
       var thediv = document.querySelector("#lyrics");
       thediv.appendChild(contents);
