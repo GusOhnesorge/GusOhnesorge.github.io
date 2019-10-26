@@ -100,8 +100,14 @@ async function geniuspopup(){
 
   async function loadlyrics(){
     window.alert("1");
+    let infoopts = {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${genius_access_tok}`
+      }
+    };
     window.alert("190.5");
-    let jsoninfo = await fetch(`https://api.genius.com/songs/378195`);
+    let jsoninfo = await fetch(`api.genius.com/songs/378195`, infoopts);
     window.alert("3");
     let info = await jsoninfo.json();
     window.alert("4.5");
