@@ -34,6 +34,7 @@ function pagesetup(){
   ************************************************************** */
 async function updateloop(){
   loadsong();
+  console.log(cur_song+" "+wiki_song)
   if(cur_song != wiki_song){
       wiki_song = cur_song;
       loadwiki();
@@ -49,6 +50,7 @@ async function wikirequest(title){
   }*/
   //var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
   title = title.replace(" ","_");
+  console.log(title);
   var result;
   var body = document.querySelector("#wiki_body");
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
