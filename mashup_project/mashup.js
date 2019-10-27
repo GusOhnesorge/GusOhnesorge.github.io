@@ -168,12 +168,17 @@ function replace_reserved_chars(title){
   for(var i = 0; i<title.length;){
     var cur_char = title.charAt(i);
     var char_str = reserved_table.get(cur_char);
-    console.log(cur_char+" "+char_str);
     if(char_str != null){
-
-      title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
-      console.log(title);
-      i++;
+      if(cur_char == "&"){ //ampersands are just weird and are '&amp;'
+        title = title.substring(0,i) + char_str + title.substring(i+5); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
+        console.log(title);
+        i++;
+      }
+      else{
+        title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
+        console.log(title);
+        i++;
+      }
     }
     else {
       i++;
