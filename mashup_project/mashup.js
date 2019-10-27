@@ -422,7 +422,7 @@ async function loadsong(){
 
   async function previous(){
     let infoopts = {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
@@ -434,7 +434,7 @@ async function loadsong(){
 
   async function next(){
     let infoopts = {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
