@@ -49,7 +49,7 @@ async function updateloop(){
   ************************************************************** */
   async function loadwiki(){
     var name = document.querySelector("#artist_name");
-    wikirequest(name.innerHTML);
+    wikirequest(name.innerText);
     //for(var page in results.query.pages){
   //  }
   }
@@ -144,7 +144,7 @@ function replace_reserved_chars(title){
     reserved_table.set("$","%24");
     reserved_table.set("$","%24");
     reserved_table.set("%","%25");
-    reserved_table.set("&","and"); //for some reason wikipedia api really doesn't like ampersands and doesn't work even with the uri safe version. my workaround is to just let it redirect me after using 'and' instead of '&'
+    reserved_table.set("&","%26");
     reserved_table.set("\'","%27");
     reserved_table.set("(","%28");
     reserved_table.set(")","%29");
@@ -165,16 +165,9 @@ function replace_reserved_chars(title){
     var cur_char = title.charAt(i);
     var char_str = reserved_table.get(cur_char);
     if(char_str != null){
-      if(cur_char == "&"){ //ampersands are just weird and are '&amp;'
-        title = title.substring(0,i) + char_str + title.substring(i+5); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
-        console.log(title);
-        i++;
-      }
-      else{
         title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
         console.log(title);
         i++;
-      }
     }
     else {
       i++;
