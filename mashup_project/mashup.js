@@ -103,6 +103,7 @@ async function wikiredirect(title, parsed_text){
 }
 
 async function wikirequestband(title){
+  console.log("ADDING BAND");
   title = title.replace(/ /g,"_");
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
   $.getJSON(url, function(data) {
@@ -111,15 +112,17 @@ async function wikirequestband(title){
       return false;
     }
     else if(data.error == null){
+        console.log("ADDING BAND SUCCESS");
         var body = document.querySelector("#wiki_body");
         var parsed_text = data.parse.text["*"];
         body.innerHTML = parsed_text;
         return true;
     }
     else{
+      console.log("ERROR");
       return false;
     }
-  }
+  });
 
 
 }
