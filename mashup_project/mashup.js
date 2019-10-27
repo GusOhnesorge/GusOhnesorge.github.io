@@ -115,26 +115,29 @@ function wikirequestband(title){
   title = title.replace(/ /g,"_");
   console.log("replaced = "+title);
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
-  $.getJSON(url, function(data) {
-    console.log(data.error);
-    console.log(data.error.code);
-    var code = data.error.code;
-    if(code != null){
-      console.log("missingtitle");
-      wiki_obj = false;
-    }
-    else{
-      console.log("ADDING BAND SUCCESS");
-      var parsed_text = data.parse.text["*"];
-      if(isredirect() == true){
+  $.ajax({
+    url: url,
+    dataType: 'json',
+    async: false,
+    success: function(data) {
+      console.log(data.error);
+      console.log(data.error.code);
+      var code = data.error.code;
+      if(code != null){
+        console.log("missingtitle");
         wiki_obj = false;
       }
-      var body = document.querySelector("#wiki_body");
-      body.innerHTML = parsed_text;
-      wiki_obj = true;
-    }
+      else{
+        console.log("ADDING BAND SUCCESS");
+        var parsed_text = data.parse.text["*"];
+        if(isredirect() == true){
+          wiki_obj = false;
+        }
+        var body = document.querySelector("#wiki_body");
+        body.innerHTML = parsed_text;
+        wiki_obj = true;
+      }
   });
-
 
 }
 
