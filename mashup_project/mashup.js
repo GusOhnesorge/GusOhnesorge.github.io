@@ -57,7 +57,7 @@ async function updateloop(){
 async function wikirequest(title){
   var new_title = replace_reserved_chars(title);
   var body = document.querySelector("#wiki_body");
-  console.log(new_title);
+  console.log("new_title: "+new_title);
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"&format=json&callback=?";
   $.getJSON(url, function(data) {
     var parsed_text = data.parse.text["*"];
@@ -159,7 +159,7 @@ function replace_reserved_chars(title){
     reserved_table.set("[","%5B");
     reserved_table.set("]","%5D");
   }
-  console.log(title);
+  console.log("replaceing chars in: "+title);
   for(var i = 0; i<title.length;){
     var cur_char = title.charAt(i);
     var char_str = reserved_table.get(cur_char);
