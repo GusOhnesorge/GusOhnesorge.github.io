@@ -69,7 +69,6 @@ async function wikirequest(title){
       if(isdisamb(parsed_text, title) == true){ //sometimes you get a disambugation page
         url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"_(band)&format=json&callback=?";
         $.getJSON(url, function(data) {//the redirect was probably wrong so lets try the original title+band
-          console.log(data.error);
           if(data.error == null){
               var body = document.querySelector("#wiki_body");
               var parsed_text = data.parse.text["*"];
@@ -81,7 +80,6 @@ async function wikirequest(title){
         });
       }
       else { //It was the actual page
-        console.log(parsed_text);
         body.innerHTML = parsed_text;
       }
     }
@@ -96,7 +94,6 @@ function isredirect(parsed_text){
 }
 
 function isdisamb(parsed_text, title){
-  console.log(parsed_text.substring(41+title.length, 53+title.length));
   if(parsed_text.substring(41+title.length, 53+title.length) == "may refer to"){ //This will always be here relative to the title name if the page is a disambiguation page
     return true;
   }
@@ -113,7 +110,6 @@ async function wikiredirect(title, parsed_text){
     var new_title_band = replace_reserved_chars(new_title);
     var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title_band+"_(band)&format=json&callback=?";
     $.getJSON(url, function(data) {//trying most specific first (redirect+band)
-      console.log(data.error);
       if(data.error == null){
           var body = document.querySelector("#wiki_body");
           var parsed_text = data.parse.text["*"];
@@ -122,7 +118,6 @@ async function wikiredirect(title, parsed_text){
       else{
         url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
         $.getJSON(url, function(data) {//the redirect was probably wrong so lets try the original title+band
-          console.log(data.error);
           if(data.error == null){
               var body = document.querySelector("#wiki_body");
               var parsed_text = data.parse.text["*"];
@@ -167,13 +162,10 @@ function replace_reserved_chars(title){
     if(char_str != null){
       if(cur_char == '&'){
         title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
-        console.log(title + " "+i);
         i = i+5;
-        console.log(title + " "+i);
       }
       else{
         title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
-        console.log(title);
         i++;
       }
 
@@ -378,16 +370,16 @@ async function loadsong(){
       play_button.src = "images/play.png";
     }
     if(shuffle == true){
-      shuffle_button.src = "images/shuffle_off.png";
-    }
-    else{
       shuffle_button.src = "images/shuffle_on.png";
     }
+    else{
+      shuffle_button.src = "images/shuffle_off.png";
+    }
     if(repeat == true){
-      repeat_button.src = "images/repeat_off.png";
+      repeat_button.src = "images/repeat_on.png";
     }
     else{
-      repeat_button.src = "images/repeat_on.png";
+      repeat_button.src = "images/repeat_off.png";
     }
   }
 
