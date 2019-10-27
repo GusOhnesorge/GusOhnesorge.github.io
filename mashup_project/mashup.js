@@ -164,9 +164,17 @@ function replace_reserved_chars(title){
     var cur_char = title.charAt(i);
     var char_str = reserved_table.get(cur_char);
     if(char_str != null){
+      if(char_str == '&'){
+        title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
+        console.log(title);
+        i+= 5;
+      }
+      else{
         title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
         console.log(title);
         i++;
+      }
+
     }
     else {
       i++;
