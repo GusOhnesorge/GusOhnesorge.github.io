@@ -90,7 +90,7 @@ async function wikirequest(title){
   });
 }
 
-function isredirect(text){
+function isredirect(parsed_text){
   if(parsed_text.substring(42, 53) == "redirectMsg"){
     return true;
   }
