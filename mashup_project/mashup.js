@@ -67,19 +67,22 @@ async function wikirequest(title){
     }
     else {//not redirect page
       if(isdisamb(parsed_text, new_title) == true){ //sometimes you get a disambugation page
+        console.log("REROUTING FROM DISAMBIGUATION")
         url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"_(band)&format=json&callback=?";
         $.getJSON(url, function(data) {//the redirect was probably wrong so lets try the original title+band
           if(data.error == null){
-              var body = document.querySelector("#wiki_body");
-              var parsed_text = data.parse.text["*"];
+              let body = document.querySelector("#wiki_body");
+              let parsed_text = data.parse.text["*"];
               body.innerHTML = parsed_text;
           }
           else{
+              let body = document.querySelector("#wiki_body");
               body.innerHTML = "Wiki page for"+title+" could not be located. Sorry :(";//this is a last case resort
           }
         });
       }
       else { //It was the actual page
+        let body = document.querySelector("#wiki_body");
         body.innerHTML = parsed_text;
       }
     }
@@ -113,7 +116,7 @@ async function wikiredirect(title, parsed_text){
     var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title_band+"_(band)&format=json&callback=?";
     $.getJSON(url, function(data) {//trying most specific first (redirect+band)
       if(data.error == null){
-          var body = document.querySelector("#wiki_body");
+          let body = document.querySelector("#wiki_body");
           var parsed_text = data.parse.text["*"];
           body.innerHTML = parsed_text;
       }
@@ -121,7 +124,7 @@ async function wikiredirect(title, parsed_text){
         url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
         $.getJSON(url, function(data) {//the redirect was probably wrong so lets try the original title+band
           if(data.error == null){
-              var body = document.querySelector("#wiki_body");
+              let body = document.querySelector("#wiki_body");
               var parsed_text = data.parse.text["*"];
               body.innerHTML = parsed_text;
           }
