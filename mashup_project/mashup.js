@@ -166,7 +166,7 @@ function replace_reserved_chars(title){
   }
   for(var i = 0; i<title.length;){
     var cur_char = title.charAt(i);
-    var char_str = reserved_table.cur_char;
+    var char_str = reserved_table.get(cur_char);
     console.log(cur_char);
     console.log(char_str);
     if(char_str != null){
