@@ -66,7 +66,6 @@ async function wikirequest(title){
       wikiredirect(title, parsed_text);
     }
     else {//not redirect page
-      console.log("ACTUAL PAGE");
       if(data.parse.title != title){ //sometimes you get a disambugation page
         console.log("DISAMB PAGE");
         if(wikirequestband(new_title) == false){ //if true then the data will be filled in
@@ -74,6 +73,7 @@ async function wikirequest(title){
         }
       }
       else { //It was the actual page
+      console.log("ACTUAL PAGE");
       console.log(parsed_text);
       body.innerHTML = parsed_text;
     }
@@ -83,6 +83,7 @@ async function wikirequest(title){
 }
 function isredirect(text){
   if(parsed_text.substring(42, 53) == "redirectMsg"){
+    console.log("IS A REDIRECT");
     return true;
   }
   return false;
