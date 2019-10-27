@@ -112,16 +112,16 @@ async function wikirequestband(title){
     if(isredirect == true){
       return false;
     }
-    else if(data.error == null){
-        console.log("ADDING BAND SUCCESS");
-        var body = document.querySelector("#wiki_body");
-        var parsed_text = data.parse.text["*"];
-        body.innerHTML = parsed_text;
-        return true;
+    else if(data.code == "missingtitle"){
+      console.log("missingtitle");
+      return false;
     }
     else{
-      console.log("ERROR");
-      return false;
+      console.log("ADDING BAND SUCCESS");
+      var body = document.querySelector("#wiki_body");
+      var parsed_text = data.parse.text["*"];
+      body.innerHTML = parsed_text;
+      return true;
     }
   });
 
