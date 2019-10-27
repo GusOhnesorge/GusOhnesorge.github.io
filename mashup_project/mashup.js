@@ -47,6 +47,7 @@ async function wikirequest(title){
     mode: "no-cors",
   }*/
   //var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
+  title = title.replace(" ","_");
   var result;
   var body = document.querySelector("#wiki_body");
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
