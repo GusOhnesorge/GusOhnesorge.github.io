@@ -148,7 +148,7 @@ function replace_reserved_chars(title){
     reserved_table.set("$","%24");
     reserved_table.set("$","%24");
     reserved_table.set("%","%25");
-    reserved_table.set("&amp;","%26");
+    reserved_table.set("&","%26");
     reserved_table.set("\'","%27");
     reserved_table.set("(","%28");
     reserved_table.set(")","%29");
@@ -172,6 +172,11 @@ function replace_reserved_chars(title){
     var char_str = reserved_table.get(cur_char);
     console.log(cur_char+" "+char_str);
     if(char_str != null){
+      if(cur_char == "&"){ //ampersands are just weird and are '&amp;'
+        title = title.substring(0,i) + char_str + title.substring(i+5); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
+        console.log(title);
+        i-=2;
+      }
       title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
       console.log(title);
       i+=3;
