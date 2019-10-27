@@ -313,6 +313,7 @@ async function loadsong(){
   }
 
   async function playcontext(context){
+    console.log(context);
     let infoopts = {
       method: 'PUT',
       headers: {
@@ -322,7 +323,7 @@ async function loadsong(){
       },
       body: JSON.stringify({"context_uri": context})
     };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play`,infoopts);
   }
 
   async function playdevice(){
@@ -370,19 +371,19 @@ async function loadsong(){
     var play_button = document.querySelector("#play");
     var shuffle_button = document.querySelector("#shuffle");
     var repeat_button = document.querySelector("#repeat");
-    if(song_playing == false){
-      play_button.src = "images/play.png";
-    }
-    else{
+    if(song_playing == true){
       play_button.src = "images/pause.jpg";
     }
-    if(shuffle == false){
+    else{
+      play_button.src = "images/play.png";
+    }
+    if(shuffle == true){
       shuffle_button.src = "images/shuffle_off.png";
     }
     else{
       shuffle_button.src = "images/shuffle_on.png";
     }
-    if(repeat == false){
+    if(repeat == true){
       repeat_button.src = "images/repeat_off.png";
     }
     else{
