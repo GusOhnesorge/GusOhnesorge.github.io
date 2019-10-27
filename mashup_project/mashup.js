@@ -115,7 +115,6 @@ function wikirequestband(title){
   $.ajax({
     url: url,
     dataType: 'json',
-    data: data,
     async: false, //I need to return out of the function so it must not be async
     success: function(response){
         if(response.error != null){
