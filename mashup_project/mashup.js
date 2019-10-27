@@ -121,7 +121,7 @@ function isredirect(parsed_text){
 
 function isdisamb(parsed_text, title){
   console.log(parsed_text.substring(41+title.length, 53+title.length));
-  if(parsed_text.substring(42+title.length, 54+title.length) == "may refer to"){ //This will always be here relative to the title name if the page is a disambiguation page
+  if(parsed_text.substring(41+title.length, 53+title.length) == "may refer to"){ //This will always be here relative to the title name if the page is a disambiguation page
     return true;
   }
   return false;
