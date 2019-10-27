@@ -115,7 +115,7 @@ function wikirequestband(title){
     $
       .getJSON(url)
       .then(function(data) {
-        if(data.error != NULL){
+        if(data.error != null){
           console.log("please work");
           return_value = false;
         }
