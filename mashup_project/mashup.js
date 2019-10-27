@@ -91,7 +91,7 @@ async function wikirequest(title){
     }
     else {//not redirect page
       console.log("ACTUAL PAGE");
-      if(data.parse.title != title){ //sometimes you get a disambugation page
+      if(data.parse.text.substring(43+title.length, 56) == "may refer to"){ //sometimes you get a disambugation page
         console.log("DISAMB PAGE");
         url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"_(band)&format=json&callback=?";
         $.getJSON(url, function(data) {//the redirect was probably wrong so lets try the original title+band
