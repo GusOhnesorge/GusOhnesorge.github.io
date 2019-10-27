@@ -173,11 +173,11 @@ function replace_reserved_chars(title){
       if(cur_char == "&"){ //ampersands are just weird and are '&amp;'
         title = title.substring(0,i) + char_str + title.substring(i+5); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
         console.log(title);
-        i-=2;
+        i++;
       }
       title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
       console.log(title);
-      i+=3;
+      i++;
     }
     else {
       i++;
