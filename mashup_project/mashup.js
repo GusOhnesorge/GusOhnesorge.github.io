@@ -9,7 +9,7 @@ var updateinterval;
 //these are used so that the wiki isn't making a call every second, only when song changes
 var cur_song = "";
 var wiki_song = "";
-var wiki_obj = "";
+var wiki_obj;
 //loading page
 window.onload = pagesetup;
 
