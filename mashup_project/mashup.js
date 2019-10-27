@@ -119,6 +119,7 @@ async function wikirequestband(title){
     else{
       return false;
     }
+  }
 
 
 }
