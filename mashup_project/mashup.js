@@ -45,7 +45,7 @@ async function wikirequest(title){
   //var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
   return $.getJSON(url);
 
-});
+};
 //var url = `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`;
   /*var url = `https://en.wikipedia.org/w/api.php?&origin=*&action=query&prop=extracts&format=jsonfm&exintro&redirects=1&titles=meme`;
   fetch(url, wikiopts)
