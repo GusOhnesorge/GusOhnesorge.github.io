@@ -90,9 +90,7 @@ async function wikirequest(title){
       wikiredirect(title, parsed_text);
     }
     else {//not redirect page
-      console.log("ACTUAL PAGE");
-      console.log(data.parse.text.substring(43+title.length, 56));
-      if(data.parse.text.substring(43+title.length, 56) == "may refer to"){ //sometimes you get a disambugation page
+      if(isdisamb(parsed_text) == true){ //sometimes you get a disambugation page
         url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"_(band)&format=json&callback=?";
         $.getJSON(url, function(data) {//the redirect was probably wrong so lets try the original title+band
           console.log(data.error);
@@ -116,6 +114,13 @@ async function wikirequest(title){
 
 function isredirect(parsed_text){
   if(parsed_text.substring(42, 53) == "redirectMsg"){
+    return true;
+  }
+  return false;
+}
+
+function isdisamb(parsed_text){
+  if(parsed_text.substring(43+title.length, 56) == "may refer to"){
     return true;
   }
   return false;
