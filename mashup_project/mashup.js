@@ -110,7 +110,8 @@ async function wikirequestband(title){
   $.getJSON(url, function(data) {
     console.log(data.error);
     console.log(data.error.code);
-    if(data.error.code == "missingtitle"){
+    var code = data.error.code;
+    if(code != null){
       console.log("missingtitle");
       return false;
     }
