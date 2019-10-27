@@ -51,18 +51,18 @@ async function wikirequest(title){
   var body = document.querySelector("#wiki_body");
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
   $.getJSON(url, function(data) {
-    console.log(result);
     console.log(data);
     result = data.parse.text;
-    body.innerHTML = results;
+    console.log(result);
+    body.innerHTML = result;
 
 });
 }
 
 async function loadwiki(){
   var name = document.querySelector("#artist_name");
-  var body = document.querySelector("#wiki_title");
-  title.innerHTML = name;
+  var title = document.querySelector("#wiki_title");
+  title.innerHTML = name.innerHTML;
   wikirequest(name.innerHTML);
   //for(var page in results.query.pages){
 //  }
