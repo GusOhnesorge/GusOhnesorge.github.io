@@ -120,7 +120,7 @@ function isredirect(parsed_text){
 }
 
 function isdisamb(parsed_text, title){
-  if(parsed_text.substring(42+title.length, 57) == "may refer to"){
+  if(parsed_text.substring(42+title.length, 57+title.length) == "may refer to"){
     return true;
   }
   return false;
