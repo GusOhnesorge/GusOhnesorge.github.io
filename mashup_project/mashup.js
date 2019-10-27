@@ -137,6 +137,7 @@ function wikirequestband(title){
         body.innerHTML = parsed_text;
         wiki_obj = true;
       }
+    }
   });
 
 }
