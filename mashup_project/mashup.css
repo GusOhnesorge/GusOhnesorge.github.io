@@ -109,8 +109,12 @@ h3{
 #lyrics{
   text-align: center;
   grid-column: wrapper-start 9 / -1 ;
-  grid-row: 1 / 8;
-  background-color: blue;
+  grid-row: 1 / 5;
+  background-color: lightyellow;
   overflow: auto;
   overflow-wrap: break-word;
+}
+
+#wikipedia{
+  background-color: lightgray;
 }
