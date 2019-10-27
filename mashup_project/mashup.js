@@ -8,6 +8,7 @@ var device_id;
 var access_tok;
 //wikipedia vars
 var reserved_table = {
+  " ":"_",
   "!":"%21",
   "#":"%23",
   "$":"%24" ,
