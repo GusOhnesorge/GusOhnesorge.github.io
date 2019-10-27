@@ -109,6 +109,7 @@ async function wikirequestband(title){
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
   $.getJSON(url, function(data) {
     console.log(data.error);
+    console.log(data.error.code);
     if(data.error.code == "missingtitle"){
       console.log("missingtitle");
       return false;
