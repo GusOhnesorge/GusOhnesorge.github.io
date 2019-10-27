@@ -9,6 +9,7 @@ var updateinterval;
 //these are used so that the wiki isn't making a call every second, only when song changes
 var cur_song = "";
 var wiki_song = "";
+var wiki_obj = "";
 //loading page
 window.onload = pagesetup;
 
@@ -96,9 +97,12 @@ function wikiredirect(title, parsed_text){
     var new_title = split_var[1];
     console.log(new_title);
     console.log("trying "+new_title+" (band)");
-    if(wikirequestband(new_title) == false){//trying most specific first
+    wikirequestband(new_title);
+    console.log("wiki_obj = "+wiki_obj);
+    if(wiki_obj == false){//trying most specific first
       console.log("trying "+title+" (band)");
-      if(wikirequestband(title) == false){//the redirect was probably wrong so lets try this
+      wikirequestband(title)
+      if(wiki_obj == false){//the redirect was probably wrong so lets try this
         console.log("trying "+new_title);
         wikirequest(new_title);//trying the pure new title in case the new wiki page doesn't have the "band" classification
       }
@@ -107,34 +111,31 @@ function wikiredirect(title, parsed_text){
 }
 
 function wikirequestband(title){
-  var return_value;//need to keep track of what to return since i can't return from the main function from json functions
   console.log("ADDING BAND");
   title = title.replace(/ /g,"_");
   console.log("replaced = "+title);
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
-  $.ajax({
-    url: url,
-    dataType: 'json',
-    async: false, //I need to return out of the function so it must not be async
-    success: function(response){
-        if(response.error != null){
-          console.log("false");
-          return false;
-        }
-        else{
-          console.log("ADDING BAND SUCCESS");
-          var parsed_text = response.parse.text["*"];
-          if(isredirect() == true){
-            return false;
-          }
-          else{
-            var body = document.querySelector("#wiki_body");
-            body.innerHTML = parsed_text;
-            return true;
-          }
-        }
+  $.getJSON(url, function(data) {
+    console.log(data.error);
+    console.log(data.error.code);
+    var code = data.error.code;
+    if(code != null){
+      console.log("missingtitle");
+      wiki_obj = false;
+    }
+    else{
+      console.log("ADDING BAND SUCCESS");
+      var parsed_text = data.parse.text["*"];
+      if(isredirect() == true){
+        wiki_obj = false;
+      }
+      var body = document.querySelector("#wiki_body");
+      body.innerHTML = parsed_text;
+      wiki_obj = true;
     }
   });
+
+
 }
 
 
