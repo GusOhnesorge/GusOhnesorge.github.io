@@ -55,7 +55,7 @@ async function updateloop(){
   }
 
 async function wikirequest(title){
-  var new_title = replace_reserved_chars(title);
+  var new_title = encodeURIComponent(title);
   var body = document.querySelector("#wiki_body");
   console.log("new_title: "+new_title);
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"&format=json&callback=?";
@@ -109,7 +109,7 @@ async function wikiredirect(title, parsed_text){
     split_var = split_var[1].split("\"");
     var new_title = split_var[1];
     console.log(new_title);
-    var new_title_band = replace_reserved_chars(new_title);
+    var new_title_band = encodeURIComponent(new_title);
     var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title_band+"_(band)&format=json&callback=?";
     $.getJSON(url, function(data) {//trying most specific first (redirect+band)
       console.log(data.error);
@@ -134,7 +134,7 @@ async function wikiredirect(title, parsed_text){
       }
     });
 }
-
+/* I USED THIS FUNCTION BEFORE DISCOVERING encodeURIComponent()
 function replace_reserved_chars(title){
   if(reserved_table.size == 0){
     reserved_table.set(" ","_");
@@ -181,6 +181,7 @@ function replace_reserved_chars(title){
   }
   return title;
 }
+*/
 
 /* *************************************************************
   ********************  SPOTIFY FUNCTIONS  *********************
