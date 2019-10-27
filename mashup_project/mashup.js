@@ -6,6 +6,10 @@ var replay = false;
 var device_id;
 var access_tok;
 var updateinterval;
+//these are used so that the wiki isn't making a call every second, only when song changes
+var cur_song = "";
+var wiki_song = "";
+//loading page
 window.onload = pagesetup;
 
 function pagesetup(){
@@ -29,8 +33,10 @@ function pagesetup(){
   ********************  GENERAL FUNCTIONS  *********************
   ************************************************************** */
 async function updateloop(){
-  loadwiki();
   loadsong();
+  if(cur_song != wiki_song){
+      loadwiki();
+  }
 }
 
 /* *************************************************************
@@ -41,26 +47,13 @@ async function wikirequest(title){
     mode: "no-cors",
   }*/
   //var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
+  var result;
   var url = `https://en.wikipedia.org/w/api.php?action=parse&prop=text&page=${title}&format=json&callback=?`;
   $.getJSON(url, function(data) {
-  for(var i = 0; i < 10; i++) {
-    var result = data.parse.text;
+    result = data.parse.text;
     console.log(result);
-    $("#wiki_body" + i).html("<h2 id = 'title'" + i + ">" + result + "</h2");
-  }
 });
-//var url = `https://en.wikipedia.org/api/rest_v1/page/summary/${title}`;
-  /*var url = `https://en.wikipedia.org/w/api.php?&origin=*&action=query&prop=extracts&format=jsonfm&exintro&redirects=1&titles=meme`;
-  fetch(url, wikiopts)
-  .then(response => response.json())
-    .then(data =>{
-      window.alert(data);
-      for(var page in data.query.pages){
-        window.alert(page.title);
-        window.alert(page.extract);
-      }
-    })
-    .catch(function(error){{window.alert(error.message)}})*/
+  return result;
 }
 
 async function loadwiki(){
@@ -69,8 +62,8 @@ async function loadwiki(){
   //for(var page in results.query.pages){
     var title = document.querySelector("#wiki_title");
     var body = document.querySelector("#wiki_body");
-    title.innerHTML = "test";
-    body.innerHTML = "me";
+    title.innerHTML = "name";
+    body.innerHTML = results;
 //  }
 }
 
@@ -149,6 +142,7 @@ async function loadsong(){
   var artist_name = document.querySelector("#artist_name");
   var song_img = document.querySelector("#song_img");
   song_name.innerHTML = info.item.name;
+  cur_song = song_name.innerHTML;
   artist_name.innerHTML = info.item.artists[0].name;
   song_img.src = info.item.album.images[0].url;
 }
