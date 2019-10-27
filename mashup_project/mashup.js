@@ -115,15 +115,21 @@ function wikirequestband(title){
     $
       .getJSON(url)
       .then(function(data) {
-        console.log("ADDING BAND SUCCESS");
-        var parsed_text = data.parse.text["*"];
-        if(isredirect() == true){
+        if(data.error != NULL){
+          console.log("please work");
           return_value = false;
         }
         else{
-          var body = document.querySelector("#wiki_body");
-          body.innerHTML = parsed_text;
-          return_value = true;
+          console.log("ADDING BAND SUCCESS");
+          var parsed_text = data.parse.text["*"];
+          if(isredirect() == true){
+            return_value = false;
+          }
+          else{
+            var body = document.querySelector("#wiki_body");
+            body.innerHTML = parsed_text;
+            return_value = true;
+          }
         }
       },function(error){
           console.log(error);
