@@ -277,7 +277,9 @@ async function loadsong(){
   }
 
   async function setdevice(){
-    getdeviceid();
+    if(device_id == null){
+      getdeviceid();
+    }
     let infoopts = {
       method: 'PUT',
       body: JSON.stringify({"device_ids" : [device_id], "play": false}),
@@ -359,7 +361,7 @@ async function loadsong(){
     let jsoninfo = await fetch(`https://api.spotify.com/v1/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
     var context = info.uri;
-    setdevice();
+    let set = await setdevice();
     playcontext(context);
   }
 
