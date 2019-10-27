@@ -141,7 +141,7 @@ async function wikiredirect(title, parsed_text){
 }
 
 function replace_reserved_chars(title){
-  if(reserved_table.length = 0){
+  if(reserved_table.length == 0){
     reserved_table.set(" ","_");
     reserved_table.set("!","%21");
     reserved_table.set("#","%23");
