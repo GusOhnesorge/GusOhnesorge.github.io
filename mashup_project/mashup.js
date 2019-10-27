@@ -305,7 +305,7 @@ async function loadsong(){
         'Content-Type': "application/json",
         'Authorization': `Bearer ${access_tok}`
       },
-      body: context
+      body: {context_uri: context}
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
   }
