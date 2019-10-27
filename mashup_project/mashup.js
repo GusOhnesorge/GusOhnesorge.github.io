@@ -9,7 +9,6 @@ var updateinterval;
 //these are used so that the wiki isn't making a call every second, only when song changes
 var cur_song = "";
 var wiki_song = "";
-var wiki_obj;
 //loading page
 window.onload = pagesetup;
 
@@ -67,90 +66,68 @@ async function wikirequest(title){
       wikiredirect(title, parsed_text);
     }
     else {//not redirect page
+      console.log("ACTUAL PAGE");
       if(data.parse.title != title){ //sometimes you get a disambugation page
         console.log("DISAMB PAGE");
-        wiki_obj = null; //very jank code
-        wikirequestband(new_title);
-        wikiwait();
-        if(wiki_obj == false){ //if true then the data will be filled in
-          body.innerHTML = "Wiki page for"+title+" could not be located. Sorry :(";//this is a last case resort
-        }
+        url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"_(band)&format=json&callback=?";
+        $.getJSON(url, function(data) {//the redirect was probably wrong so lets try the original title+band
+          console.log(data.error);
+          if(data.error == null){
+              var body = document.querySelector("#wiki_body");
+              var parsed_text = data.parse.text["*"];
+              body.innerHTML = parsed_text;
+          }
+          else{
+              body.innerHTML = "Wiki page for"+title+" could not be located. Sorry :(";//this is a last case resort
+          }
+        });
       }
       else { //It was the actual page
-      console.log("ACTUAL PAGE");
-      console.log(parsed_text);
-      body.innerHTML = parsed_text;
+        console.log(parsed_text);
+        body.innerHTML = parsed_text;
+      }
     }
-    }
-
-});
+  });
 }
 
-function wikiwait(){
-  while(wiki_obj == null){}  //this is really bad almost always. However I know that this WILL terminate so it won't be infintie. but it is still janky and if i had longer I'd have a better solution
-}
-
-function isredirect(parsed_text){
+function isredirect(text){
   if(parsed_text.substring(42, 53) == "redirectMsg"){
-    console.log("IS A REDIRECT");
     return true;
   }
   return false;
 }
 
-function wikiredirect(title, parsed_text){
+async function wikiredirect(title, parsed_text){
   console.log("REDIRECTING");
+    var done;
     var split_var = parsed_text.split("title="); //Redirect page will always look the same except for the title being redirected to. tricky splitting can get me the right page
     split_var = split_var[1].split("\"");
     var new_title = split_var[1];
     console.log(new_title);
-    console.log("trying "+new_title+" (band)");
-    wiki_obj = null; //very jank code
-    wikirequestband(new_title);
-    wikiwait();
-    console.log("await, wiki_obj = "+wiki_obj);
-    if(wiki_obj == false){//trying most specific first
-      console.log("trying "+title+" (band)");
-      wiki_obj = null; //very jank code
-      wikirequestband(title)
-      wikiwait();
-      if(wiki_obj == false){//the redirect was probably wrong so lets try this
-        console.log("trying "+new_title);
-        wikirequest(new_title);//trying the pure new title in case the new wiki page doesn't have the "band" classification
-      }
-    }
-
-}
-
-function wikirequestband(title){
-  console.log("ADDING BAND");
-  title = title.replace(/ /g,"_");
-  console.log("replaced = "+title);
-  var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
-  $.ajax({
-    url: url,
-    dataType: 'json',
-    success: function(data) {
+    var new_title_band = new_title.replace(/ /g,"_");
+    var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title_band+"_(band)&format=json&callback=?";
+    $.getJSON(url, function(data) {//trying most specific first (redirect+band)
       console.log(data.error);
-      console.log(data.error.code);
-      var code = data.error.code;
-      if(code != null){
-        console.log("missingtitle");
-        wiki_obj = false;
+      if(data.error == null){
+          var body = document.querySelector("#wiki_body");
+          var parsed_text = data.parse.text["*"];
+          body.innerHTML = parsed_text;
       }
       else{
-        console.log("ADDING BAND SUCCESS");
-        var parsed_text = data.parse.text["*"];
-        if(isredirect() == true){
-          wiki_obj = false;
-        }
-        var body = document.querySelector("#wiki_body");
-        body.innerHTML = parsed_text;
-        wiki_obj = true;
+        url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
+        $.getJSON(url, function(data) {//the redirect was probably wrong so lets try the original title+band
+          console.log(data.error);
+          if(data.error == null){
+              var body = document.querySelector("#wiki_body");
+              var parsed_text = data.parse.text["*"];
+              body.innerHTML = parsed_text;
+          }
+          else{
+              wikirequest(new_title);//trying the pure new title in case the new wiki page doesn't have the "band" classification
+          }
+        });
       }
-    }
-  });
-
+    });
 }
 
 
