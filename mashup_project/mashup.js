@@ -107,7 +107,7 @@ function wikiredirect(title, parsed_text){
 }
 
 function wikirequestband(title){
-  var return_value;
+  var return_value;//need to keep track of what to return since i can't return from the main function from json functions
   console.log("ADDING BAND");
   title = title.replace(/ /g,"_");
   console.log("replaced = "+title);
