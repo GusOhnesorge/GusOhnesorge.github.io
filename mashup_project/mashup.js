@@ -308,12 +308,12 @@ async function loadsong(){
     console.log(context);
     let infoopts = {
       method: 'PUT',
+      body: JSON.stringify({"context_uri": context}),
       headers: {
         'Accept': "application/json",
         'Content-Type': "application/json",
         'Authorization': `Bearer ${access_tok}`
-      },
-      body: JSON.stringify({"context_uri": context})
+      }
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play`,infoopts);
   }
@@ -344,6 +344,7 @@ async function loadsong(){
 
   async function chooseplaylist(){
     var playlist_id = current_playlist_ids.get(this.id);
+    console.log(playlist_id);
     let playlistops = {
       method: 'GET',
       headers: {
