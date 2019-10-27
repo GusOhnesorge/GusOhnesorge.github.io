@@ -69,7 +69,10 @@ async function wikirequest(title){
     else {//not redirect page
       if(data.parse.title != title){ //sometimes you get a disambugation page
         console.log("DISAMB PAGE");
-        if(wikirequestband(new_title) == false){ //if true then the data will be filled in
+        wiki_obj = null; //very jank code
+        wikirequestband(new_title);
+        wikiwait();
+        if(wiki_obj == false){ //if true then the data will be filled in
           body.innerHTML = "Wiki page for"+title+" could not be located. Sorry :(";//this is a last case resort
         }
       }
@@ -82,6 +85,11 @@ async function wikirequest(title){
 
 });
 }
+
+function wikiwait(){
+  while(wiki_obj == null){}  //this is really bad almost always. However I know that this WILL terminate so it won't be infintie. but it is still janky and if i had longer I'd have a better solution
+}
+
 function isredirect(parsed_text){
   if(parsed_text.substring(42, 53) == "redirectMsg"){
     console.log("IS A REDIRECT");
@@ -90,18 +98,22 @@ function isredirect(parsed_text){
   return false;
 }
 
-async function wikiredirect(title, parsed_text){
+function wikiredirect(title, parsed_text){
   console.log("REDIRECTING");
     var split_var = parsed_text.split("title="); //Redirect page will always look the same except for the title being redirected to. tricky splitting can get me the right page
     split_var = split_var[1].split("\"");
     var new_title = split_var[1];
     console.log(new_title);
     console.log("trying "+new_title+" (band)");
-    let test = await wikirequestband(new_title);
+    wiki_obj = null; //very jank code
+    wikirequestband(new_title);
+    wikiwait();
     console.log("await, wiki_obj = "+wiki_obj);
     if(wiki_obj == false){//trying most specific first
       console.log("trying "+title+" (band)");
-      test = await wikirequestband(title)
+      wiki_obj = null; //very jank code
+      wikirequestband(title)
+      wikiwait();
       if(wiki_obj == false){//the redirect was probably wrong so lets try this
         console.log("trying "+new_title);
         wikirequest(new_title);//trying the pure new title in case the new wiki page doesn't have the "band" classification
