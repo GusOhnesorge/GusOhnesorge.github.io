@@ -63,7 +63,7 @@ async function wikirequest(title){
     console.log(data);
     var parsed_text = data.parse.text["*"];
     console.log(parsed_text.substring(43, 54));
-    if(parsed_text.substring(43, 54) == "redirectMsg"){ //for redirect pages (they techincally have the "correct" title so I need to check text) It's also inelegant to hardcode like this but....
+    if(parsed_text.substring(42, 53) == "redirectMsg"){ //for redirect pages (they techincally have the "correct" title so I need to check text) It's also inelegant to hardcode like this but....
       console.log("REDIRECTING");
         var split_var = parsed_text.split("title="); //Redirect page will always look the same except for the title being redirected to. tricky splitting can get me the right page
         split_var = split_var[1].split("\"");
