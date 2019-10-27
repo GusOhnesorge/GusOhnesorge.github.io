@@ -97,11 +97,11 @@ async function wikiredirect(title, parsed_text){
     var new_title = split_var[1];
     console.log(new_title);
     console.log("trying "+new_title+" (band)");
-    await wikirequestband(new_title);
-    console.log("wiki_obj = "+wiki_obj);
+    let test = await wikirequestband(new_title);
+    console.log("await, wiki_obj = "+wiki_obj);
     if(wiki_obj == false){//trying most specific first
       console.log("trying "+title+" (band)");
-      await wikirequestband(title)
+      test = await wikirequestband(title)
       if(wiki_obj == false){//the redirect was probably wrong so lets try this
         console.log("trying "+new_title);
         wikirequest(new_title);//trying the pure new title in case the new wiki page doesn't have the "band" classification
