@@ -297,6 +297,19 @@ async function loadsong(){
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
   }
 
+  async function playcontext(context){
+    let infoopts = {
+      method: 'PUT',
+      headers: {
+        'Accept': "application/json",
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${access_tok}`
+      },
+      body: context
+    };
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
+  }
+
   async function playdevice(){
     let infoopts = {
       method: 'PUT',
@@ -333,7 +346,9 @@ async function loadsong(){
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
+    var context = info.uri;
     setdevice();
+    playcontext(context);
   }
 
   async function play_pause(){
