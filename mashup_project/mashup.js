@@ -95,8 +95,11 @@ async function wikiredirect(title, parsed_text){
     split_var = split_var[1].split("\"");
     var new_title = split_var[1];
     console.log(new_title);
+    console.log("trying "+new_title+" (band)");
     if(wikirequestband(new_title) == false){//trying most specific first
+      console.log("trying "+title+" (band)");
       if(wikirequestband(title) == false){//the redirect was probably wrong so lets try this
+        console.log("trying "+new_title);
         wikirequest(new_title);//trying the pure new title in case the new wiki page doesn't have the "band" classification
       }
     }
@@ -106,6 +109,7 @@ async function wikiredirect(title, parsed_text){
 async function wikirequestband(title){
   console.log("ADDING BAND");
   title = title.replace(/ /g,"_");
+  console.log("replaced = "+title);
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
   $.getJSON(url, function(data) {
     console.log(data.error);
