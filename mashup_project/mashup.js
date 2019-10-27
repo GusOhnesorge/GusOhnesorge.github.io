@@ -126,9 +126,11 @@ function wikirequestband(title){
       if(isredirect() == true){
         return_value = false;
       }
-      var body = document.querySelector("#wiki_body");
-      body.innerHTML = parsed_text;
-      return_value = true;
+      else{
+        var body = document.querySelector("#wiki_body");
+        body.innerHTML = parsed_text;
+        return_value = true;
+      }
     }
   });
   return return_value;
