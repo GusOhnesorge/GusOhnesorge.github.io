@@ -43,6 +43,13 @@ async function updateloop(){
 /* *************************************************************
   ******************  WIKIPEDIA FUNCTIONS  *********************
   ************************************************************** */
+  async function loadwiki(){
+    var name = document.querySelector("#artist_name");
+    wikirequest(name.innerHTML);
+    //for(var page in results.query.pages){
+  //  }
+  }
+
 async function wikirequest(title){
   /*let wikiopts = {
     mode: "no-cors",
@@ -55,39 +62,43 @@ async function wikirequest(title){
   $.getJSON(url, function(data) {
     console.log(data);
     var parsed_text = data.parse.text["*"];
-    if(parsed_text.substring(43, 53) == "redirectMsg"){ //for redirect pages (they techincally have the "correct" title) It's also inelegant to hardcode like this but....
+    if(parsed_text.substring(43, 54) == "redirectMsg"){ //for redirect pages (they techincally have the "correct" title so I need to check text) It's also inelegant to hardcode like this but....
       console.log("REDIRECTING");
-        var split_var = parsed_text.split("title="); //Redirect page will always look the same except for the title. tricky splitting can get me the right page
+        var split_var = parsed_text.split("title="); //Redirect page will always look the same except for the title being redirected to. tricky splitting can get me the right page
         split_var = split_var[1].split("\"");
-        new_title = split_var[1].replace(" ","_");
+        new_title = split_var[1];
         console.log(new_title);
+        wikirequest(new_title);
 
     }
-    else if(data.parse.title != title){ //sometimes you get a disambugation page
-      console.log("DISAMB PAGE");
-      url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"_(band)&format=json&callback=?";
-      $.getJSON(url, function(data) {
-        console.log('search 2');
-        console.log(data);
-        console.log(parsed_text);
-        body.innerHTML = parsed_text;
-      })
-    }
-    else{//actual page found
+    else {//not redirect page
       console.log("ACTUAL PAGE");
+      if(data.parse.title != title){ //sometimes you get a disambugation page
+        console.log("DISAMB PAGE");
+        wikirequest(new_title+"_(band)");
+      }
+      else { //It was the actual page
       console.log(parsed_text);
       body.innerHTML = parsed_text;
+    }
     }
 
 });
 }
-
-async function loadwiki(){
-  var name = document.querySelector("#artist_name");
-  wikirequest(name.innerHTML);
-  //for(var page in results.query.pages){
-//  }
+/*
+async function wikiredirectband(title){
+  var body = document.querySelector("#wiki_body");
+  console.log("DISAMB PAGE");
+  var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
+  $.getJSON(url, function(data) {
+    console.log('search 2');
+    console.log(data);
+    var parsed_text = data.parse.text["*"];
+    console.log(parsed_text);
+    body.innerHTML = parsed_text;
+  })
 }
+*/
 
 
 /* *************************************************************
