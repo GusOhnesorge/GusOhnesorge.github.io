@@ -89,7 +89,7 @@ function isredirect(parsed_text){
   return false;
 }
 
-async function wikiredirect(title, parsed_text){
+function wikiredirect(title, parsed_text){
   console.log("REDIRECTING");
     var split_var = parsed_text.split("title="); //Redirect page will always look the same except for the title being redirected to. tricky splitting can get me the right page
     split_var = split_var[1].split("\"");
@@ -106,7 +106,7 @@ async function wikiredirect(title, parsed_text){
 
 }
 
-async function wikirequestband(title){
+function wikirequestband(title){
   console.log("ADDING BAND");
   title = title.replace(/ /g,"_");
   console.log("replaced = "+title);
