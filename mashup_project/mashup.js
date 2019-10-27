@@ -164,9 +164,7 @@ function replace_reserved_chars(title){
     reserved_table.set("[","%5B");
     reserved_table.set("]","%5D");
   }
-  for(var key in reserved_table){
-    console.log(key+" "+reserved_table.get(key));
-  }
+  console.log(title);
   for(var i = 0; i<title.length;){
     var cur_char = title.charAt(i);
     var char_str = reserved_table.get(cur_char);
