@@ -135,7 +135,7 @@ function wikirequestband(title){
           }
         }
     }
-  }
+  });
 }
 
 
