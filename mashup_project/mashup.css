@@ -18,6 +18,7 @@ h3{
 
 .spotify{
   grid-column: wrapper-start / span 8;
+  grid-row: auto / span 7;
   display: grid;
   grid-template-columns: repeat(12, [spotify-start] 1fr);
 }
@@ -117,4 +118,6 @@ h3{
 
 #wikipedia{
   background-color: lightgray;
+  grid-column: wrapper-start 1 / -1 ;
+  grid-row: 8 / -1;
 }
