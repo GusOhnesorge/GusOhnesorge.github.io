@@ -38,6 +38,7 @@ function pagesetup(){
   ************************************************************** */
 async function updateloop(){
   loadsong();
+  imageupdateplayer()
   if(cur_song != wiki_song){
       wiki_song = cur_song;
       loadwiki();
@@ -143,7 +144,7 @@ function replace_reserved_chars(title){
     reserved_table.set("$","%24");
     reserved_table.set("$","%24");
     reserved_table.set("%","%25");
-    reserved_table.set("&","&amp;"); //unfortunately the wikipedia api seems to hate '&' and won't recognize '&', '%26', and '%amp'
+    reserved_table.set("&","&amp;"); //unfortunately the wikipedia api seems to hate '&' and won't recognize '&', '%26', or '%amp;'
     reserved_table.set("\'","%27");
     reserved_table.set("(","%28");
     reserved_table.set(")","%29");
@@ -295,6 +296,20 @@ async function loadsong(){
       }
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
+
+    infoopts = {
+      method: 'GET',
+      headers: {
+        'Accept': "application/json",
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${access_tok}`
+      }
+    };
+    jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
+    shuffle = jsoninfo.shufflestate;
+    if(jsoninfo.repeat_state != "off"){
+      repeat = true;
+    }
   }
 
   async function playcontext(context){
@@ -305,7 +320,7 @@ async function loadsong(){
         'Content-Type': "application/json",
         'Authorization': `Bearer ${access_tok}`
       },
-      body: {context_uri: context}
+      body: JSON.stringify({"context_uri": context})
     };
     let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
   }
@@ -351,17 +366,37 @@ async function loadsong(){
     playcontext(context);
   }
 
+  function imageupdateplayer(){
+    var play_button = document.querySelector("#play");
+    var shuffle_button = document.querySelector("#shuffle");
+    var repeat_button = document.querySelector("#repeat");
+    if(song_playing){
+      play_button.src = "images/play.png";
+    }
+    else{
+      play_button.src = "images/pause.jpg";
+    }
+    if(shuffle){
+      shuffle_button.src = "images/shuffle_off.png";
+    }
+    else{
+      shuffle_button.src = "images/shuffle_on.png";
+    }
+    if(repeat){
+      repeat_button.src = "images/repeat_off.png";
+    }
+    else{
+      repeat_button.src = "images/repeat_on.png";
+    }
+  }
+
   async function play_pause(){
     if(song_playing){
       song_playing = false;
-      var play_button = document.querySelector("#play");
-      play_button.src = "images/play.png";
       pausedevice();
     }
     else{
       song_playing = true;
-      var play_button = document.querySelector("#play");
-      play_button.src = "images/pause.jpg";
       playdevice();
       loadsong();
     }
@@ -379,14 +414,10 @@ async function loadsong(){
     if(shuffle){
       let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/shuffle?state=false",infoopts);
       shuffle = false;
-      var shuffle_button = document.querySelector("#shuffle");
-      shuffle_button.src = "images/shuffle_off.png";
     }
     else{
       let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/shuffle?state=true",infoopts);
       shuffle = true;
-      var shuffle_button = document.querySelector("#shuffle");
-      shuffle_button.src = "images/shuffle_on.png";
     }
   }
 
@@ -402,37 +433,10 @@ async function loadsong(){
     if(repeat){
       let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/repeat?state=off",infoopts);
       repeat = false;
-      var repeat_button = document.querySelector("#repeat");
-      repeat_button.src = "images/repeat_off.png";
     }
     else{
       let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/repeat?state=track",infoopts);
       repeat = true;
-      var repeat_button = document.querySelector("#repeat");
-      repeat_button.src = "images/repeat_on.png";
-    }
-  }
-
-  async function next(){
-    let infoopts = {
-      method: 'PUT',
-      headers: {
-        'Accept': "application/json",
-        'Content-Type': "application/json",
-        'Authorization': `Bearer ${access_tok}`
-      }
-    };
-    if(repeat){
-      let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/repeat?state=off",infoopts);
-      repeat = false;
-      var repeat_button = document.querySelector("#repeat");
-      repeat_button.src = "images/repeat_off.png";
-    }
-    else{
-      let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/repeat?state=track",infoopts);
-      repeat = true;
-      var repeat_button = document.querySelector("#repeat");
-      repeat_button.src = "images/repeat_on.png";
     }
   }
 
