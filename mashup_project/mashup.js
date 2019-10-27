@@ -117,26 +117,26 @@ function wikirequestband(title){
       .done(function(data) {
         if(data.error != null){
           console.log("please work");
-          return_value = false;
+          return false;
         }
         else{
           console.log("ADDING BAND SUCCESS");
           var parsed_text = data.parse.text["*"];
           if(isredirect() == true){
-            return_value = false;
+            return false;
           }
           else{
             var body = document.querySelector("#wiki_body");
             body.innerHTML = parsed_text;
-            return_value = true;
+            return true;
           }
         }
       },function(error){
           console.log(error);
-          return_value = false;
           console.log(return_value);
+          return false;
+
       });
-  return return_value;
 }
 
 
