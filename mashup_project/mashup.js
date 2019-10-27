@@ -130,7 +130,6 @@ function wikirequestband(title){
   $.ajax({
     url: url,
     dataType: 'json',
-    async: false,
     success: function(data) {
       console.log(data.error);
       console.log(data.error.code);
