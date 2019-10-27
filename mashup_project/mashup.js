@@ -114,7 +114,7 @@ function wikirequestband(title){
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
     $
       .getJSON(url)
-      .then(function(data) {
+      .done(function(data) {
         if(data.error != null){
           console.log("please work");
           return_value = false;
