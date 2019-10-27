@@ -112,7 +112,7 @@ async function wikirequestband(title){
     if(isredirect == true){
       return false;
     }
-    else if(data.code == "missingtitle"){
+    else if(data.error.code == "missingtitle"){
       console.log("missingtitle");
       return false;
     }
