@@ -127,20 +127,6 @@ async function wikirequestband(title){
 
 
 }
-/*
-async function wikiredirectband(title){
-  var body = document.querySelector("#wiki_body");
-  console.log("DISAMB PAGE");
-  var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
-  $.getJSON(url, function(data) {
-    console.log('search 2');
-    console.log(data);
-    var parsed_text = data.parse.text["*"];
-    console.log(parsed_text);
-    body.innerHTML = parsed_text;
-  })
-}
-*/
 
 
 /* *************************************************************
