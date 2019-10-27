@@ -114,7 +114,7 @@ function wikirequestband(title){
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
     $
       .getJSON(url)
-      .success(function(data) {
+      .then(function(data) {
         console.log("ADDING BAND SUCCESS");
         var parsed_text = data.parse.text["*"];
         if(isredirect() == true){
@@ -125,8 +125,7 @@ function wikirequestband(title){
           body.innerHTML = parsed_text;
           return_value = true;
         }
-          })
-      .error(function(error){
+      },function(error){
           console.log(error);
           return_value = false;
           console.log(return_value);
