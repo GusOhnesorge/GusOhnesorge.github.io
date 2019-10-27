@@ -52,10 +52,12 @@ async function wikirequest(title){
   var body = document.querySelector("#wiki_body");
   var url = `https://en.wikipedia.org/w/api.php?action=parse&prop=text&page=${title}_(band)&format=json&callback=?`;
   $.getJSON(url, function(data) {
+    console.log(result);
+    console.log(data);
     result = data.parse.text;
     title.innerHTML = "name";
     body.innerHTML = results;
-    console.log(result);
+
 });
 }
 
