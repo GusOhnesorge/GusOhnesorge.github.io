@@ -119,6 +119,7 @@ function wikirequestband(title){
     if(code != null){
       console.log("missingtitle");
       return_value = false;
+      console.log(return_value);
     }
     else{
       console.log("ADDING BAND SUCCESS");
