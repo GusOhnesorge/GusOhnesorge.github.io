@@ -227,7 +227,7 @@ async function loadplaylists(){
     td = document.createElement("td");
     trow = document.createElement("tr");
     contents = document.createTextNode(info.items[i].name);
-    current_playlist_ids.set(info.items[i].name, "spotify:playlist:"+info.items[i].id);//each "item" is a playlist object and i'm getting their info
+    current_playlist_ids.set(info.items[i].name, info.items[i].id);//each "item" is a playlist object and i'm getting their info
     td.appendChild(contents);
     td.id = info.items[i].name;
     td.addEventListener("click", chooseplaylist, false); //make playlists clickable
@@ -348,7 +348,6 @@ async function loadsong(){
 
   async function chooseplaylist(){
     var playlist_id = current_playlist_ids.get(this.id);
-    console.log(playlist_id);
     let playlistops = {
       method: 'GET',
       headers: {
@@ -357,7 +356,7 @@ async function loadsong(){
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/playlists/${playlist_id}`,playlistops);
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
     var context = info.uri;
     setdevice();
