@@ -112,16 +112,19 @@ function wikirequestband(title){
   title = title.replace(/ /g,"_");
   console.log("replaced = "+title);
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
-    $
-      .getJSON(url)
-      .done(function(data) {
-        if(data.error != null){
+    $.ajax({
+    url: url,
+    dataType: 'json',
+    data: data,
+    async: false, //I need to return out of the function so it must not be async
+    success: function(response){
+        if(response.error != null){
           console.log("please work");
           return false;
         }
         else{
           console.log("ADDING BAND SUCCESS");
-          var parsed_text = data.parse.text["*"];
+          var parsed_text = response.parse.text["*"];
           if(isredirect() == true){
             return false;
           }
@@ -131,12 +134,6 @@ function wikirequestband(title){
             return true;
           }
         }
-      },function(error){
-          console.log(error);
-          console.log(return_value);
-          return false;
-
-      });
 }
 
 
