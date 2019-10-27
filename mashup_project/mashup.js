@@ -107,6 +107,7 @@ function wikiredirect(title, parsed_text){
 }
 
 function wikirequestband(title){
+  var return_value;
   console.log("ADDING BAND");
   title = title.replace(/ /g,"_");
   console.log("replaced = "+title);
@@ -117,19 +118,20 @@ function wikirequestband(title){
     var code = data.error.code;
     if(code != null){
       console.log("missingtitle");
-      return false;
+      return_value = false;
     }
     else{
       console.log("ADDING BAND SUCCESS");
       var parsed_text = data.parse.text["*"];
       if(isredirect() == true){
-        return false;
+        return_value = false;
       }
       var body = document.querySelector("#wiki_body");
       body.innerHTML = parsed_text;
-      return true;
+      return_value = true;
     }
   });
+  return return_value;
 
 
 }
