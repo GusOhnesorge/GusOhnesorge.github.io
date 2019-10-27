@@ -41,7 +41,7 @@ async function wikirequest(title){
     mode: "no-cors",
   }*/
   title = title.replace(" ", "_");
-  var url = `https://en.wikipedia.org/w/api.php?action=parse&prop=text&page=${title}&format=json`;
+  var url = `https://en.wikipedia.org/w/api.php?action=parse&prop=text&page=${title}&format=json&callback=?`;
   //var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
   return $.getJSON(url);
 
