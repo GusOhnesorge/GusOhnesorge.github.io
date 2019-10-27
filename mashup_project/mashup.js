@@ -71,6 +71,7 @@ async function wikirequest(title){
         console.log(data);
         console.log(parsed_text);
         body.innerHTML = parsed_text;
+      })
     }
     else{//actual page found
       console.log("ACTUAL PAGE");
