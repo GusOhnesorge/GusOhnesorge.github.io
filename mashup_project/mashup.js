@@ -55,16 +55,11 @@ async function updateloop(){
   }
 
 async function wikirequest(title){
-  /*let wikiopts = {
-    mode: "no-cors",
-  }*/
-  //var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
   var new_title = replace_reserved_chars(title);
-  console.log(new_title);
   var body = document.querySelector("#wiki_body");
+  console.log(new_title);
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"&format=json&callback=?";
   $.getJSON(url, function(data) {
-    console.log(data);
     var parsed_text = data.parse.text["*"];
     if(isredirect(parsed_text) == true){ //for redirect pages (they techincally have the "correct" title so I need to check text) It's also inelegant to hardcode like this but....
       wikiredirect(title, parsed_text);
