@@ -156,7 +156,7 @@ async function wikiredirect(title, parsed_text){
 
 function replace_reserved_chars(title){
   for(var i = 0; i<title.length;){
-    var char_str = reserved_table.(title.charAt(i));
+    var char_str = reserved_table.title.charAt(i);
     if(char_str != null){
       title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
       i+=3;
