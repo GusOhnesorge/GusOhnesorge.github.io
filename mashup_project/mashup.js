@@ -34,7 +34,6 @@ function pagesetup(){
   ************************************************************** */
 async function updateloop(){
   loadsong();
-  console.log(cur_song+" "+wiki_song)
   if(cur_song != wiki_song){
       wiki_song = cur_song;
       loadwiki();
@@ -49,16 +48,27 @@ async function wikirequest(title){
     mode: "no-cors",
   }*/
   //var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
-  title = title.replace(" ","_");
-  console.log(title);
+  var new_title = title.replace(" ","_");
+  console.log(new_title);
   var result;
   var body = document.querySelector("#wiki_body");
-  var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"&format=json&callback=?";
+  var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"&format=json&callback=?";
   $.getJSON(url, function(data) {
     console.log(data);
-    result = data.parse.text;
-    console.log(result["*"]);
-    body.innerHTML = result["*"];
+    if(data.parse.title != title){
+      url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"_(band)&format=json&callback=?";
+      $.getJSON(url, function(data) {
+        console.log('search 2');
+        console.log(data);
+        result = data.parse.text;
+        console.log(result["*"]);
+        body.innerHTML = result["*"];
+    }
+    else{
+      result = data.parse.text;
+      console.log(result["*"]);
+      body.innerHTML = result["*"];
+    }
 
 });
 }
