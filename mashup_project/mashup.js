@@ -370,19 +370,19 @@ async function loadsong(){
     var play_button = document.querySelector("#play");
     var shuffle_button = document.querySelector("#shuffle");
     var repeat_button = document.querySelector("#repeat");
-    if(song_playing){
+    if(!song_playing){
       play_button.src = "images/play.png";
     }
     else{
       play_button.src = "images/pause.jpg";
     }
-    if(shuffle){
+    if(!shuffle){
       shuffle_button.src = "images/shuffle_off.png";
     }
     else{
       shuffle_button.src = "images/shuffle_on.png";
     }
-    if(repeat){
+    if(!repeat){
       repeat_button.src = "images/repeat_off.png";
     }
     else{
