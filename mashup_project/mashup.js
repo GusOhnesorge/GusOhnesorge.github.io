@@ -48,7 +48,6 @@ async function wikirequest(title){
   }*/
   //var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
   var result;
-  var title = document.querySelector("#wiki_title");
   var body = document.querySelector("#wiki_body");
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
   $.getJSON(url, function(data) {
