@@ -90,18 +90,18 @@ function isredirect(parsed_text){
   return false;
 }
 
-function wikiredirect(title, parsed_text){
+async function wikiredirect(title, parsed_text){
   console.log("REDIRECTING");
     var split_var = parsed_text.split("title="); //Redirect page will always look the same except for the title being redirected to. tricky splitting can get me the right page
     split_var = split_var[1].split("\"");
     var new_title = split_var[1];
     console.log(new_title);
     console.log("trying "+new_title+" (band)");
-    wikirequestband(new_title);
+    await wikirequestband(new_title);
     console.log("wiki_obj = "+wiki_obj);
     if(wiki_obj == false){//trying most specific first
       console.log("trying "+title+" (band)");
-      wikirequestband(title)
+      await wikirequestband(title)
       if(wiki_obj == false){//the redirect was probably wrong so lets try this
         console.log("trying "+new_title);
         wikirequest(new_title);//trying the pure new title in case the new wiki page doesn't have the "band" classification
