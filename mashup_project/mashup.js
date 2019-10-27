@@ -34,9 +34,7 @@ function pagesetup(){
   ************************************************************** */
 async function updateloop(){
   loadsong();
-  console.log(cur_song+" "+wiki_song);
   if(cur_song != wiki_song){
-      wiki_song = cur_song;
       loadwiki();
   }
 }
@@ -62,6 +60,9 @@ async function wikirequest(title){
 }
 
 async function loadwiki(){
+  var name = document.querySelector("#artist_name");
+  var title = document.querySelector("#wiki_title");
+  title.innerHTML = name.innerHTML;
   wikirequest(name.innerHTML);
   //for(var page in results.query.pages){
 //  }
