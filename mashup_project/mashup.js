@@ -1,3 +1,4 @@
+//spotify_vars
 var client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
 var current_playlist_ids = new Map();
 var song_playing = false;
@@ -5,6 +6,29 @@ var shuffle = false;
 var replay = false;
 var device_id;
 var access_tok;
+//wikipedia vars
+var reserved_table = {
+  "!":"%21",
+  "#":"%23",
+  "$":"%24" ,
+  "%":"%25"	,
+  "&":"%26",
+  "\'":"%27",
+  "(":"%28",
+  ")":"%29",
+  "*":"%2A",
+  "+":"%2B",
+  ",":"%2C",
+  "/":"%2F",
+  ":":"%3A",
+  ";":"%3B",
+  "=":"%3D",
+  "?":"%3F",
+  "@":"%40",
+  "[":"%5B",
+  "]":"%5D"
+};
+//general vars
 var updateinterval;
 //these are used so that the wiki isn't making a call every second, only when song changes
 var cur_song = "";
@@ -55,7 +79,7 @@ async function wikirequest(title){
     mode: "no-cors",
   }*/
   //var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
-  var new_title = title.replace(/ /g,"_");
+  var new_title = replace_reserved_chars(title);
   console.log(new_title);
   var body = document.querySelector("#wiki_body");
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"&format=json&callback=?";
@@ -104,7 +128,7 @@ async function wikiredirect(title, parsed_text){
     split_var = split_var[1].split("\"");
     var new_title = split_var[1];
     console.log(new_title);
-    var new_title_band = new_title.replace(/ /g,"_");
+    var new_title_band = replace_reserved_chars(new_title);
     var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title_band+"_(band)&format=json&callback=?";
     $.getJSON(url, function(data) {//trying most specific first (redirect+band)
       console.log(data.error);
@@ -130,6 +154,19 @@ async function wikiredirect(title, parsed_text){
     });
 }
 
+function replace_reserved_chars(title){
+  for(var i = 0; i<title.length){
+    var char_str = reserved_table.(title.charAt(i));
+    if(char_str != null){
+      title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
+      i+=3;
+    }
+    else {
+      i++;
+    }
+  }
+  return title;
+}
 
 /* *************************************************************
   ********************  SPOTIFY FUNCTIONS  *********************
