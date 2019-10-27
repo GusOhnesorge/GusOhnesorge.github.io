@@ -112,7 +112,8 @@ function wikirequestband(title){
   title = title.replace(/ /g,"_");
   console.log("replaced = "+title);
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
-    $.getJSON(url)
+    $
+      .getJSON(url)
       .success(function(data) {
         console.log("ADDING BAND SUCCESS");
         var parsed_text = data.parse.text["*"];
