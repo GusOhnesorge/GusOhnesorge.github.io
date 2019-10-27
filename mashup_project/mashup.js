@@ -166,8 +166,9 @@ function replace_reserved_chars(title){
     if(char_str != null){
       if(char_str == '&'){
         title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
-        console.log(title);
+        console.log(title + " "+i);
         i = i+5;
+        console.log(title + " "+i);
       }
       else{
         title = title.substring(0,i) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
