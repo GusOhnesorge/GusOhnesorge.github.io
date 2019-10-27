@@ -117,7 +117,7 @@ h3{
 }
 
 #wikipedia{
-  background-color: lightgray;
-  grid-column: wrapper-start 2;
+  background-color: palegreen;
+  grid-column: wrapper-start 1;
   grid-row: 8;
 }
