@@ -53,8 +53,8 @@ async function wikirequest(title){
   $.getJSON(url, function(data) {
     console.log(data);
     result = data.parse.text;
-    console.log(result.*);
-    body.innerHTML = result.*;
+    console.log(result["*"]);
+    body.innerHTML = result["*"];
 
 });
 }
