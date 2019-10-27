@@ -55,28 +55,23 @@ async function wikirequest(title){
     mode: "no-cors",
   }*/
   //var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
-  var new_title = title.replace(" ","_");
+  var new_title = title.replace(/ /g,"_");
   console.log(new_title);
   var body = document.querySelector("#wiki_body");
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"&format=json&callback=?";
   $.getJSON(url, function(data) {
     console.log(data);
     var parsed_text = data.parse.text["*"];
-    console.log(parsed_text.substring(43, 54));
-    if(parsed_text.substring(42, 53) == "redirectMsg"){ //for redirect pages (they techincally have the "correct" title so I need to check text) It's also inelegant to hardcode like this but....
-      console.log("REDIRECTING");
-        var split_var = parsed_text.split("title="); //Redirect page will always look the same except for the title being redirected to. tricky splitting can get me the right page
-        split_var = split_var[1].split("\"");
-        new_title = split_var[1];
-        console.log(new_title);
-        wikirequest(new_title);
-
+    if(isredirect(parsed_text) == true){ //for redirect pages (they techincally have the "correct" title so I need to check text) It's also inelegant to hardcode like this but....
+      wikiredirect(title, parsed_text);
     }
     else {//not redirect page
       console.log("ACTUAL PAGE");
       if(data.parse.title != title){ //sometimes you get a disambugation page
         console.log("DISAMB PAGE");
-        wikirequest(new_title+"_(band)");
+        if(wikirequestband(new_title) == false){ //if true then the data will be filled in
+          body.innerHTML = "Wiki page for"+title+" could not be located. Sorry :(";//this is a last case resort
+        }
       }
       else { //It was the actual page
       console.log(parsed_text);
@@ -85,6 +80,47 @@ async function wikirequest(title){
     }
 
 });
+}
+function isredirect(text){
+  if(parsed_text.substring(42, 53) == "redirectMsg"){
+    return true;
+  }
+  return false;
+}
+
+async function wikiredirect(title, parsed_text){
+  console.log("REDIRECTING");
+    var split_var = parsed_text.split("title="); //Redirect page will always look the same except for the title being redirected to. tricky splitting can get me the right page
+    split_var = split_var[1].split("\"");
+    var new_title = split_var[1];
+    console.log(new_title);
+    if(wikirequestband(new_title) == false){//trying most specific first
+      if(wikirequestband(title) == false){//the redirect was probably wrong so lets try this
+        wikirequest(new_title);//trying the pure new title in case the new wiki page doesn't have the "band" classification
+      }
+    }
+
+}
+
+async function wikirequestband(title){
+  title = title.replace(/ /g,"_");
+  var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
+  $.getJSON(url, function(data) {
+    console.log(data.error);
+    if(isredirect == true){
+      return false;
+    }
+    else if(data.error == null){
+        var body = document.querySelector("#wiki_body");
+        var parsed_text = data.parse.text["*"];
+        body.innerHTML = parsed_text;
+        return true;
+    }
+    else{
+      return false;
+    }
+
+
 }
 /*
 async function wikiredirectband(title){
