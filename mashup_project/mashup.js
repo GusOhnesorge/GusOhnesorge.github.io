@@ -50,24 +50,32 @@ async function wikirequest(title){
   //var url = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + title + "&callback=?";
   var new_title = title.replace(" ","_");
   console.log(new_title);
-  var result;
   var body = document.querySelector("#wiki_body");
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"&format=json&callback=?";
   $.getJSON(url, function(data) {
     console.log(data);
-    if(data.parse.title != title){
+    var parsed_text = data.parse.text["*"];
+    if(parsed_text.substring(43, 53) == "redirectMsg"){ //for redirect pages (they techincally have the "correct" title) It's also inelegant to hardcode like this but....
+      console.log("REDIRECTING");
+        var split_var = parsed_text.split("title=");
+        split_var = split_var[1].split("\"");
+        new_title = split_var[1].replace(" ","_");
+        console.log(new_title);
+
+    }
+    else if(data.parse.title != title){ //sometimes you get a disambugation page
+      console.log("DISAMB PAGE");
       url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"_(band)&format=json&callback=?";
       $.getJSON(url, function(data) {
         console.log('search 2');
         console.log(data);
-        result = data.parse.text;
-        console.log(result["*"]);
-        body.innerHTML = result["*"];
+        console.log(parsed_text);
+        body.innerHTML = parsed_text;
     }
-    else{
-      result = data.parse.text;
-      console.log(result["*"]);
-      body.innerHTML = result["*"];
+    else{//actual page found
+      console.log("ACTUAL PAGE");
+      console.log(parsed_text);
+      body.innerHTML = parsed_text;
     }
 
 });
