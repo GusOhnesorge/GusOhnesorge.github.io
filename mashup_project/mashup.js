@@ -102,7 +102,6 @@ function isdisamb(parsed_text, title){
   return false;
 }
 
-//Can't use encodeURIComponent() instead of this function because spotify returns & as &amp;
 async function wikiredirect(title, parsed_text){
   console.log("REDIRECTING");
     var done;
@@ -144,7 +143,7 @@ function replace_reserved_chars(title){
     reserved_table.set("$","%24");
     reserved_table.set("$","%24");
     reserved_table.set("%","%25");
-    reserved_table.set("&","%26");
+    reserved_table.set("&","&amp"); //unfortunately the wikipedia api seems to hate '&' and won't recognize '&', '%26', and
     reserved_table.set("\'","%27");
     reserved_table.set("(","%28");
     reserved_table.set(")","%29");
