@@ -7,28 +7,7 @@ var replay = false;
 var device_id;
 var access_tok;
 //wikipedia vars
-var reserved_table = {
-  " ":"_",
-  "!":"%21",
-  "#":"%23",
-  "$":"%24" ,
-  "%":"%25"	,
-  "&":"%26",
-  "\'":"%27",
-  "(":"%28",
-  ")":"%29",
-  "*":"%2A",
-  "+":"%2B",
-  ",":"%2C",
-  "/":"%2F",
-  ":":"%3A",
-  ";":"%3B",
-  "=":"%3D",
-  "?":"%3F",
-  "@":"%40",
-  "[":"%5B",
-  "]":"%5D"
-};
+var reserved_table = new Map();
 //general vars
 var updateinterval;
 //these are used so that the wiki isn't making a call every second, only when song changes
@@ -162,6 +141,29 @@ async function wikiredirect(title, parsed_text){
 }
 
 function replace_reserved_chars(title){
+  if(reserved_table.length = 0){
+    reserved_table.set(" ","_");
+    reserved_table.set("!","%21");
+    reserved_table.set("#","%23");
+    reserved_table.set("$","%24");
+    reserved_table.set("$","%24");
+    reserved_table.set("%","%25");
+    reserved_table.set("&","%26");
+    reserved_table.set("\'","%27");
+    reserved_table.set("(","%28");
+    reserved_table.set(")","%29");
+    reserved_table.set("*","%2A");
+    reserved_table.set("+","%2B");
+    reserved_table.set(",","%2C");
+    reserved_table.set("/","%2F");
+    reserved_table.set(":","%3A");
+    reserved_table.set(";","%3B");
+    reserved_table.set("=","%3D");
+    reserved_table.set("@","%40");
+    reserved_table.set("?","%3F");
+    reserved_table.set("[","%5B");
+    reserved_table.set("]","%5D");
+  }
   for(var i = 0; i<title.length;){
     var cur_char = title.charAt(i);
     var char_str = reserved_table.cur_char;
