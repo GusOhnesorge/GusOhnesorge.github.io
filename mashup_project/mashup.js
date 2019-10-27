@@ -302,9 +302,10 @@ async function loadsong(){
       }
     };
     jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
-    shuffle = jsoninfo.shufflestate;
-    console.log(jsoninfo.repeat_state)
-    if(jsoninfo.repeat_state == "off"){
+    let info = await jsoninfo.json();
+    shuffle = info.shufflestate;
+    console.log(info.repeat_state)
+    if(info.repeat_state == "off"){
       repeat = false;
     }
     else{
