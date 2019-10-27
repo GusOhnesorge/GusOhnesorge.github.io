@@ -148,7 +148,7 @@ function replace_reserved_chars(title){
     reserved_table.set("$","%24");
     reserved_table.set("$","%24");
     reserved_table.set("%","%25");
-    reserved_table.set("&","%26");
+    reserved_table.set("&amp;","%26");
     reserved_table.set("\'","%27");
     reserved_table.set("(","%28");
     reserved_table.set(")","%29");
