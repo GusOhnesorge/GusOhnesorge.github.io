@@ -109,17 +109,17 @@ async function wikirequestband(title){
   var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
   $.getJSON(url, function(data) {
     console.log(data.error);
-    if(isredirect() == true){
-      return false;
-    }
-    else if(data.error.code == "missingtitle"){
+    if(data.error.code == "missingtitle"){
       console.log("missingtitle");
       return false;
     }
     else{
       console.log("ADDING BAND SUCCESS");
-      var body = document.querySelector("#wiki_body");
       var parsed_text = data.parse.text["*"];
+      if(isredirect() == true){
+        return false;
+      }
+      var body = document.querySelector("#wiki_body");
       body.innerHTML = parsed_text;
       return true;
     }
