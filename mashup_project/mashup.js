@@ -34,6 +34,7 @@ function pagesetup(){
   ************************************************************** */
 async function updateloop(){
   loadsong();
+  console.log(cur_song+" "+wiki_song);
   if(cur_song != wiki_song){
       wiki_song = cur_song;
       loadwiki();
