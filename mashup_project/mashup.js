@@ -166,7 +166,7 @@ function replace_reserved_chars(title){
     var cur_char = title.charAt(i);
     var char_str = reserved_table.cur_char;
     console.log(cur_char);
-    console.log(cur_str);
+    console.log(char_str);
     if(char_str != null){
       title = title.substring(0,i+1) + char_str + title.substring(i+1); // cannot use str.replace() because % is a reserved char, but it is also added with numbers to replace the other reserved strings
       console.log(title);
