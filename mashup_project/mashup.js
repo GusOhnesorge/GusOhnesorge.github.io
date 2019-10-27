@@ -55,7 +55,6 @@ async function wikirequest(title){
     console.log(result);
     console.log(data);
     result = data.parse.text;
-    title.innerHTML = "name";
     body.innerHTML = results;
 
 });
@@ -63,6 +62,7 @@ async function wikirequest(title){
 
 async function loadwiki(){
   var name = document.querySelector("#artist_name");
+  title.innerHTML = name;
   wikirequest(name.innerHTML);
   //for(var page in results.query.pages){
 //  }
