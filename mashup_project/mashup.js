@@ -356,8 +356,10 @@ async function loadsong(){
   }
 
   async function chooseplaylist(){
-    var td = document.querySelector(cur_playlist);
-    td.class = "not_selected";
+    if(cur_playlist != null){
+      var td = document.querySelector(cur_playlist);
+      td.class = "not_selected";
+    }
     cur_playlist = current_playlist_ids.get(this.id);
     let playlistops = {
       method: 'GET',
