@@ -317,7 +317,6 @@ async function loadsong(){
   }
 
   async function playcontext(context){
-    song_playing = true;
     let infoopts = {
       method: 'PUT',
       body: JSON.stringify({"context_uri": context}),
@@ -327,7 +326,7 @@ async function loadsong(){
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play`,infoopts);
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${device_id}`,infoopts);
   }
 
   async function playdevice(){
