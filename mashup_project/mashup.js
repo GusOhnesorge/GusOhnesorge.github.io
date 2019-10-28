@@ -352,7 +352,6 @@ async function loadsong(){
       }
     };
     let jsoninfo = await fetch("https://api.spotify.com/v1/me/player/pause",infoopts);
-    song_playing = false;
   }
 
   async function chooseplaylist(){
