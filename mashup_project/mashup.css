@@ -121,3 +121,7 @@ h3{
   grid-column: wrapper-start 1;
   grid-row: 8;
 }
+
+.selected{
+  background-color: palegreen;
+}

@@ -2,6 +2,7 @@
 //spotify_vars
 var client_id = "efaa5403e2fb4a4aab9cb0fd9cf6d56a";
 var current_playlist_ids = new Map();
+var cur_playlist;
 var song_playing = false;
 var shuffle = false;
 var repeat = false;
@@ -39,7 +40,7 @@ function pagesetup(){
   ************************************************************** */
 async function updateloop(){
   loadsong();
-  imageupdateplayer();
+  imageupdate();
   if(cur_song != wiki_song){
       wiki_song = cur_song;
       loadwiki();
@@ -235,6 +236,7 @@ async function loadplaylists(){
     current_playlist_ids.set(info.items[i].name, info.items[i].id);//each "item" is a playlist object and i'm getting their info
     td.appendChild(contents);
     td.id = info.items[i].name;
+    td.class = "not_selected";
     td.addEventListener("click", chooseplaylist, false); //make playlists clickable
     trow.appendChild(td);
     t.appendChild(trow);
@@ -354,7 +356,9 @@ async function loadsong(){
   }
 
   async function chooseplaylist(){
-    var playlist_id = current_playlist_ids.get(this.id);
+    var td = document.querySelector(cur_playlist);
+    td.class = "not_selected";
+    cur_playlist = current_playlist_ids.get(this.id);
     let playlistops = {
       method: 'GET',
       headers: {
@@ -363,7 +367,7 @@ async function loadsong(){
         'Authorization': `Bearer ${access_tok}`
       }
     };
-    let jsoninfo = await fetch(`https://api.spotify.com/v1/playlists/${playlist_id}`,playlistops);
+    let jsoninfo = await fetch(`https://api.spotify.com/v1/playlists/${cur_playlist}`,playlistops);
     let info = await jsoninfo.json();
     var context = info.uri;
     pausedevice()
@@ -371,10 +375,12 @@ async function loadsong(){
     .then(playcontext(context));
   }
 
-  function imageupdateplayer(){
+  function imageupdate(){
+    var td = document.querySelector(cur_playlist);
     var play_button = document.querySelector("#play");
     var shuffle_button = document.querySelector("#shuffle");
     var repeat_button = document.querySelector("#repeat");
+    td.class = "selected";
     if(song_playing == true){
       play_button.src = "images/pause.jpg";
     }
