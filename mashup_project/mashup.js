@@ -365,8 +365,7 @@ async function loadsong(){
     let jsoninfo = await fetch(`https://api.spotify.com/v1/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
     var context = info.uri;
-    let set = await play_pause();
-    set = await setdevice();
+    setdevice();
     playcontext(context);
   }
 
