@@ -236,7 +236,6 @@ async function loadplaylists(){
     current_playlist_ids.set(info.items[i].name, info.items[i].id);//each "item" is a playlist object and i'm getting their info
     td.appendChild(contents);
     td.id = info.items[i].name;
-    td.class = "not_selected";
     td.addEventListener("click", chooseplaylist, false); //make playlists clickable
     trow.appendChild(td);
     t.appendChild(trow);
@@ -356,10 +355,6 @@ async function loadsong(){
   }
 
   async function chooseplaylist(){
-    if(cur_playlist != null){
-      var td = document.querySelector(cur_playlist);
-      td.class = "not_selected";
-    }
     cur_playlist = current_playlist_ids.get(this.id);
     let playlistops = {
       method: 'GET',
@@ -378,11 +373,9 @@ async function loadsong(){
   }
 
   function imageupdate(){
-    var td = document.querySelector(cur_playlist);
     var play_button = document.querySelector("#play");
     var shuffle_button = document.querySelector("#shuffle");
     var repeat_button = document.querySelector("#repeat");
-    td.class = "selected";
     if(song_playing == true){
       play_button.src = "images/pause.jpg";
     }
