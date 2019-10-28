@@ -59,7 +59,7 @@ async function wikirequest(title){
   var new_title = replace_reserved_chars(title);
   var body = document.querySelector("#wiki_body");
   console.log("new_title: "+new_title);
-  var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"&format=json&callback=?";
+  var url = "https://www.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"&format=json&callback=?";
   $.getJSON(url, function(data) {
     var parsed_text = data.parse.text["*"];
     if(isredirect(parsed_text) == true){ //for redirect pages (they techincally have the "correct" title so I need to check text) It's also inelegant to hardcode like this but....
@@ -68,7 +68,7 @@ async function wikirequest(title){
     else {//not redirect page
       if(isdisamb(parsed_text, new_title) == true){ //sometimes you get a disambugation page
         console.log("REROUTING FROM DISAMBIGUATION")
-        url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"_(band)&format=json&callback=?";
+        url = "https://www.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"_(band)&format=json&callback=?";
         $.getJSON(url, function(data) {//the redirect was probably wrong so lets try the original title+band
           if(data.error == null){
               let body = document.querySelector("#wiki_body");
@@ -114,7 +114,7 @@ async function wikiredirect(title, parsed_text){
     var new_title = split_var[1];
     console.log(new_title);
     var new_title_band = replace_reserved_chars(new_title);
-    var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title_band+"_(band)&format=json&callback=?";
+    var url = "https://www.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title_band+"_(band)&format=json&callback=?";
     $.getJSON(url, function(data) {//trying most specific first (redirect+band)
       if(data.error == null){
           let body = document.querySelector("#wiki_body");
@@ -122,7 +122,7 @@ async function wikiredirect(title, parsed_text){
           body.innerHTML = parsed_text;
       }
       else{
-        url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
+        url = "https://www.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
         $.getJSON(url, function(data) {//the redirect was probably wrong so lets try the original title+band
           if(data.error == null){
               let body = document.querySelector("#wiki_body");
