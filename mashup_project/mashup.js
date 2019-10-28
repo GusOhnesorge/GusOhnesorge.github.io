@@ -59,7 +59,7 @@ async function wikirequest(title){
   var new_title = replace_reserved_chars(title);
   var body = document.querySelector("#wiki_body");
   console.log("new_title: "+new_title);
-  var url = "https://www.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"&format=json&callback=?";
+  var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"&format=json&callback=?";
   $.getJSON(url, function(data) {
     var parsed_text = data.parse.text["*"];
     if(isredirect(parsed_text) == true){ //for redirect pages (they techincally have the "correct" title so I need to check text) It's also inelegant to hardcode like this but....
@@ -68,7 +68,7 @@ async function wikirequest(title){
     else {//not redirect page
       if(isdisamb(parsed_text, new_title) == true){ //sometimes you get a disambugation page
         console.log("REROUTING FROM DISAMBIGUATION")
-        url = "https://www.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"_(band)&format=json&callback=?";
+        url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title+"_(band)&format=json&callback=?";
         $.getJSON(url, function(data) {//the redirect was probably wrong so lets try the original title+band
           if(data.error == null){
               let body = document.querySelector("#wiki_body");
@@ -98,9 +98,7 @@ function isredirect(parsed_text){
 
 function isdisamb(parsed_text, title){
   var key_phrase = parsed_text.substring(41+title.length, 53+title.length);
-  console.log(key_phrase);
   if(key_phrase == "may refer to" || key_phrase == "can refer to"){ //This will always be here relative to the title name if the page is a disambiguation page
-    console.log("clap");
     return true;
   }
   return false;
@@ -114,7 +112,7 @@ async function wikiredirect(title, parsed_text){
     var new_title = split_var[1];
     console.log(new_title);
     var new_title_band = replace_reserved_chars(new_title);
-    var url = "https://www.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title_band+"_(band)&format=json&callback=?";
+    var url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+new_title_band+"_(band)&format=json&callback=?";
     $.getJSON(url, function(data) {//trying most specific first (redirect+band)
       if(data.error == null){
           let body = document.querySelector("#wiki_body");
@@ -122,7 +120,7 @@ async function wikiredirect(title, parsed_text){
           body.innerHTML = parsed_text;
       }
       else{
-        url = "https://www.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
+        url = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&page="+title+"_(band)&format=json&callback=?";
         $.getJSON(url, function(data) {//the redirect was probably wrong so lets try the original title+band
           if(data.error == null){
               let body = document.querySelector("#wiki_body");
@@ -308,7 +306,6 @@ async function loadsong(){
     jsoninfo = await fetch(`https://api.spotify.com/v1/me/player`,infoopts);
     let info = await jsoninfo.json();
     shuffle = info.shufflestate;
-    console.log(info.repeat_state)
     if(info.repeat_state == "off"){
       repeat = false;
     }
@@ -318,7 +315,6 @@ async function loadsong(){
   }
 
   async function playcontext(context){
-    console.log(context);
     let infoopts = {
       method: 'PUT',
       body: JSON.stringify({"context_uri": context}),
@@ -368,7 +364,7 @@ async function loadsong(){
     let jsoninfo = await fetch(`https://api.spotify.com/v1/playlists/${playlist_id}`,playlistops);
     let info = await jsoninfo.json();
     var context = info.uri;
-    let set = play_pause();
+    let set = await play_pause();
     set = await setdevice();
     playcontext(context);
   }
