@@ -118,6 +118,6 @@ h3{
 
 #wikipedia{
   background-color: palegreen;
-  grid-column: wrapper-start 1;
+  grid-column: wrapper-start 3 / span 6;
   grid-row: 8;
 }
