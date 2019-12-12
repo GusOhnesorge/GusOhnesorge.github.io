@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/gus/Desktop/csci4131/microblog/venv"
+set -gx VIRTUAL_ENV "/home/gus/Desktop/csci4131/GusOhnesorge.github.io/microblog/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

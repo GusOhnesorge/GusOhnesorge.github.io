@@ -1,4 +1,4 @@
-#!/home/gus/Desktop/csci4131/microblog/venv/bin/python3
+#!/home/gus/Desktop/csci4131/GusOhnesorge.github.io/microblog/venv/bin/python3
 # EASY-INSTALL-ENTRY-SCRIPT: 'Mako==1.1.0','console_scripts','mako-render'
 __requires__ = 'Mako==1.1.0'
 import re
