@@ -1,20 +1,12 @@
 # Final Project for CSCI 4131
 ## Project Type:
-```
 C
-```
 ## Memeber Names:
-```
 Clark Ohnesorge
-```
 ## Project Link:
-```
 [Final Project](https://microblog-4131.herokuapp.com) deployed on Heroku
-```
 ## Github Link:
-```
 [Repository](https://github.com/GusOhnesorge/microblog-4131)
-```
 ## List of Technologies Used
 1. Wtforms
 2. Flask
