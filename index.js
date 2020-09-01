@@ -1,19 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
+		//initializing ranges for HSL color. A nice feature is that
+		// ANY number can be a hue in HSL, so you don't have to worry about going
+		//over 360
 		var min_color = 0
 		var max_color = 360
+		var min_gradient_incr = 10 //minimum difference between eeach color
+		var max_gradient_incr = 30 //maximum difference between eeach color
 		var sat = 93
 		var light = 93
-		var projects = document.getElementsByClassName("project")
+		var projects = document.getElementsByClassName("project_cont")
 		var num_projects = projects.length
-		var rand_num = -1
-		function getColor (min, max, colors_left){
-			return Math.floor(Math.random() * (max-min-colors_left)) + min
-		}
 		for(i = 0; i<num_projects; i++) {
-			min_color = getColor(min_color+1, max_color, num_projects-i)
-			console.log(min_color)
+			min_color = Math.floor(Math.random() * (max_color-min_color) + min_color)
 			color_string = "hsl("+min_color+","+sat+"%,"+light+"%)"
-			console.log(color_string)
 			projects[i].style.backgroundColor = color_string
+			max_color = min_color + max_gradient_incr
+			min_color = min_color + min_gradient_incr
 		}
 }, false);

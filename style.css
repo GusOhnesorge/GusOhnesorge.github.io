@@ -1,9 +1,16 @@
+:root {
+  --main-txt-color: hsl(228, 9%, 60%);
+  --highlight-txt-color: hsl(228, 9%, 30%);
+  --main-padding: 15px;
+
+}
+
 .section{
   margin : 0;
   padding : 0;
   font-family : DejaVu serif;
   font-size : 14px;
-  color : white;
+  color : var(--main-txt-color);
 }
 
 .sub-section{
@@ -20,18 +27,19 @@
   padding : 0;
   font-family: Liberation sans-serif;
   font-size : 10px;
-  color : white;
+  color : var(--main-txt-color);
 }
 
-.project{
-
+.project_text{
+  font-size: 20px;
+  color : var(--main-txt-color);
 }
 
-#p1{
-  background-color: hsl(180, 50%, 50%);
+.project_cont{
+  height: 20vh;
 }
 
 
 a{
-   color : #ff8731;
+   color : var(--highlight-txt-color);
 }
