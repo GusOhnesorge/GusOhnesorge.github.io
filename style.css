@@ -1,45 +1,126 @@
 :root {
-  --main-txt-color: hsl(228, 9%, 60%);
-  --highlight-txt-color: hsl(228, 9%, 30%);
-  --main-padding: 15px;
+  --main-text-color: hsl(228, 9%, 60%);
+  --highlight-text-color: hsl(228, 9%, 30%);
 
 }
 
-.section{
-  margin : 0;
-  padding : 0;
-  font-family : DejaVu serif;
-  font-size : 14px;
-  color : var(--main-txt-color);
+body {
+
 }
 
-.sub-section{
-  margin : 0;
-  padding : 0;
-  font-family : DejaVu serif;
-  font-size : 14px;
-  color : #ff8731;
+.element { overflow: -moz-scrollbars-none; }
+
+#home {
+  height: 100vh;
+  position: relative;
 }
 
-.footer{
-  text-align : center;
-  margin : 0;
-  padding : 0;
-  font-family: Liberation sans-serif;
-  font-size : 10px;
-  color : var(--main-txt-color);
+#intro_text {
+  font-size: 15px;
+  color: var(--highlight-text-color);
+  position: absolute;
+  top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+#home_text {
+  font-size: 100px;
+  color: var(--highlight-text-color);
+  position: absolute;
+  top: 30%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+#about_anchor{
+  height: 60vh;
+}
+
+#about_text {
+  text-align: center;
+  font-size: 100px;
+  color: var(--highlight-text-color);
+  position: relative;
+  top: 15%;
+
+}
+
+#projects_anchor{
+  height: 40vh;
+}
+
+#projects_text {
+  text-align: center;
+  font-size: 100px;
+  color: var(--highlight-text-color);
+  position: relative;
+  top: 15%;
+
 }
 
 .project_text{
+  text-align : center;
   font-size: 20px;
-  color : var(--main-txt-color);
+  color : var(--main-text-color);
 }
 
 .project_cont{
+  margin : 0;
+  padding : 0;
   height: 20vh;
 }
 
-
 a{
-   color : var(--highlight-txt-color);
+  color : var(--highlight-text-color);
+}
+
+.navbar{
+  float: left;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0);
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+.navbar_options{
+  float: left;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: 50%;
+  text-align: center;
+
+}
+
+.option{
+  padding: 0;
+  margin: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  display: block;
+  float: left;
+  position: relative;
+  right: 50%;
+}
+
+.option:hover{
+  color : hsl(228, 11%, 95%);
+  background-color: var(--highlight-text-color);
+}
+
+.option a:hover{
+  color : hsl(228, 11%, 95%);
+}
+
+.option a{
+   color: var(--highlight-text-color);
+   display: block;
+   padding: 8px;
+   text-align: center;
+   text-decoration: none;
 }
